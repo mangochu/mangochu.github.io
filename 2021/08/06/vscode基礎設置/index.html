@@ -21,19 +21,26 @@
     var CONFIG = {"hostname":"mangochu.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="分享學習心得">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://mangochu.github.io/about/index.html">
+  <meta name="description" content="一些好用的VSCode設定整理 - TAB縮排、自訂程式碼片段（Snippet）、Emmet功能 - Wrap with abbreviation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="開發工具 - VSCode基礎設置">
+<meta property="og:url" content="http://mangochu.github.io/2021/08/06/vscode%E5%9F%BA%E7%A4%8E%E8%A8%AD%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Mangochu&#39;s Blog">
-<meta property="og:description" content="分享學習心得">
+<meta property="og:description" content="一些好用的VSCode設定整理 - TAB縮排、自訂程式碼片段（Snippet）、Emmet功能 - Wrap with abbreviation">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2021-08-02T14:30:29.000Z">
-<meta property="article:modified_time" content="2021-08-02T14:30:29.335Z">
+<meta property="og:image" content="http://mangochu.github.io/2021/08/06/vscode%E5%9F%BA%E7%A4%8E%E8%A8%AD%E7%BD%AE/2.png">
+<meta property="og:image" content="http://mangochu.github.io/2021/08/06/vscode%E5%9F%BA%E7%A4%8E%E8%A8%AD%E7%BD%AE/2-1.gif">
+<meta property="og:image" content="http://mangochu.github.io/2021/08/06/vscode%E5%9F%BA%E7%A4%8E%E8%A8%AD%E7%BD%AE/3.png">
+<meta property="og:image" content="http://mangochu.github.io/2021/08/06/vscode%E5%9F%BA%E7%A4%8E%E8%A8%AD%E7%BD%AE/4.png">
+<meta property="og:image" content="http://mangochu.github.io/2021/08/06/vscode%E5%9F%BA%E7%A4%8E%E8%A8%AD%E7%BD%AE/1.png">
+<meta property="article:published_time" content="2021-08-06T07:36:15.000Z">
+<meta property="article:modified_time" content="2021-08-06T18:13:15.060Z">
 <meta property="article:author" content="Mangochu">
+<meta property="article:tag" content="VSCode">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://mangochu.github.io/2021/08/06/vscode%E5%9F%BA%E7%A4%8E%E8%A8%AD%E7%BD%AE/2.png">
 
-<link rel="canonical" href="http://mangochu.github.io/about/">
+<link rel="canonical" href="http://mangochu.github.io/2021/08/06/vscode%E5%9F%BA%E7%A4%8E%E8%A8%AD%E7%BD%AE/">
 
 
 <script id="page-configurations">
@@ -41,13 +48,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-TW'
   };
 </script>
 
-  <title>about | Mangochu's Blog
-</title>
+  <title>開發工具 - VSCode基礎設置 | Mangochu's Blog</title>
   
 
 
@@ -190,43 +196,109 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-TW">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://mangochu.github.io/2021/08/06/vscode%E5%9F%BA%E7%A4%8E%E8%A8%AD%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mangochu">
+      <meta itemprop="description" content="分享學習心得">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mangochu's Blog">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          開發工具 - VSCode基礎設置
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">about
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
 
-<div class="post-meta">
+              <time title="創建時間：2021-08-06 15:36:15" itemprop="dateCreated datePublished" datetime="2021-08-06T15:36:15+08:00">2021-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-08-07 02:13:15" itemprop="dateModified" datetime="2021-08-07T02:13:15+08:00">2021-08-07</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/08/06/vscode%E5%9F%BA%E7%A4%8E%E8%A8%AD%E7%BD%AE/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/08/06/vscode基礎設置/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <div class="post-description">一些好用的VSCode設定整理 - TAB縮排、自訂程式碼片段（Snippet）、Emmet功能 - Wrap with abbreviation</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Visual Studio Code（以下簡稱VSCode）是目前大家最推薦的原始碼編輯器，VSCode的好處多多，支援很多程式語言還有可以在內建的擴充程式商店安裝擴充，也有偵錯和代碼自動補全的功能等等，最重要的是免費，所以很多人推薦新手直接學習VSCode。筆者從自學一開始就是接觸VSCode。其他還有很多編輯器（Sublime、ATOM、Dreamweaver、……）筆者自己也沒用過（汗）。    <br></p>
+<p>以下會說明VSCode內的一些功能設定方法，擴充推薦未來會再出一篇文章說明。</p>
+<h3 id="TAB縮排"><a href="#TAB縮排" class="headerlink" title="TAB縮排"></a>TAB縮排</h3><p>VSCode預設的Tab為4個半形空白，但是根據ESLint的標準，在寫JS的時候還是改成2個半形空白會比較好。<br>（關於ESLint的說明，很推薦大家去看Eddy大的Gitbook中<a target="_blank" rel="noopener" href="https://eyesofkids.gitbooks.io/react-basic-zh-tw/content/day03_eslint/">工具篇-ESLint</a>） <br></p>
+<p>首先說明VSCode的自動縮排快捷鍵是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Shift + Alt + F</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="選擇縮排"><a href="#選擇縮排" class="headerlink" title="選擇縮排"></a>選擇縮排</h4><p> 看向視窗的下方有一個空格：4就代表每一行Tab的縮排是4個空格<br> <img data-src="2.png" alt="空格：4"><br> 若要將其設為2，則是點選空格後，選擇「使用空格鍵進行縮排」，改為2即可。<br> 修改後再使用VSCode自動縮排（Shift+Alt+F）就會變更了<br> <img data-src="2-1.gif" alt="修改空格"></p>
+<h4 id="選單設定"><a href="#選單設定" class="headerlink" title="選單設定"></a>選單設定</h4><p> 另外如果未來不想要每次都要修改縮排設定的話，就到選單設定裡做一些變更：</p>
+<ol>
+<li>檔案&gt;喜好設定&gt;設定<br><img data-src="3.png" alt="檔案&gt;喜好設定&gt;設定"></li>
+<li>搜尋Tab size並將其值改為2<br><img data-src="4.png" alt="Tab size to 2"><br>並且把Detect Indentation 取消勾選<br><img data-src="1.png" alt="Detect Indentation"></li>
+</ol>
+<h3 id="自訂程式碼片段（Snippet）"><a href="#自訂程式碼片段（Snippet）" class="headerlink" title="自訂程式碼片段（Snippet）"></a>自訂程式碼片段（Snippet）</h3>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/VSCode/" rel="tag"># VSCode</a>
+          </div>
+
+        
+
+
+        
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
@@ -284,6 +356,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TAB%E7%B8%AE%E6%8E%92"><span class="nav-number">2.</span> <span class="nav-text">TAB縮排</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%81%B8%E6%93%87%E7%B8%AE%E6%8E%92"><span class="nav-number">2.1.</span> <span class="nav-text">選擇縮排</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%81%B8%E5%96%AE%E8%A8%AD%E5%AE%9A"><span class="nav-number">2.2.</span> <span class="nav-text">選單設定</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E8%A8%82%E7%A8%8B%E5%BC%8F%E7%A2%BC%E7%89%87%E6%AE%B5%EF%BC%88Snippet%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">自訂程式碼片段（Snippet）</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -412,9 +485,9 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "http://mangochu.github.io/about/index.html";
-    this.page.identifier = "about/index.html";
-    this.page.title = "about";
+    this.page.url = "http://mangochu.github.io/2021/08/06/vscode%E5%9F%BA%E7%A4%8E%E8%A8%AD%E7%BD%AE/";
+    this.page.identifier = "2021/08/06/vscode基礎設置/";
+    this.page.title = "開發工具 - VSCode基礎設置";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
