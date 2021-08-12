@@ -23,8 +23,8 @@
 
 <p>其中body裡的設定有幾點說明：</p>
 <ul>
-<li>用”$”加上數字的組合可以成為特殊字組（例如：$1, $2），特殊字組所在的區域就是每按1次TAB會停在該區域，可以打上任何值再按TAB跳到下個區域，例如：<code>&quot;&lt;img src=\&quot;https://picsum.photos/$1/$2?random=$3\&quot;&gt;&quot;</code></li>
-<li>因為是字串（string），前後必須加上雙引號（”），那問題來了裡面如果又有雙引號就會碰上錯誤，這時候要在裡面的雙引號前面加上倒斜線（\），例如：<code>&quot;&lt;img src=\&quot;https://picsum.photos/300/400?random=1\&quot;&gt;&quot;</code></li>
+<li>用”$”加上數字的組合可以成為特殊字組（例如：<code>$1</code>, <code>$2</code>），特殊字組所在的區域就是每按1次TAB會停在該區域，可以打上任何值再按TAB跳到下個區域，例如：<code>&quot;&lt;img src=\&quot;https://picsum.photos/$1/$2?random=$3\&quot;&gt;&quot;</code></li>
+<li>因為是字串（string），前後必須加上雙引號（”），那問題來了裡面如果又有雙引號就會碰上錯誤，這時候要在裡面的雙引號前面加上倒斜線（<code>\&quot;</code>），例如：<code>&quot;&lt;img src=\&quot;https://picsum.photos/300/400?random=1\&quot;&gt;&quot;</code></li>
 <li>body的每一個字串陣列都代表程式碼的<strong>一行</strong>，換行要記得在每行字串後用逗號（,）隔開，例如：</li>
 </ul>
  <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;* &#123;&quot;</span>,</span><br><span class="line"><span class="string">&quot;margin: 0;&quot;</span>,</span><br><span class="line"><span class="string">&quot;padding: 0;&quot;</span>,</span><br><span class="line"><span class="string">&quot;list-style: none;&quot;</span>,</span><br><span class="line"><span class="string">&quot;&#125;&quot;</span></span><br></pre></td></tr></table></figure>
@@ -38,6 +38,17 @@
 </ol>
 <p>以上文章是我整理的一些實用功能和設定，其實如果平常有空應該多爬爬這類型的文章，應該可以加快不少寫程式碼的速度。<br>那麼我們下一篇見！</p>
 ]]></content>
+      <categories>
+        <category>全端</category>
+      </categories>
+      <tags>
+        <tag>VSCode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>開發工具 - VSCode擴充功能</title>
+    <url>/programming/20210808/91963548/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3>]]></content>
       <categories>
         <category>全端</category>
       </categories>
