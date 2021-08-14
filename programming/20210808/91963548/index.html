@@ -21,18 +21,23 @@
     var CONFIG = {"hostname":"mangochu.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="介紹VSCode的一些擴充功能">
+  <meta name="description" content="新手入門必備的擴充推薦！另外介紹有些擴充功能根本不需要安裝，VSCode就有內建哦！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="開發工具 - VSCode擴充功能">
 <meta property="og:url" content="http://mangochu.github.io/programming/20210808/91963548/index.html">
 <meta property="og:site_name" content="Mangochu&#39;s Blog">
-<meta property="og:description" content="介紹VSCode的一些擴充功能">
+<meta property="og:description" content="新手入門必備的擴充推薦！另外介紹有些擴充功能根本不需要安裝，VSCode就有內建哦！">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="http://mangochu.github.io/programming/20210808/91963548/1.png">
+<meta property="og:image" content="http://mangochu.github.io/programming/20210808/91963548/1.gif">
+<meta property="og:image" content="http://mangochu.github.io/programming/20210808/91963548/2.png">
+<meta property="og:image" content="http://mangochu.github.io/programming/20210808/91963548/3.png">
 <meta property="article:published_time" content="2021-08-08T06:59:53.000Z">
-<meta property="article:modified_time" content="2021-08-08T07:03:31.042Z">
+<meta property="article:modified_time" content="2021-08-14T07:06:49.632Z">
 <meta property="article:author" content="Mangochu">
 <meta property="article:tag" content="VSCode">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://mangochu.github.io/programming/20210808/91963548/1.png">
 
 <link rel="canonical" href="http://mangochu.github.io/programming/20210808/91963548/">
 
@@ -220,10 +225,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-08-08 14:59:53 / 修改時間：15:03:31" itemprop="dateCreated datePublished" datetime="2021-08-08T14:59:53+08:00">2021-08-08</time>
+              <time title="創建時間：2021-08-08 14:59:53" itemprop="dateCreated datePublished" datetime="2021-08-08T14:59:53+08:00">2021-08-08</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-08-14 15:06:49" itemprop="dateModified" datetime="2021-08-14T15:06:49+08:00">2021-08-14</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -249,7 +260,7 @@
   </span>
   
   
-            <div class="post-description">介紹VSCode的一些擴充功能</div>
+            <div class="post-description">新手入門必備的擴充推薦！另外介紹有些擴充功能根本不需要安裝，VSCode就有內建哦！</div>
 
         </div>
       </header>
@@ -260,7 +271,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3>
+        <h3 id="擴充套件"><a href="#擴充套件" class="headerlink" title="擴充套件"></a>擴充套件</h3><p>又稱延伸模組（Extension）。<br>首先要先說明我目前主要開發的語言是Javascript和React，目前還努力在前端打滾學習中。所以擴充主要都會圍繞在HTML、CSS、Javascript、React上。</p>
+<p>使用擴充是見仁見智，所以我會依個人使用習慣來推薦，有興趣的就繼續看下去吧！</p>
+<h3 id="高度推薦（必裝）"><a href="#高度推薦（必裝）" class="headerlink" title="高度推薦（必裝）"></a>高度推薦（必裝）</h3><h4 id="Live-Server"><a href="#Live-Server" class="headerlink" title="Live Server"></a>Live Server</h4><p><img data-src="1.png" alt="Live server"><br>Live Server能將HTML檔案轉換成瀏覽器網站並即時更新顯示，注意你需要先開啟一份HTML檔（.html)，接著只要按下VSCode右下角的<code>Go Live</code>按鈕或者右鍵<code>Open with live server</code>，就能開啟執行本地伺服器（Localhost）。<br><img data-src="1.gif" alt="Go Live"></p>
+<h4 id="Formate-CSS-LESS-and-SCSS-Formatter"><a href="#Formate-CSS-LESS-and-SCSS-Formatter" class="headerlink" title="Formate: CSS, LESS and SCSS Formatter"></a>Formate: CSS, LESS and SCSS Formatter</h4><p><img data-src="2.png" alt="Formate: CSS, LESS and SCSS Formatter"><br>HTML檔案在編譯的時候VSCode是有預設排版的，所以不需要另外安裝擴充，但是CSS就不一樣了，VSCode是沒有預設排版的功能，所以我推薦下載這個擴充。</p>
+<h4 id="ESLint"><a href="#ESLint" class="headerlink" title="ESLint"></a>ESLint</h4><p><img data-src="3.png" alt="ESLint"><br>ESLint這個擴充是Javascript風格指引的輔助工具，如果說未來需要和別人共同開發專案，最好是從現在開始培養編寫習慣。<del>不然以後也許別人看你的程式碼會想拿磚頭砸你</del><br>剛開始使用一定會報出一堆錯誤，會覺得很麻煩。但是每個錯誤去了解為什麼並修正後，以後你的寫作風格就會很統一了。</p>
+<h4 id="cdnjs"><a href="#cdnjs" class="headerlink" title="cdnjs"></a>cdnjs</h4><p>這個擴充可以方便你嵌入或查詢cdnjs裡的各個JS框架版本，例如：jquery、Fontawesome、……等等。</p>
+<h4 id="Chinese-Lorem"><a href="#Chinese-Lorem" class="headerlink" title="Chinese Lorem"></a>Chinese Lorem</h4><p>中文版的假字產生器，只需要輸入<code>ctlorem</code>或者加上字數<code>ctlorem120</code>。</p>
+<h3 id="熱門推薦（選配）"><a href="#熱門推薦（選配）" class="headerlink" title="熱門推薦（選配）"></a>熱門推薦（選配）</h3><h4 id="indent-rainbow"><a href="#indent-rainbow" class="headerlink" title="indent-rainbow"></a>indent-rainbow</h4><p>會把縮排空格填上彩虹的顏色，可以讓你更輕鬆比對縮排位置，雖說是熱門推薦但我是覺得畫面有點花而沒有使用，看個人吧！</p>
+<h4 id="Code-Spell-Checker"><a href="#Code-Spell-Checker" class="headerlink" title="Code Spell Checker"></a>Code Spell Checker</h4><p>這個擴充有利有弊，檢查英文有無拼錯非常好用，但是某些情況會誤報，而個人看到誤報的毛毛蟲會有強迫症想去掉，也是看個人有沒有英文拼字輔助的需求。</p>
+<h4 id="Better-comments"><a href="#Better-comments" class="headerlink" title="Better comments"></a>Better comments</h4><p>可以讓你附註的文字變顏色，可以顯著標記之後要回來修改的地方等等重大資訊。</p>
+<h3 id="根據語言需求安裝"><a href="#根據語言需求安裝" class="headerlink" title="根據語言需求安裝"></a>根據語言需求安裝</h3><h4 id="ES7-React-Redux-GraphQL-React-Native-snippets"><a href="#ES7-React-Redux-GraphQL-React-Native-snippets" class="headerlink" title="ES7 React/Redux/GraphQL/React-Native snippets"></a>ES7 React/Redux/GraphQL/React-Native snippets</h4><p>一些React相關的snippets，有在寫React framework的是必載。</p>
+<h4 id="Simple-React-Snippets"><a href="#Simple-React-Snippets" class="headerlink" title="Simple React Snippets"></a>Simple React Snippets</h4><p>這個和前一個擴充一樣是React snippets，但是內容稍微不同，可以互補使用。</p>
+<h4 id="markdownlint"><a href="#markdownlint" class="headerlink" title="markdownlint"></a>markdownlint</h4><p>因為我的網誌就是用markdown語法寫的，為了統一文章的寫作風格，所以我有下載markdownlint來糾正一些寫法的錯誤。有在寫Markdown的人也很推薦使用。</p>
+<h3 id="其實這些擴充不用裝"><a href="#其實這些擴充不用裝" class="headerlink" title="其實這些擴充不用裝"></a>其實這些擴充不用裝</h3><h4 id="Auto-rename-tag"><a href="#Auto-rename-tag" class="headerlink" title="Auto rename tag"></a>Auto rename tag</h4><p>改標籤（TAG）會自動幫你連開頭和結尾一起變更，只適用.html檔，javascript內的是不適用這功能的。<br>但是這個擴充其實不用安裝，VSCode就有內建了，只需要在<code>檔案&gt;喜好設定&gt;設定</code>內搜尋<code>Editor: Linked Editing</code>勾選即可。（預設是：關）</p>
+<h4 id="Auto-close-tag"><a href="#Auto-close-tag" class="headerlink" title="Auto close tag"></a>Auto close tag</h4><p>能自動在開頭標籤後生成結束標籤。<br>這個下載500萬次的擴充其實也是VSCode就有內建的功能，而且不必特別設定，預設就是開。但如果不小心關到，可以到<code>檔案&gt;喜好設定&gt;設定</code>搜尋<code>Auto Closing Tags</code>，把HTML: Auto Closing Tags、Javascript: Auto Closing Tags、Typescript: Auto Closing Tags這三項打勾<br>如果是用setting.json修改語法如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;html.autoClosingTags&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">&quot;javascript.autoClosingTags&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">&quot;typescript.autoClosingTags&quot;</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
     </div>
 
     
@@ -347,7 +374,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%B4%E5%85%85%E5%A5%97%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">擴充套件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E5%BA%A6%E6%8E%A8%E8%96%A6%EF%BC%88%E5%BF%85%E8%A3%9D%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">高度推薦（必裝）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Live-Server"><span class="nav-number">2.1.</span> <span class="nav-text">Live Server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Formate-CSS-LESS-and-SCSS-Formatter"><span class="nav-number">2.2.</span> <span class="nav-text">Formate: CSS, LESS and SCSS Formatter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ESLint"><span class="nav-number">2.3.</span> <span class="nav-text">ESLint</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cdnjs"><span class="nav-number">2.4.</span> <span class="nav-text">cdnjs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Chinese-Lorem"><span class="nav-number">2.5.</span> <span class="nav-text">Chinese Lorem</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%86%B1%E9%96%80%E6%8E%A8%E8%96%A6%EF%BC%88%E9%81%B8%E9%85%8D%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">熱門推薦（選配）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#indent-rainbow"><span class="nav-number">3.1.</span> <span class="nav-text">indent-rainbow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Code-Spell-Checker"><span class="nav-number">3.2.</span> <span class="nav-text">Code Spell Checker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Better-comments"><span class="nav-number">3.3.</span> <span class="nav-text">Better comments</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B9%E6%93%9A%E8%AA%9E%E8%A8%80%E9%9C%80%E6%B1%82%E5%AE%89%E8%A3%9D"><span class="nav-number">4.</span> <span class="nav-text">根據語言需求安裝</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ES7-React-Redux-GraphQL-React-Native-snippets"><span class="nav-number">4.1.</span> <span class="nav-text">ES7 React&#x2F;Redux&#x2F;GraphQL&#x2F;React-Native snippets</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Simple-React-Snippets"><span class="nav-number">4.2.</span> <span class="nav-text">Simple React Snippets</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#markdownlint"><span class="nav-number">4.3.</span> <span class="nav-text">markdownlint</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E5%AF%A6%E9%80%99%E4%BA%9B%E6%93%B4%E5%85%85%E4%B8%8D%E7%94%A8%E8%A3%9D"><span class="nav-number">5.</span> <span class="nav-text">其實這些擴充不用裝</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Auto-rename-tag"><span class="nav-number">5.1.</span> <span class="nav-text">Auto rename tag</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Auto-close-tag"><span class="nav-number">5.2.</span> <span class="nav-text">Auto close tag</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
