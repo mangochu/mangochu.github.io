@@ -26,7 +26,7 @@
 <p>再來於Index.js內引入即可：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> AOS <span class="keyword">from</span> <span class="string">&#x27;aos&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;aos/dist/aos.css&#x27;</span>; <span class="comment">// You can also use &lt;link&gt; for styles</span></span><br><span class="line"><span class="comment">// ..</span></span><br><span class="line">AOS.init();</span><br></pre></td></tr></table></figure>
 
-<p>教學完後，今天要進入我們的正題，我在使用<code>aos.js</code>的時候遇到的問題，那就是：<strong>會出現多餘的空白！</strong><br>目前發現這個BUG的觸發條件是：</p>
+<h3 id="進入正題，我遇到什麼問題？"><a href="#進入正題，我遇到什麼問題？" class="headerlink" title="進入正題，我遇到什麼問題？"></a>進入正題，我遇到什麼問題？</h3><p>教學完後，今天要進入我們的正題，我在使用<code>aos.js</code>的時候遇到的問題，那就是：<strong>會出現多餘的空白！</strong><br>目前發現這個BUG的觸發條件是：</p>
 <ol>
 <li>該頁面任一<code>&lt;div&gt;</code>使用了<code>data-aos=&quot;fade-left&quot;</code></li>
 <li>使用Responsive裝置</li>
