@@ -4,7 +4,7 @@
   <url>
     <loc>http://mangochu.github.io/about/index.html</loc>
     
-    <lastmod>2021-08-31</lastmod>
+    <lastmod>2021-09-01</lastmod>
     
   </url>
   
@@ -44,13 +44,6 @@
   </url>
   
   <url>
-    <loc>http://mangochu.github.io/google3cbc63ad732d5c4f.html</loc>
-    
-    <lastmod>2021-08-12</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://mangochu.github.io/404.html</loc>
     
     <lastmod>2021-08-04</lastmod>
@@ -60,7 +53,7 @@
 
   <url>
     <loc>http://mangochu.github.io/</loc>
-    <lastmod>2021-08-31</lastmod>
+    <lastmod>2021-09-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -68,14 +61,14 @@
   
   <url>
     <loc>http://mangochu.github.io/tags/BUG%E7%B3%BB%E5%88%97/</loc>
-    <lastmod>2021-08-31</lastmod>
+    <lastmod>2021-09-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://mangochu.github.io/tags/VSCode/</loc>
-    <lastmod>2021-08-31</lastmod>
+    <lastmod>2021-09-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -84,7 +77,7 @@
   
   <url>
     <loc>http://mangochu.github.io/categories/programming/</loc>
-    <lastmod>2021-08-31</lastmod>
+    <lastmod>2021-09-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

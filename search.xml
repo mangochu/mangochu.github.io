@@ -48,6 +48,33 @@
       </tags>
   </entry>
   <entry>
+    <title>開發工具 - VSCode擴充功能</title>
+    <url>/programming/20210808/91963548/</url>
+    <content><![CDATA[<h3 id="擴充套件"><a href="#擴充套件" class="headerlink" title="擴充套件"></a>擴充套件</h3><p>又稱延伸模組（Extension）。<br>首先要先說明我目前主要開發的語言是Javascript和React，目前還努力在前端打滾學習中。所以擴充主要都會圍繞在HTML、CSS、Javascript、React上。</p>
+<p>使用擴充是見仁見智，所以我會依個人使用習慣來推薦，有興趣的就繼續看下去吧！</p>
+<h3 id="高度推薦（必裝）"><a href="#高度推薦（必裝）" class="headerlink" title="高度推薦（必裝）"></a>高度推薦（必裝）</h3><h4 id="Live-Server"><a href="#Live-Server" class="headerlink" title="Live Server"></a>Live Server</h4><p><img data-src="1.png" alt="Live server"><br>Live Server能將HTML檔案轉換成瀏覽器網站並即時更新顯示，注意你需要先開啟一份HTML檔（.html)，接著只要按下VSCode右下角的<code>Go Live</code>按鈕或者右鍵<code>Open with live server</code>，就能開啟執行本地伺服器（Localhost）。</p>
+<h4 id="Formate-CSS-LESS-and-SCSS-Formatter"><a href="#Formate-CSS-LESS-and-SCSS-Formatter" class="headerlink" title="Formate: CSS, LESS and SCSS Formatter"></a>Formate: CSS, LESS and SCSS Formatter</h4><p><img data-src="2.png" alt="Formate: CSS, LESS and SCSS Formatter"><br>HTML檔案在編譯的時候VSCode是有預設排版的，所以不需要另外安裝擴充，但是CSS就不一樣了，VSCode是沒有預設排版的功能，所以我推薦下載這個擴充。</p>
+<h4 id="ESLint"><a href="#ESLint" class="headerlink" title="ESLint"></a>ESLint</h4><p><img data-src="3.png" alt="ESLint"><br>ESLint這個擴充是Javascript風格指引的輔助工具，如果說未來需要和別人共同開發專案，最好是從現在開始培養編寫習慣。<del>不然以後也許別人看你的程式碼會想拿磚頭砸你</del><br>剛開始使用一定會報出一堆錯誤，會覺得很麻煩。但是每個錯誤去了解為什麼並修正後，以後你的寫作風格就會很統一了。</p>
+<h4 id="cdnjs"><a href="#cdnjs" class="headerlink" title="cdnjs"></a>cdnjs</h4><p><img data-src="4.png" alt="cdnjs"><br>這個擴充可以方便你嵌入或查詢cdnjs裡的各個JS框架版本，例如：jquery、Fontawesome、……等等。</p>
+<h4 id="Chinese-Lorem"><a href="#Chinese-Lorem" class="headerlink" title="Chinese Lorem"></a>Chinese Lorem</h4><p><img data-src="5.png" alt="Chinese Lorem"><br>中文版的假字產生器，只需要輸入<code>ctlorem</code>或者加上字數<code>ctlorem120</code>。</p>
+<h3 id="熱門推薦（選配）"><a href="#熱門推薦（選配）" class="headerlink" title="熱門推薦（選配）"></a>熱門推薦（選配）</h3><h4 id="indent-rainbow"><a href="#indent-rainbow" class="headerlink" title="indent-rainbow"></a>indent-rainbow</h4><p><img data-src="6.png" alt="indent-rainbow"><br>會把縮排空格填上彩虹的顏色，可以讓你更輕鬆比對縮排位置，雖說是熱門推薦但我是覺得畫面有點花而沒有使用，看個人吧！</p>
+<h4 id="Code-Spell-Checker"><a href="#Code-Spell-Checker" class="headerlink" title="Code Spell Checker"></a>Code Spell Checker</h4><p><img data-src="7.png" alt="Code Spell Checker"><br>這個擴充有利有弊，檢查英文有無拼錯非常好用，但是某些情況會誤報，而個人看到誤報的毛毛蟲會有強迫症想去掉，也是看個人有沒有英文拼字輔助的需求。</p>
+<h4 id="Better-comments"><a href="#Better-comments" class="headerlink" title="Better comments"></a>Better comments</h4><p><img data-src="8.png" alt="Better comments"><br>可以讓你附註的文字變顏色，可以顯著標記之後要回來修改的地方等等重大資訊。</p>
+<h3 id="根據語言需求安裝"><a href="#根據語言需求安裝" class="headerlink" title="根據語言需求安裝"></a>根據語言需求安裝</h3><h4 id="ES7-React-Redux-GraphQL-React-Native-snippets"><a href="#ES7-React-Redux-GraphQL-React-Native-snippets" class="headerlink" title="ES7 React/Redux/GraphQL/React-Native snippets"></a>ES7 React/Redux/GraphQL/React-Native snippets</h4><p><img data-src="9.png" alt="ES7 React/Redux/GraphQL/React-Native snippets"><br>一些React相關的snippets，有在寫React framework的是必載。</p>
+<h4 id="Simple-React-Snippets"><a href="#Simple-React-Snippets" class="headerlink" title="Simple React Snippets"></a>Simple React Snippets</h4><p><img data-src="10.png" alt="Simple React Snippets"><br>這個和前一個擴充一樣是React snippets，但是內容稍微不同，可以互補使用。</p>
+<h4 id="markdownlint"><a href="#markdownlint" class="headerlink" title="markdownlint"></a>markdownlint</h4><p><img data-src="11.png" alt="markdownlint"><br>因為我的網誌就是用markdown語法寫的，為了統一文章的寫作風格，所以我有下載markdownlint來糾正一些寫法的錯誤。有在寫Markdown的人也很推薦使用。</p>
+<h3 id="其實這些擴充不用裝"><a href="#其實這些擴充不用裝" class="headerlink" title="其實這些擴充不用裝"></a>其實這些擴充不用裝</h3><h4 id="Auto-rename-tag"><a href="#Auto-rename-tag" class="headerlink" title="Auto rename tag"></a>Auto rename tag</h4><p>改標籤（TAG）會自動幫你連開頭和結尾一起變更，只適用.html檔，javascript內的是不適用這功能的。<br>但是這個擴充其實不用安裝，VSCode就有內建了，只需要在<code>檔案&gt;喜好設定&gt;設定</code>內搜尋<code>Editor: Linked Editing</code>勾選即可。（預設是：關）</p>
+<h4 id="Auto-close-tag"><a href="#Auto-close-tag" class="headerlink" title="Auto close tag"></a>Auto close tag</h4><p>能自動在開頭標籤後生成結束標籤。<br>這個下載500萬次的擴充其實也是VSCode就有內建的功能，而且不必特別設定，預設就是開。但如果不小心關到，可以到<code>檔案&gt;喜好設定&gt;設定</code>搜尋<code>Auto Closing Tags</code>，把HTML: Auto Closing Tags、Javascript: Auto Closing Tags、Typescript: Auto Closing Tags這三項打勾<br>如果是用setting.json修改語法如下：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;html.autoClosingTags&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">&quot;javascript.autoClosingTags&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">&quot;typescript.autoClosingTags&quot;</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>程式</category>
+      </categories>
+      <tags>
+        <tag>VSCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>開發工具 - VSCode基礎設置</title>
     <url>/programming/20210806/3967904930/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Visual Studio Code（以下簡稱VSCode）是目前大家最推薦的原始碼編輯器，VSCode的好處多多，支援很多程式語言還有可以在內建的擴充程式商店安裝擴充，也有偵錯和代碼自動補全的功能等等，最重要的是<strong>免費</strong>，所以很多人推薦新手直接學習VSCode。筆者從自學一開始就是接觸VSCode。其他還有很多編輯器（Sublime、ATOM、Dreamweaver、……）筆者自己也沒用過（汗）。</p>
@@ -84,33 +111,6 @@
 <li>輸入你想包入的縮寫，就大功告成啦<br><img data-src="6-2.png" alt="wrap with abbreviation"><br>另外如果要做到像我一樣迅速使用，就是要設定快捷鍵。<br>設定方法就是按下右邊的齒輪，進去後再按編輯鍵設定即可，這邊我是設定<code>Shift + Alt + W</code><br><img data-src="6-3.png" alt="shortcut setting"></li>
 </ol>
 <p>以上文章是我整理的一些實用功能和設定，其實如果平常有空應該多爬爬這類型的文章，應該可以加快不少寫程式碼的速度。<br>那麼我們下一篇見！</p>
-]]></content>
-      <categories>
-        <category>程式</category>
-      </categories>
-      <tags>
-        <tag>VSCode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>開發工具 - VSCode擴充功能</title>
-    <url>/programming/20210808/91963548/</url>
-    <content><![CDATA[<h3 id="擴充套件"><a href="#擴充套件" class="headerlink" title="擴充套件"></a>擴充套件</h3><p>又稱延伸模組（Extension）。<br>首先要先說明我目前主要開發的語言是Javascript和React，目前還努力在前端打滾學習中。所以擴充主要都會圍繞在HTML、CSS、Javascript、React上。</p>
-<p>使用擴充是見仁見智，所以我會依個人使用習慣來推薦，有興趣的就繼續看下去吧！</p>
-<h3 id="高度推薦（必裝）"><a href="#高度推薦（必裝）" class="headerlink" title="高度推薦（必裝）"></a>高度推薦（必裝）</h3><h4 id="Live-Server"><a href="#Live-Server" class="headerlink" title="Live Server"></a>Live Server</h4><p><img data-src="1.png" alt="Live server"><br>Live Server能將HTML檔案轉換成瀏覽器網站並即時更新顯示，注意你需要先開啟一份HTML檔（.html)，接著只要按下VSCode右下角的<code>Go Live</code>按鈕或者右鍵<code>Open with live server</code>，就能開啟執行本地伺服器（Localhost）。</p>
-<h4 id="Formate-CSS-LESS-and-SCSS-Formatter"><a href="#Formate-CSS-LESS-and-SCSS-Formatter" class="headerlink" title="Formate: CSS, LESS and SCSS Formatter"></a>Formate: CSS, LESS and SCSS Formatter</h4><p><img data-src="2.png" alt="Formate: CSS, LESS and SCSS Formatter"><br>HTML檔案在編譯的時候VSCode是有預設排版的，所以不需要另外安裝擴充，但是CSS就不一樣了，VSCode是沒有預設排版的功能，所以我推薦下載這個擴充。</p>
-<h4 id="ESLint"><a href="#ESLint" class="headerlink" title="ESLint"></a>ESLint</h4><p><img data-src="3.png" alt="ESLint"><br>ESLint這個擴充是Javascript風格指引的輔助工具，如果說未來需要和別人共同開發專案，最好是從現在開始培養編寫習慣。<del>不然以後也許別人看你的程式碼會想拿磚頭砸你</del><br>剛開始使用一定會報出一堆錯誤，會覺得很麻煩。但是每個錯誤去了解為什麼並修正後，以後你的寫作風格就會很統一了。</p>
-<h4 id="cdnjs"><a href="#cdnjs" class="headerlink" title="cdnjs"></a>cdnjs</h4><p><img data-src="4.png" alt="cdnjs"><br>這個擴充可以方便你嵌入或查詢cdnjs裡的各個JS框架版本，例如：jquery、Fontawesome、……等等。</p>
-<h4 id="Chinese-Lorem"><a href="#Chinese-Lorem" class="headerlink" title="Chinese Lorem"></a>Chinese Lorem</h4><p><img data-src="5.png" alt="Chinese Lorem"><br>中文版的假字產生器，只需要輸入<code>ctlorem</code>或者加上字數<code>ctlorem120</code>。</p>
-<h3 id="熱門推薦（選配）"><a href="#熱門推薦（選配）" class="headerlink" title="熱門推薦（選配）"></a>熱門推薦（選配）</h3><h4 id="indent-rainbow"><a href="#indent-rainbow" class="headerlink" title="indent-rainbow"></a>indent-rainbow</h4><p><img data-src="6.png" alt="indent-rainbow"><br>會把縮排空格填上彩虹的顏色，可以讓你更輕鬆比對縮排位置，雖說是熱門推薦但我是覺得畫面有點花而沒有使用，看個人吧！</p>
-<h4 id="Code-Spell-Checker"><a href="#Code-Spell-Checker" class="headerlink" title="Code Spell Checker"></a>Code Spell Checker</h4><p><img data-src="7.png" alt="Code Spell Checker"><br>這個擴充有利有弊，檢查英文有無拼錯非常好用，但是某些情況會誤報，而個人看到誤報的毛毛蟲會有強迫症想去掉，也是看個人有沒有英文拼字輔助的需求。</p>
-<h4 id="Better-comments"><a href="#Better-comments" class="headerlink" title="Better comments"></a>Better comments</h4><p><img data-src="8.png" alt="Better comments"><br>可以讓你附註的文字變顏色，可以顯著標記之後要回來修改的地方等等重大資訊。</p>
-<h3 id="根據語言需求安裝"><a href="#根據語言需求安裝" class="headerlink" title="根據語言需求安裝"></a>根據語言需求安裝</h3><h4 id="ES7-React-Redux-GraphQL-React-Native-snippets"><a href="#ES7-React-Redux-GraphQL-React-Native-snippets" class="headerlink" title="ES7 React/Redux/GraphQL/React-Native snippets"></a>ES7 React/Redux/GraphQL/React-Native snippets</h4><p><img data-src="9.png" alt="ES7 React/Redux/GraphQL/React-Native snippets"><br>一些React相關的snippets，有在寫React framework的是必載。</p>
-<h4 id="Simple-React-Snippets"><a href="#Simple-React-Snippets" class="headerlink" title="Simple React Snippets"></a>Simple React Snippets</h4><p><img data-src="10.png" alt="Simple React Snippets"><br>這個和前一個擴充一樣是React snippets，但是內容稍微不同，可以互補使用。</p>
-<h4 id="markdownlint"><a href="#markdownlint" class="headerlink" title="markdownlint"></a>markdownlint</h4><p><img data-src="11.png" alt="markdownlint"><br>因為我的網誌就是用markdown語法寫的，為了統一文章的寫作風格，所以我有下載markdownlint來糾正一些寫法的錯誤。有在寫Markdown的人也很推薦使用。</p>
-<h3 id="其實這些擴充不用裝"><a href="#其實這些擴充不用裝" class="headerlink" title="其實這些擴充不用裝"></a>其實這些擴充不用裝</h3><h4 id="Auto-rename-tag"><a href="#Auto-rename-tag" class="headerlink" title="Auto rename tag"></a>Auto rename tag</h4><p>改標籤（TAG）會自動幫你連開頭和結尾一起變更，只適用.html檔，javascript內的是不適用這功能的。<br>但是這個擴充其實不用安裝，VSCode就有內建了，只需要在<code>檔案&gt;喜好設定&gt;設定</code>內搜尋<code>Editor: Linked Editing</code>勾選即可。（預設是：關）</p>
-<h4 id="Auto-close-tag"><a href="#Auto-close-tag" class="headerlink" title="Auto close tag"></a>Auto close tag</h4><p>能自動在開頭標籤後生成結束標籤。<br>這個下載500萬次的擴充其實也是VSCode就有內建的功能，而且不必特別設定，預設就是開。但如果不小心關到，可以到<code>檔案&gt;喜好設定&gt;設定</code>搜尋<code>Auto Closing Tags</code>，把HTML: Auto Closing Tags、Javascript: Auto Closing Tags、Typescript: Auto Closing Tags這三項打勾<br>如果是用setting.json修改語法如下：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;html.autoClosingTags&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">&quot;javascript.autoClosingTags&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">&quot;typescript.autoClosingTags&quot;</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>程式</category>
