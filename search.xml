@@ -48,7 +48,7 @@
       </tags>
   </entry>
   <entry>
-    <title>【JavaScript學習筆記 1】什麼是原型基礎（prototype-based）物件導向</title>
+    <title>【JavaScript學習筆記 1】什麼是原型基礎物件導向</title>
     <url>/programming/20211030/2110751047/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>這是自學筆記的第一篇，我在寫這一篇文章的背景是在學習完Freecodecamp還有實作React一段時間之後，所以對JavaScript的語法和使用上都有一定程度的了解。<br>文章最後也會附上參考資料來源，都是我認為非常棒的作者和文章。因為我本身是自學，所以這樣的學習順序不知是否正確，但是我以自己的經驗認為這樣的學習方式是很好的，原因是：</p>
 <blockquote>
