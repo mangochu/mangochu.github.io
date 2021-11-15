@@ -21,17 +21,17 @@
     var CONFIG = {"hostname":"mangochu.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="學完基礎JavaScript語法和結構，再來就是深入了解JavaScript的運作原理">
+  <meta name="description" content="如果你沒搞懂原型，你不算真的懂JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【JavaScript學習筆記 1】什麼是原型基礎物件導向">
 <meta property="og:url" content="http://mangochu.github.io/programming/20211030/2110751047/index.html">
 <meta property="og:site_name" content="Mangochu&#39;s Blog">
-<meta property="og:description" content="學完基礎JavaScript語法和結構，再來就是深入了解JavaScript的運作原理">
+<meta property="og:description" content="如果你沒搞懂原型，你不算真的懂JavaScript">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="http://mangochu.github.io/programming/20211030/2110751047/2.png">
 <meta property="og:image" content="http://mangochu.github.io/programming/20211030/2110751047/1_drawio.png">
 <meta property="article:published_time" content="2021-10-30T08:30:15.000Z">
-<meta property="article:modified_time" content="2021-11-13T02:50:59.668Z">
+<meta property="article:modified_time" content="2021-11-15T14:55:23.101Z">
 <meta property="article:author" content="Mangochu">
 <meta property="article:tag" content="JavaScript學習筆記">
 <meta name="twitter:card" content="summary">
@@ -231,7 +231,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-11-13 10:50:59" itemprop="dateModified" datetime="2021-11-13T10:50:59+08:00">2021-11-13</time>
+                <time title="修改時間：2021-11-15 22:55:23" itemprop="dateModified" datetime="2021-11-15T22:55:23+08:00">2021-11-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -258,7 +258,7 @@
   </span>
   
   
-            <div class="post-description">學完基礎JavaScript語法和結構，再來就是深入了解JavaScript的運作原理</div>
+            <div class="post-description">如果你沒搞懂原型，你不算真的懂JavaScript</div>
 
         </div>
       </header>
@@ -327,6 +327,9 @@
 
 <p><img data-src="2.png"></p>
 <h3 id="proto"><a href="#proto" class="headerlink" title="proto"></a><strong>proto</strong></h3><p>再來是__proto__這個內部屬性，它是每一個JavaScript裡物件都有的內部屬性，它會指向該物件的原型（prototype），用來連接出原型鏈，也就是JavaScript的繼承方式。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(Alan.species) <span class="comment">//human</span></span><br></pre></td></tr></table></figure>
+
+<p>當查找物件的屬性或方法時，若本身的物件找不到時，就往更上層尋找，直到串鏈尾端。實例<code>Alan</code>其實是透過原型prototype才得以繼承species屬性。</p>
 <p>對於一個函式而言，它的原型就是<code>Function.prototype</code>，這可以說是所有函式的發源地。所以Person函式的<code>__proto__</code>會指向Function.prototype。</p>
 <p>那<code>Person.prototype</code>的<code>__proto__</code>又指向哪裡？Person.prototype本身是也一個物件，它直接指向JavaScript中最上層的物件起源<code>Object.prototype</code>。</p>
 <p>由此可知，<code>Function.prototype</code>也會同樣指向<code>Object.prototype</code>。然而剛剛也說了<code>Object.prototype</code>是原型鏈的最上層，那它的__proto__又會指向哪呢？以下用程式碼驗證就清楚了：</p>
@@ -338,7 +341,53 @@
 <blockquote>
 <p>註：<code>__proto__</code>注意是前後各有兩條下底線（_）。<br>註：雖然現今<code>__proto__</code>被幾乎所有瀏覽器支援，且ES6已經正式被標準化，以確保 Web 瀏覽器的兼容性，但是不推薦使用，除了標準化的原因之外還有性能問題。</p>
 </blockquote>
-<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>這篇文章不是我自己發想的，頂多只能算是記錄我查的許多資料集大成。了解原型可以幫助了解JavaScript的運作模式，尤其是在寫ES6的Class語法糖的時候，裡面的constructor是什麼意思，為什麼要用extends，好像都可以比較了解了。（雖然目前class componment目前正在被社群逐漸淘汰中，都改用function conponent取代）</p>
+<h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><p>這邊要指供兩個指令來為原型鏈的介紹作結：</p>
+<ol>
+<li><code>hasOwnProperty</code></li>
+<li><code>instanceof</code></li>
+</ol>
+<h4 id="這個是誰的屬性或方法？"><a href="#這個是誰的屬性或方法？" class="headerlink" title="這個是誰的屬性或方法？"></a>這個是誰的屬性或方法？</h4><p><code>hasOwnProperty</code>可以用於只檢查屬性或方法是否屬於<strong>當前物件</strong>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Alan.hasOwnProperty(<span class="string">&#x27;name&#x27;</span>) <span class="comment">// true</span></span><br><span class="line">Alan.hasOwnProperty(<span class="string">&#x27;species&#x27;</span>)  <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>name確實是屬於Alan實例內部的屬性，但是species並不在其中，而是在原型鏈中。</p>
+<p>如果要檢查整條串鏈，可以用<code>prop in object</code>的方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;species&#x27;</span> <span class="keyword">in</span> Alan <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p><code>prop in object</code>會檢查整個原型鏈，<strong>不管屬性是否可列舉</strong>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperty(Alan, <span class="string">&#x27;legs&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">value</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="attr">writable</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">configurable</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">enumerable</span>: <span class="literal">false</span>, <span class="comment">// 設定 legs 為不可列舉的屬性</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;legs&#x27;</span> <span class="keyword">in</span> Alan <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>這邊自訂一個<code>legs</code>屬性，並設定為不可列舉，用<code>prop in object</code>依然可以在<code>Alan</code>原型鏈中找到<code>legs</code>。</p>
+<p>如果想要印出實例中所有的屬性方法，可以用<code>for loop prop in object</code>的方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> prop <span class="keyword">in</span> Alan) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(prop);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>for loop prop in object</code>會檢查整個原型鏈且為<strong>可列舉</strong>的屬性。<br>所以會印出：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">name</span><br><span class="line">age</span><br><span class="line">gender</span><br><span class="line">interests</span><br><span class="line">species</span><br></pre></td></tr></table></figure>
+
+<p>可以發現除了<code>legs</code>以外，所有原型鏈的屬性都被印出。</p>
+<h4 id="這個是誰的實例？"><a href="#這個是誰的實例？" class="headerlink" title="這個是誰的實例？"></a>這個是誰的實例？</h4><p>語法</p>
+<blockquote>
+<p><em>object instanceof constructor</em></p>
+</blockquote>
+<p><code>instanceof</code>運算符用來檢查<code>constructor.prototype</code>是否存在於object的原型鏈上。這在傳統物件導向環境中稱為「內省」（introspection）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Alan <span class="keyword">instanceof</span> Person  <span class="comment">// true</span></span><br><span class="line">Alan <span class="keyword">instanceof</span> <span class="built_in">Object</span>  <span class="comment">// true</span></span><br><span class="line">Alan <span class="keyword">instanceof</span> <span class="built_in">Function</span> <span class="comment">// false</span></span><br><span class="line">Person <span class="keyword">instanceof</span> <span class="built_in">Function</span> <span class="comment">// true</span></span><br><span class="line">Person <span class="keyword">instanceof</span> Person  <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p><code>instanceof</code>運算符對不同資料型別作用的範例可以參考<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof">這裡</a>。</p>
+<p>另一個方法是<code>isPrototypeOf</code>，這個用法跟<code>instanceof</code>基本上相同，但是在某些情況下<code>instanceof</code>會出現TypeError而<code>isPrototypeOf</code>運作正常。所以相較之下<code>isPrototypeOf</code>是較萬用的。可以參考<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/18343545/javascript-isprototypeof-vs-instanceof-usage/18343849">這篇</a>。</p>
+<p>語法</p>
+<blockquote>
+<p><em>isPrototypeOf(object)</em></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person.prototype.isPrototypeOf(Alan)</span><br></pre></td></tr></table></figure>
+
+<h2 id="ES6的Class"><a href="#ES6的Class" class="headerlink" title="ES6的Class"></a>ES6的Class</h2><p>把前面的範例透過Class方法重新編寫：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">first, last, age, gender, interests</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.name = &#123;</span><br><span class="line">    <span class="string">&#x27;first&#x27;</span>: first,</span><br><span class="line">    <span class="string">&#x27;last&#x27;</span> : last</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="built_in">this</span>.age = age;</span><br><span class="line">    <span class="built_in">this</span>.gender = gender;</span><br><span class="line">    <span class="built_in">this</span>.interests = interests;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">hello</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`hello <span class="subst">$&#123;<span class="built_in">this</span>.name.first&#125;</span>!`</span>)</span><br><span class="line">&#125;</span><br><span class="line">  <span class="comment">// 這裡定義方法會自動放到Person.prototype，但是定義prototype屬性不行用這個方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.species = <span class="string">&#x27;human&#x27;</span> <span class="comment">// 屬性只能用原來的方法給到prototype內</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Alan = <span class="keyword">new</span> Person</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Person.prototype) <span class="comment">// &#123;species: &#x27;human&#x27;, constructor, hello&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>為了示範ES6的Class可以直接將方法加入建構子的prototype內，所以在constructor的後方加入<code>Hello()</code>，並且印出Person.prototype驗證。</p>
+<p>類別一旦宣告完成，可以任意將之實例化。另外，類別也可以被繼承（Extend），子類別會預設繼承父類別的方法和屬性—當然，也可以在子類別上重新設定繼承來的方法與屬性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="title">constructor</span> (<span class="params">first, last, age, gender, schoolId</span>) &#123;</span><br><span class="line">    <span class="built_in">super</span>(first, last, age, gender) <span class="comment">// 呼叫Person的建構子</span></span><br><span class="line">    <span class="built_in">this</span>.schoolId = schoolId</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Alice  = <span class="keyword">new</span> Student(<span class="string">&#x27;Alice&#x27;</span>, <span class="string">&#x27;Wang&#x27;</span>, <span class="number">22</span>, <span class="string">&#x27;female&#x27;</span>, <span class="number">60229</span>)</span><br><span class="line">Alice.hello() <span class="comment">// hello Alice!</span></span><br></pre></td></tr></table></figure>
+
+<p>非常方便的語法糖，當然背後仍然是依靠物件原型及原型鏈。</p>
+<h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>這篇文章不是我自己重頭發想的，算是記錄我查的許多資料集大成。了解原型可以幫助了解JavaScript的運作模式，尤其是在寫ES6的Class語法糖的時候，裡面的constructor是什麼意思，為什麼要用extends，好像都可以比較了解了。（雖然目前class componment目前正在被社群逐漸淘汰中，都改用function conponent取代）</p>
 <p>參考資料：</p>
 <ol>
 <li><a target="_blank" rel="noopener" href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/prototype.html">從ES6開始的JavaScript學習生活 - 原型基礎物件導向</a></li>
@@ -351,7 +400,6 @@
 <li><a target="_blank" rel="noopener" href="https://maxleebk.com/2020/07/25/prototype/">面試官最愛考的 JS 原型鏈</a></li>
 <li><a target="_blank" rel="noopener" href="https://medium.com/@mengchiang000/js%E5%9F%BA%E6%9C%AC%E8%A7%80%E5%BF%B5-%E5%8E%9F%E5%9E%8B%E9%8F%88-prototype-chain-96c742893795">JS基本觀念: 原型鏈(prototype chain)</a></li>
 </ol>
-<p>尤其推薦參考資料5、8</p>
 
     </div>
 
@@ -439,7 +487,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E5%9F%BA%E7%A4%8E%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91"><span class="nav-number">2.</span> <span class="nav-text">原型基礎物件導向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%EF%BC%88prototype%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">原型（prototype）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E6%A7%8B%E5%87%BD%E5%BC%8F%EF%BC%88Constructor%EF%BC%89%E5%92%8C%E5%AF%A6%E4%BE%8B%EF%BC%88instance%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">建構函式（Constructor）和實例（instance）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#new%E9%81%8B%E7%AE%97%E5%AD%90%E7%9A%84%E7%BC%BA%E9%BB%9E"><span class="nav-number">4.1.</span> <span class="nav-text">new運算子的缺點</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#prototype%E5%B1%AC%E6%80%A7%E5%BC%95%E5%85%A5"><span class="nav-number">5.</span> <span class="nav-text">prototype屬性引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E9%8F%88%EF%BC%88prototype-chain%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">原型鏈（prototype chain）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#prototype"><span class="nav-number">6.1.</span> <span class="nav-text">prototype</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#proto"><span class="nav-number">6.2.</span> <span class="nav-text">proto</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E"><span class="nav-number">7.</span> <span class="nav-text">結語</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E5%9F%BA%E7%A4%8E%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91"><span class="nav-number">2.</span> <span class="nav-text">原型基礎物件導向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%EF%BC%88prototype%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">原型（prototype）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E6%A7%8B%E5%87%BD%E5%BC%8F%EF%BC%88Constructor%EF%BC%89%E5%92%8C%E5%AF%A6%E4%BE%8B%EF%BC%88instance%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">建構函式（Constructor）和實例（instance）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#new%E9%81%8B%E7%AE%97%E5%AD%90%E7%9A%84%E7%BC%BA%E9%BB%9E"><span class="nav-number">4.1.</span> <span class="nav-text">new運算子的缺點</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#prototype%E5%B1%AC%E6%80%A7%E5%BC%95%E5%85%A5"><span class="nav-number">5.</span> <span class="nav-text">prototype屬性引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E9%8F%88%EF%BC%88prototype-chain%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">原型鏈（prototype chain）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#prototype"><span class="nav-number">6.1.</span> <span class="nav-text">prototype</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#proto"><span class="nav-number">6.2.</span> <span class="nav-text">proto</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4"><span class="nav-number">6.3.</span> <span class="nav-text">指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%99%E5%80%8B%E6%98%AF%E8%AA%B0%E7%9A%84%E5%B1%AC%E6%80%A7%E6%88%96%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="nav-number">6.3.1.</span> <span class="nav-text">這個是誰的屬性或方法？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%99%E5%80%8B%E6%98%AF%E8%AA%B0%E7%9A%84%E5%AF%A6%E4%BE%8B%EF%BC%9F"><span class="nav-number">6.3.2.</span> <span class="nav-text">這個是誰的實例？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6%E7%9A%84Class"><span class="nav-number">7.</span> <span class="nav-text">ES6的Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B5%90%E8%AA%9E"><span class="nav-number">8.</span> <span class="nav-text">結語</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
