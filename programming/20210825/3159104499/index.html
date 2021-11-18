@@ -18,19 +18,19 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"mangochu.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"mangochu.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="大家常用的component捲軸動畫效果，沒想到在響應式瀏覽下竟然會有BUG">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【BUG系列】Animate On Scroll (AOS)">
+<meta property="og:title" content="BUG系列 - Animate On Scroll (AOS)">
 <meta property="og:url" content="http://mangochu.github.io/programming/20210825/3159104499/index.html">
 <meta property="og:site_name" content="Mangochu&#39;s Blog">
 <meta property="og:description" content="大家常用的component捲軸動畫效果，沒想到在響應式瀏覽下竟然會有BUG">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="http://mangochu.github.io/programming/20210825/3159104499/2.gif">
 <meta property="article:published_time" content="2021-08-25T13:17:13.000Z">
-<meta property="article:modified_time" content="2021-10-30T08:30:56.944Z">
+<meta property="article:modified_time" content="2021-11-18T13:59:41.352Z">
 <meta property="article:author" content="Mangochu">
 <meta property="article:tag" content="BUG系列">
 <meta name="twitter:card" content="summary">
@@ -49,7 +49,7 @@
   };
 </script>
 
-  <title>【BUG系列】Animate On Scroll (AOS) | Mangochu's Blog</title>
+  <title>BUG系列 - Animate On Scroll (AOS) | Mangochu's Blog</title>
   
 
 
@@ -185,7 +185,7 @@
     <span>0%</span>
   </div>
 
-  <a href="https://github.com/mangochu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL21hbmdvY2h1" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
 
 
     <main class="main">
@@ -213,7 +213,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          【BUG系列】Animate On Scroll (AOS)
+          BUG系列 - Animate On Scroll (AOS)
         </h1>
 
         <div class="post-meta">
@@ -230,7 +230,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-10-30 16:30:56" itemprop="dateModified" datetime="2021-10-30T16:30:56+08:00">2021-10-30</time>
+                <time title="修改時間：2021-11-18 21:59:41" itemprop="dateModified" datetime="2021-11-18T21:59:41+08:00">2021-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -268,7 +268,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="什麼是Animate-On-Scroll-AOS-？"><a href="#什麼是Animate-On-Scroll-AOS-？" class="headerlink" title="什麼是Animate On Scroll (AOS)？"></a>什麼是Animate On Scroll (AOS)？</h3><p>連結：<a target="_blank" rel="noopener" href="https://michalsnik.github.io/aos/">Animate on scroll</a><br>這是一個名叫Michał Sajnóg的波蘭工程師發表的js庫（Library），在他的Github也提供了CDN引入以及npm安裝（或yarn）兩種方式去使用AOS.js。該網站展示了利用aos滾動捲軸時，觸發div進場的效果。</p>
+        <h3 id="什麼是Animate-On-Scroll-AOS-？"><a href="#什麼是Animate-On-Scroll-AOS-？" class="headerlink" title="什麼是Animate On Scroll (AOS)？"></a>什麼是Animate On Scroll (AOS)？</h3><p>連結：<span class="exturl" data-url="aHR0cHM6Ly9taWNoYWxzbmlrLmdpdGh1Yi5pby9hb3Mv">Animate on scroll<i class="fa fa-external-link-alt"></i></span><br>這是一個名叫Michał Sajnóg的波蘭工程師發表的js庫（Library），在他的Github也提供了CDN引入以及npm安裝（或yarn）兩種方式去使用AOS.js。該網站展示了利用aos滾動捲軸時，觸發div進場的效果。</p>
 <iframe src="https://michalsnik.github.io/aos/" width="100%" height="400px" frameborder="0" loading="lazy" allowfullscreen></iframe>
 
 <p>加入自己網頁的方法很簡單，在<code>&lt;body&gt;</code>嵌入js</p>
@@ -297,7 +297,7 @@
 <li>使用Responsive裝置</li>
 </ol>
 <p><img data-src="2.gif" alt="BUG?"></p>
-<p>馬上我就發現這個專案的Github Issues裡有人遇到跟我一樣的問題，就是這篇<a target="_blank" rel="noopener" href="https://github.com/michalsnik/aos/issues/626">White Space on Mobile #626</a>。這篇文章裡有人提供了幾個不錯的方法，不過我自己實測只有在CSS檔內加上以下程式碼有用：</p>
+<p>馬上我就發現這個專案的Github Issues裡有人遇到跟我一樣的問題，就是這篇<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY2hhbHNuaWsvYW9zL2lzc3Vlcy82MjY=">White Space on Mobile #626<i class="fa fa-external-link-alt"></i></span>。這篇文章裡有人提供了幾個不錯的方法，不過我自己實測只有在CSS檔內加上以下程式碼有用：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span>, <span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">overflow-x</span>: hidden;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
 <p>另外我發現overflow-x設置成hidden會讓<code>position: sticky</code>失效，例如Navbar就常使用這個position配置。那這個失效基本上也有解法，就是在position處加上相容性程式碼：</p>
@@ -326,8 +326,8 @@
       <i class="fa fa-chevron-left"></i> 開發工具 - VSCode擴充功能
     </a></div>
       <div class="post-nav-item">
-    <a href="/programming/20211030/2110751047/" rel="next" title="【JavaScript學習筆記 1】什麼是原型基礎物件導向">
-      【JavaScript學習筆記 1】什麼是原型基礎物件導向 <i class="fa fa-chevron-right"></i>
+    <a href="/programming/20211030/2110751047/" rel="next" title="JavaScript學習筆記 1 - 什麼是原型基礎物件導向">
+      JavaScript學習筆記 1 - 什麼是原型基礎物件導向 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -456,7 +456,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Mangochu - 轉載文章時請註明作者及原文連結</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Gemini</span> 強力驅動
   </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
 
@@ -533,7 +533,7 @@
   var disqus_config = function() {
     this.page.url = "http://mangochu.github.io/programming/20210825/3159104499/";
     this.page.identifier = "programming/20210825/3159104499/";
-    this.page.title = "【BUG系列】Animate On Scroll (AOS)";
+    this.page.title = "BUG系列 - Animate On Scroll (AOS)";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {

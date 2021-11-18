@@ -18,12 +18,12 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"mangochu.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"mangochu.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="這一章節要完整的探討JavaScript最原始的設計概念。如果你沒搞懂原型，你不算真的懂JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【JavaScript學習筆記 1】什麼是原型基礎物件導向">
+<meta property="og:title" content="JavaScript學習筆記 1 - 什麼是原型基礎物件導向">
 <meta property="og:url" content="http://mangochu.github.io/programming/20211030/2110751047/index.html">
 <meta property="og:site_name" content="Mangochu&#39;s Blog">
 <meta property="og:description" content="這一章節要完整的探討JavaScript最原始的設計概念。如果你沒搞懂原型，你不算真的懂JavaScript">
@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://mangochu.github.io/programming/20211030/2110751047/4.png">
 <meta property="og:image" content="http://mangochu.github.io/programming/20211030/2110751047/5.png">
 <meta property="article:published_time" content="2021-10-30T08:30:15.000Z">
-<meta property="article:modified_time" content="2021-11-18T08:45:19.972Z">
+<meta property="article:modified_time" content="2021-11-18T14:00:50.910Z">
 <meta property="article:author" content="Mangochu">
 <meta property="article:tag" content="JavaScript學習筆記">
 <meta name="twitter:card" content="summary">
@@ -53,7 +53,7 @@
   };
 </script>
 
-  <title>【JavaScript學習筆記 1】什麼是原型基礎物件導向 | Mangochu's Blog</title>
+  <title>JavaScript學習筆記 1 - 什麼是原型基礎物件導向 | Mangochu's Blog</title>
   
 
 
@@ -189,7 +189,7 @@
     <span>0%</span>
   </div>
 
-  <a href="https://github.com/mangochu" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL21hbmdvY2h1" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
 
 
     <main class="main">
@@ -217,7 +217,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          【JavaScript學習筆記 1】什麼是原型基礎物件導向
+          JavaScript學習筆記 1 - 什麼是原型基礎物件導向
         </h1>
 
         <div class="post-meta">
@@ -234,7 +234,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-11-18 16:45:19" itemprop="dateModified" datetime="2021-11-18T16:45:19+08:00">2021-11-18</time>
+                <time title="修改時間：2021-11-18 22:00:50" itemprop="dateModified" datetime="2021-11-18T22:00:50+08:00">2021-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -374,8 +374,8 @@
 <p><code>instanceof</code>運算符用來檢查<code>constructor.prototype</code>是否存在於object的原型鏈上。這在傳統物件導向環境中稱為「內省」（introspection）。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Alan <span class="keyword">instanceof</span> Person  <span class="comment">// true</span></span><br><span class="line">Alan <span class="keyword">instanceof</span> <span class="built_in">Object</span>  <span class="comment">// true</span></span><br><span class="line">Alan <span class="keyword">instanceof</span> <span class="built_in">Function</span> <span class="comment">// false</span></span><br><span class="line">Person <span class="keyword">instanceof</span> <span class="built_in">Function</span> <span class="comment">// true</span></span><br><span class="line">Person <span class="keyword">instanceof</span> Person  <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
 
-<p><code>instanceof</code>運算符對不同資料型別作用的範例可以參考<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof">這裡</a>。</p>
-<p>另一個方法是<code>isPrototypeOf</code>，這個用法跟<code>instanceof</code>基本上相同，但是在某些情況下<code>instanceof</code>會出現TypeError而<code>isPrototypeOf</code>運作正常。所以相較之下<code>isPrototypeOf</code>是較萬用的。可以參考<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/18343545/javascript-isprototypeof-vs-instanceof-usage/18343849">這篇</a>。</p>
+<p><code>instanceof</code>運算符對不同資料型別作用的範例可以參考<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvZW4tVVMvZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvT3BlcmF0b3JzL2luc3RhbmNlb2Y=">這裡<i class="fa fa-external-link-alt"></i></span>。</p>
+<p>另一個方法是<code>isPrototypeOf</code>，這個用法跟<code>instanceof</code>基本上相同，但是在某些情況下<code>instanceof</code>會出現TypeError而<code>isPrototypeOf</code>運作正常。所以相較之下<code>isPrototypeOf</code>是較萬用的。可以參考<span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMTgzNDM1NDUvamF2YXNjcmlwdC1pc3Byb3RvdHlwZW9mLXZzLWluc3RhbmNlb2YtdXNhZ2UvMTgzNDM4NDk=">這篇<i class="fa fa-external-link-alt"></i></span>。</p>
 <p>語法</p>
 <blockquote>
 <p><em>isPrototypeOf(object)</em></p>
@@ -427,11 +427,11 @@
 <p>輸出的結果如下，它是一個空物件，但是它繼承了<code>Person</code>這個物件當中的屬性和方法，並存在<code>[[prototype]]</code>內：</p>
 <p><img data-src="3.png"></p>
 <blockquote>
-<p><code>[[]]</code>雙括號代表物件的「內部屬性」（見<a target="_blank" rel="noopener" href="https://262.ecma-international.org/5.1/#sec-8.6.2">ECMAScript 8.6.2</a>），這類符號不是一個能在程式編寫使用的屬性。它只是提供資訊用。而在devtool可以看到這些資訊，例如Chrome console的<code>[[prototype]]</code>。但是Firefox表示方法是：<code>&lt;prototype&gt;</code>。</p>
+<p><code>[[]]</code>雙括號代表物件的「內部屬性」（見<span class="exturl" data-url="aHR0cHM6Ly8yNjIuZWNtYS1pbnRlcm5hdGlvbmFsLm9yZy81LjEvI3NlYy04LjYuMg==">ECMAScript 8.6.2<i class="fa fa-external-link-alt"></i></span>），這類符號不是一個能在程式編寫使用的屬性。它只是提供資訊用。而在devtool可以看到這些資訊，例如Chrome console的<code>[[prototype]]</code>。但是Firefox表示方法是：<code>&lt;prototype&gt;</code>。</p>
 </blockquote>
 <p><code>[[prototype]]</code>是所有物件內部都有的特殊屬性，提供<strong>內部插槽（internal slot）</strong>供物件存放prototype的屬性或方法。<code>__proto__</code>則是一個getter/setter，用來存取<code>[[prototype]]</code>內部插槽的值。</p>
 <blockquote>
-<p>註：<a target="_blank" rel="noopener" href="https://tc39.es/ecma262/#sec-object-internal-methods-and-internal-slots">內部插槽（internal slot）</a>是用來表示物件內部狀態，並被各種ECMAScript規範算法所使用。重要的是，內部插槽不是物件屬性，也不能被繼承。<br>註：其實看到一些較舊的文章，會發現以前Chrome console顯示的是__proto__，這跟上面提到的<code>__proto__</code>是不同的東西，這是<code>[[prototype]]</code>的前身，且已被取代。</p>
+<p>註：<span class="exturl" data-url="aHR0cHM6Ly90YzM5LmVzL2VjbWEyNjIvI3NlYy1vYmplY3QtaW50ZXJuYWwtbWV0aG9kcy1hbmQtaW50ZXJuYWwtc2xvdHM=">內部插槽（internal slot）<i class="fa fa-external-link-alt"></i></span>是用來表示物件內部狀態，並被各種ECMAScript規範算法所使用。重要的是，內部插槽不是物件屬性，也不能被繼承。<br>註：其實看到一些較舊的文章，會發現以前Chrome console顯示的是__proto__，這跟上面提到的<code>__proto__</code>是不同的東西，這是<code>[[prototype]]</code>的前身，且已被取代。</p>
 </blockquote>
 <p><img data-src="4.png"></p>
 <p>接著看後面的程式碼：</p>
@@ -443,21 +443,21 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(Alan.__proto__ === Person)  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="Q4：直接修改prototype影響效能？"><a href="#Q4：直接修改prototype影響效能？" class="headerlink" title="Q4：直接修改prototype影響效能？"></a>Q4：直接修改prototype影響效能？</h3><blockquote>
-<p>基於現代Javascript引擎最佳化物件屬性存取的方法，改變一個物件的<code>[[Prototype]]</code>在任何瀏覽器或是Javascript引擎都是非常慢的操作。改變繼承屬性對效能的影響微妙且深遠，不僅僅只是影響執行<code>obj.__proto__ = ...</code>的時間，而是會影響到所有有存取到被改變<code>[[Prototype]]</code>的物件的程式碼的執行時間。如果你在乎效能的話就應該避免改變一個物件的<code>[[Prototype]]</code>。反之，請用 Object.create() 來產生一個擁有<code>[[Prototype]]</code>的物件。 — <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/proto">MDN</a></p>
+<p>基於現代Javascript引擎最佳化物件屬性存取的方法，改變一個物件的<code>[[Prototype]]</code>在任何瀏覽器或是Javascript引擎都是非常慢的操作。改變繼承屬性對效能的影響微妙且深遠，不僅僅只是影響執行<code>obj.__proto__ = ...</code>的時間，而是會影響到所有有存取到被改變<code>[[Prototype]]</code>的物件的程式碼的執行時間。如果你在乎效能的話就應該避免改變一個物件的<code>[[Prototype]]</code>。反之，請用 Object.create() 來產生一個擁有<code>[[Prototype]]</code>的物件。 — <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtVFcvZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvT2JqZWN0L3Byb3Rv">MDN<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
 <h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>這篇文章是我找了很多參考資料，包含Stack Overflow的很多問答而寫的集大成。了解原型可以幫助了解JavaScript的運作模式，尤其是在寫ES6的Class語法糖的時候，裡面的constructor是什麼意思，用extends的意思，都可以比較了解了。（雖然目前class componment目前正在被社群逐漸淘汰中，都改用function conponent取代）</p>
 <p>參考資料：</p>
 <ol>
-<li><a target="_blank" rel="noopener" href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/prototype.html">從ES6開始的JavaScript學習生活 - 原型基礎物件導向</a></li>
-<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10205313">你懂 JavaScript 嗎？#19 原型（Prototype）</a></li>
-<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10223556">15. [JS] 什麼是原型鏈？</a></li>
-<li><a target="_blank" rel="noopener" href="https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/692845/#outline__3">JavaScript原型系列（一）構造函數、原型和原型鏈</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html">Javascript继承机制的设计思想</a></li>
-<li><a target="_blank" rel="noopener" href="https://cythilya.github.io/2018/10/26/prototype/">你懂 JavaScript 嗎？#19 原型（Prototype）</a></li>
-<li><a target="_blank" rel="noopener" href="https://pjchender.blogspot.com/2016/06/javascriptprototypeprototype.html">[筆記] 了解JavaScript中原型(prototype)、原型鍊（prototype chain）和繼承(inheritance)的概念</a></li>
-<li><a target="_blank" rel="noopener" href="https://maxleebk.com/2020/07/25/prototype/">面試官最愛考的 JS 原型鏈</a></li>
-<li><a target="_blank" rel="noopener" href="https://medium.com/@mengchiang000/js%E5%9F%BA%E6%9C%AC%E8%A7%80%E5%BF%B5-%E5%8E%9F%E5%9E%8B%E9%8F%88-prototype-chain-96c742893795">JS基本觀念: 原型鏈(prototype chain)</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.gushiciku.cn/pl/gV8Y/zh-tw">javascript之作用域與this指向</a></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9leWVzb2ZraWRzLmdpdGJvb2tzLmlvL2phdmFzY3JpcHQtc3RhcnQtZnJvbS1lczYvY29udGVudC9wYXJ0NC9wcm90b3R5cGUuaHRtbA==">從ES6開始的JavaScript學習生活 - 原型基礎物件導向<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9pdGhlbHAuaXRob21lLmNvbS50dy9hcnRpY2xlcy8xMDIwNTMxMw==">你懂 JavaScript 嗎？#19 原型（Prototype）<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9pdGhlbHAuaXRob21lLmNvbS50dy9hcnRpY2xlcy8xMDIyMzU1Ng==">15. [JS] 什麼是原型鏈？<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlcnR3LmNvbS8lRTclQTglOEIlRTUlQkMlOEYlRTglQUElOUUlRTglQTglODAvNjkyODQ1LyNvdXRsaW5lX18z">JavaScript原型系列（一）構造函數、原型和原型鏈<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy5ydWFueWlmZW5nLmNvbS9ibG9nLzIwMTEvMDYvZGVzaWduaW5nX2lkZWFzX29mX2luaGVyaXRhbmNlX21lY2hhbmlzbV9pbl9qYXZhc2NyaXB0Lmh0bWw=">Javascript继承机制的设计思想<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jeXRoaWx5YS5naXRodWIuaW8vMjAxOC8xMC8yNi9wcm90b3R5cGUv">你懂 JavaScript 嗎？#19 原型（Prototype）<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9wamNoZW5kZXIuYmxvZ3Nwb3QuY29tLzIwMTYvMDYvamF2YXNjcmlwdHByb3RvdHlwZXByb3RvdHlwZS5odG1s">[筆記] 了解JavaScript中原型(prototype)、原型鍊（prototype chain）和繼承(inheritance)的概念<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tYXhsZWViay5jb20vMjAyMC8wNy8yNS9wcm90b3R5cGUv">面試官最愛考的 JS 原型鏈<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tZWRpdW0uY29tL0BtZW5nY2hpYW5nMDAwL2pzJUU1JTlGJUJBJUU2JTlDJUFDJUU4JUE3JTgwJUU1JUJGJUI1LSVFNSU4RSU5RiVFNSU5RSU4QiVFOSU4RiU4OC1wcm90b3R5cGUtY2hhaW4tOTZjNzQyODkzNzk1">JS基本觀念: 原型鏈(prototype chain)<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuZ3VzaGljaWt1LmNuL3BsL2dWOFkvemgtdHc=">javascript之作用域與this指向<i class="fa fa-external-link-alt"></i></span></li>
 </ol>
 
     </div>
@@ -477,8 +477,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/programming/20210825/3159104499/" rel="prev" title="【BUG系列】Animate On Scroll (AOS)">
-      <i class="fa fa-chevron-left"></i> 【BUG系列】Animate On Scroll (AOS)
+    <a href="/programming/20210825/3159104499/" rel="prev" title="BUG系列 - Animate On Scroll (AOS)">
+      <i class="fa fa-chevron-left"></i> BUG系列 - Animate On Scroll (AOS)
     </a></div>
       <div class="post-nav-item"></div>
     </div>
@@ -608,7 +608,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Mangochu - 轉載文章時請註明作者及原文連結</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Gemini</span> 強力驅動
   </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
 
@@ -685,7 +685,7 @@
   var disqus_config = function() {
     this.page.url = "http://mangochu.github.io/programming/20211030/2110751047/";
     this.page.identifier = "programming/20211030/2110751047/";
-    this.page.title = "【JavaScript學習筆記 1】什麼是原型基礎物件導向";
+    this.page.title = "JavaScript學習筆記 1 - 什麼是原型基礎物件導向";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {

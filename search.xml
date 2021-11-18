@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>【BUG系列】Animate On Scroll (AOS)</title>
+    <title>BUG系列 - Animate On Scroll (AOS)</title>
     <url>/programming/20210825/3159104499/</url>
-    <content><![CDATA[<h3 id="什麼是Animate-On-Scroll-AOS-？"><a href="#什麼是Animate-On-Scroll-AOS-？" class="headerlink" title="什麼是Animate On Scroll (AOS)？"></a>什麼是Animate On Scroll (AOS)？</h3><p>連結：<a href="https://michalsnik.github.io/aos/">Animate on scroll</a><br>這是一個名叫Michał Sajnóg的波蘭工程師發表的js庫（Library），在他的Github也提供了CDN引入以及npm安裝（或yarn）兩種方式去使用AOS.js。該網站展示了利用aos滾動捲軸時，觸發div進場的效果。</p>
+    <content><![CDATA[<h3 id="什麼是Animate-On-Scroll-AOS-？"><a href="#什麼是Animate-On-Scroll-AOS-？" class="headerlink" title="什麼是Animate On Scroll (AOS)？"></a>什麼是Animate On Scroll (AOS)？</h3><p>連結：<span class="exturl" data-url="aHR0cHM6Ly9taWNoYWxzbmlrLmdpdGh1Yi5pby9hb3Mv">Animate on scroll<i class="fa fa-external-link-alt"></i></span><br>這是一個名叫Michał Sajnóg的波蘭工程師發表的js庫（Library），在他的Github也提供了CDN引入以及npm安裝（或yarn）兩種方式去使用AOS.js。該網站展示了利用aos滾動捲軸時，觸發div進場的效果。</p>
 <iframe src="https://michalsnik.github.io/aos/" width="100%" height="400px" frameborder="0" loading="lazy" allowfullscreen></iframe>
 
 <p>加入自己網頁的方法很簡單，在<code>&lt;body&gt;</code>嵌入js</p>
@@ -32,7 +32,7 @@
 <li>使用Responsive裝置</li>
 </ol>
 <p><img data-src="2.gif" alt="BUG?"></p>
-<p>馬上我就發現這個專案的Github Issues裡有人遇到跟我一樣的問題，就是這篇<a href="https://github.com/michalsnik/aos/issues/626">White Space on Mobile #626</a>。這篇文章裡有人提供了幾個不錯的方法，不過我自己實測只有在CSS檔內加上以下程式碼有用：</p>
+<p>馬上我就發現這個專案的Github Issues裡有人遇到跟我一樣的問題，就是這篇<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21pY2hhbHNuaWsvYW9zL2lzc3Vlcy82MjY=">White Space on Mobile #626<i class="fa fa-external-link-alt"></i></span>。這篇文章裡有人提供了幾個不錯的方法，不過我自己實測只有在CSS檔內加上以下程式碼有用：</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">html</span>, <span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">overflow-x</span>: hidden;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
 <p>另外我發現overflow-x設置成hidden會讓<code>position: sticky</code>失效，例如Navbar就常使用這個position配置。那這個失效基本上也有解法，就是在position處加上相容性程式碼：</p>
@@ -52,7 +52,7 @@
     <url>/programming/20210806/3967904930/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Visual Studio Code（以下簡稱VSCode）是目前大家最推薦的原始碼編輯器，VSCode的好處多多，支援很多程式語言還有可以在內建的擴充程式商店安裝擴充，也有偵錯和代碼自動補全的功能等等，最重要的是<strong>免費</strong>，所以很多人推薦新手直接學習VSCode。筆者從自學一開始就是接觸VSCode。其他還有很多編輯器（Sublime、ATOM、Dreamweaver、……）筆者自己也沒用過（汗）。</p>
 <p>以下會說明VSCode內的一些功能設定方法，擴充推薦未來會再出一篇文章說明。</p>
-<h3 id="TAB縮排"><a href="#TAB縮排" class="headerlink" title="TAB縮排"></a>TAB縮排</h3><p>VSCode預設的Tab為4個半形空白，但是根據ESLint的標準，在寫JS的時候還是改成2個半形空白會比較好。<br>（關於ESLint的說明，很推薦大家去看Eddy大的Gitbook中<a href="https://eyesofkids.gitbooks.io/react-basic-zh-tw/content/day03_eslint/">工具篇-ESLint</a>）</p>
+<h3 id="TAB縮排"><a href="#TAB縮排" class="headerlink" title="TAB縮排"></a>TAB縮排</h3><p>VSCode預設的Tab為4個半形空白，但是根據ESLint的標準，在寫JS的時候還是改成2個半形空白會比較好。<br>（關於ESLint的說明，很推薦大家去看Eddy大的Gitbook中<span class="exturl" data-url="aHR0cHM6Ly9leWVzb2ZraWRzLmdpdGJvb2tzLmlvL3JlYWN0LWJhc2ljLXpoLXR3L2NvbnRlbnQvZGF5MDNfZXNsaW50Lw==">工具篇-ESLint<i class="fa fa-external-link-alt"></i></span>）</p>
 <p>首先說明VSCode的自動縮排快捷鍵是：<code>Shift + Alt + F</code></p>
 <h4 id="選擇縮排"><a href="#選擇縮排" class="headerlink" title="選擇縮排"></a>選擇縮排</h4><p> 看向視窗的下方有一個空格：4就代表每一行Tab的縮排是4個空格<br> <img data-src="2.png" alt="空格：4"><br> 若要將其設為2，則是<strong>點選空格後，選擇「使用空格鍵進行縮排」</strong>，改為2即可。<br> 修改後再使用VSCode自動縮排（Shift+Alt+F）就會變更了<br> <img data-src="2-1.gif" alt="修改空格"></p>
 <h4 id="選單設定"><a href="#選單設定" class="headerlink" title="選單設定"></a>選單設定</h4><p> 另外如果未來不想要每次都要修改縮排設定的話，就到選單設定裡做一些變更：</p>
@@ -120,7 +120,7 @@
       </tags>
   </entry>
   <entry>
-    <title>【JavaScript學習筆記 1】什麼是原型基礎物件導向</title>
+    <title>JavaScript學習筆記 1 - 什麼是原型基礎物件導向</title>
     <url>/programming/20211030/2110751047/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>這是自學筆記的第一篇，我在寫這一篇文章的背景是在學習完Freecodecamp還有實作React一段時間之後，所以對JavaScript的語法和使用上都有一定程度的了解。<br>文章最後也會附上參考資料來源，都是我認為非常棒的作者和文章。因為我本身是自學，所以這樣的學習順序不知是否正確，但是我以自己的經驗認為這樣的學習方式是很好的，原因是：</p>
 <blockquote>
@@ -224,8 +224,8 @@
 <p><code>instanceof</code>運算符用來檢查<code>constructor.prototype</code>是否存在於object的原型鏈上。這在傳統物件導向環境中稱為「內省」（introspection）。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Alan <span class="keyword">instanceof</span> Person  <span class="comment">// true</span></span><br><span class="line">Alan <span class="keyword">instanceof</span> <span class="built_in">Object</span>  <span class="comment">// true</span></span><br><span class="line">Alan <span class="keyword">instanceof</span> <span class="built_in">Function</span> <span class="comment">// false</span></span><br><span class="line">Person <span class="keyword">instanceof</span> <span class="built_in">Function</span> <span class="comment">// true</span></span><br><span class="line">Person <span class="keyword">instanceof</span> Person  <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
 
-<p><code>instanceof</code>運算符對不同資料型別作用的範例可以參考<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof">這裡</a>。</p>
-<p>另一個方法是<code>isPrototypeOf</code>，這個用法跟<code>instanceof</code>基本上相同，但是在某些情況下<code>instanceof</code>會出現TypeError而<code>isPrototypeOf</code>運作正常。所以相較之下<code>isPrototypeOf</code>是較萬用的。可以參考<a href="https://stackoverflow.com/questions/18343545/javascript-isprototypeof-vs-instanceof-usage/18343849">這篇</a>。</p>
+<p><code>instanceof</code>運算符對不同資料型別作用的範例可以參考<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvZW4tVVMvZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvT3BlcmF0b3JzL2luc3RhbmNlb2Y=">這裡<i class="fa fa-external-link-alt"></i></span>。</p>
+<p>另一個方法是<code>isPrototypeOf</code>，這個用法跟<code>instanceof</code>基本上相同，但是在某些情況下<code>instanceof</code>會出現TypeError而<code>isPrototypeOf</code>運作正常。所以相較之下<code>isPrototypeOf</code>是較萬用的。可以參考<span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMTgzNDM1NDUvamF2YXNjcmlwdC1pc3Byb3RvdHlwZW9mLXZzLWluc3RhbmNlb2YtdXNhZ2UvMTgzNDM4NDk=">這篇<i class="fa fa-external-link-alt"></i></span>。</p>
 <p>語法</p>
 <blockquote>
 <p><em>isPrototypeOf(object)</em></p>
@@ -277,11 +277,11 @@
 <p>輸出的結果如下，它是一個空物件，但是它繼承了<code>Person</code>這個物件當中的屬性和方法，並存在<code>[[prototype]]</code>內：</p>
 <p><img data-src="3.png"></p>
 <blockquote>
-<p><code>[[]]</code>雙括號代表物件的「內部屬性」（見<a href="https://262.ecma-international.org/5.1/#sec-8.6.2">ECMAScript 8.6.2</a>），這類符號不是一個能在程式編寫使用的屬性。它只是提供資訊用。而在devtool可以看到這些資訊，例如Chrome console的<code>[[prototype]]</code>。但是Firefox表示方法是：<code>&lt;prototype&gt;</code>。</p>
+<p><code>[[]]</code>雙括號代表物件的「內部屬性」（見<span class="exturl" data-url="aHR0cHM6Ly8yNjIuZWNtYS1pbnRlcm5hdGlvbmFsLm9yZy81LjEvI3NlYy04LjYuMg==">ECMAScript 8.6.2<i class="fa fa-external-link-alt"></i></span>），這類符號不是一個能在程式編寫使用的屬性。它只是提供資訊用。而在devtool可以看到這些資訊，例如Chrome console的<code>[[prototype]]</code>。但是Firefox表示方法是：<code>&lt;prototype&gt;</code>。</p>
 </blockquote>
 <p><code>[[prototype]]</code>是所有物件內部都有的特殊屬性，提供<strong>內部插槽（internal slot）</strong>供物件存放prototype的屬性或方法。<code>__proto__</code>則是一個getter/setter，用來存取<code>[[prototype]]</code>內部插槽的值。</p>
 <blockquote>
-<p>註：<a href="https://tc39.es/ecma262/#sec-object-internal-methods-and-internal-slots">內部插槽（internal slot）</a>是用來表示物件內部狀態，並被各種ECMAScript規範算法所使用。重要的是，內部插槽不是物件屬性，也不能被繼承。<br>註：其實看到一些較舊的文章，會發現以前Chrome console顯示的是__proto__，這跟上面提到的<code>__proto__</code>是不同的東西，這是<code>[[prototype]]</code>的前身，且已被取代。</p>
+<p>註：<span class="exturl" data-url="aHR0cHM6Ly90YzM5LmVzL2VjbWEyNjIvI3NlYy1vYmplY3QtaW50ZXJuYWwtbWV0aG9kcy1hbmQtaW50ZXJuYWwtc2xvdHM=">內部插槽（internal slot）<i class="fa fa-external-link-alt"></i></span>是用來表示物件內部狀態，並被各種ECMAScript規範算法所使用。重要的是，內部插槽不是物件屬性，也不能被繼承。<br>註：其實看到一些較舊的文章，會發現以前Chrome console顯示的是__proto__，這跟上面提到的<code>__proto__</code>是不同的東西，這是<code>[[prototype]]</code>的前身，且已被取代。</p>
 </blockquote>
 <p><img data-src="4.png"></p>
 <p>接著看後面的程式碼：</p>
@@ -293,21 +293,21 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(Alan.__proto__ === Person)  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="Q4：直接修改prototype影響效能？"><a href="#Q4：直接修改prototype影響效能？" class="headerlink" title="Q4：直接修改prototype影響效能？"></a>Q4：直接修改prototype影響效能？</h3><blockquote>
-<p>基於現代Javascript引擎最佳化物件屬性存取的方法，改變一個物件的<code>[[Prototype]]</code>在任何瀏覽器或是Javascript引擎都是非常慢的操作。改變繼承屬性對效能的影響微妙且深遠，不僅僅只是影響執行<code>obj.__proto__ = ...</code>的時間，而是會影響到所有有存取到被改變<code>[[Prototype]]</code>的物件的程式碼的執行時間。如果你在乎效能的話就應該避免改變一個物件的<code>[[Prototype]]</code>。反之，請用 Object.create() 來產生一個擁有<code>[[Prototype]]</code>的物件。 — <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/proto">MDN</a></p>
+<p>基於現代Javascript引擎最佳化物件屬性存取的方法，改變一個物件的<code>[[Prototype]]</code>在任何瀏覽器或是Javascript引擎都是非常慢的操作。改變繼承屬性對效能的影響微妙且深遠，不僅僅只是影響執行<code>obj.__proto__ = ...</code>的時間，而是會影響到所有有存取到被改變<code>[[Prototype]]</code>的物件的程式碼的執行時間。如果你在乎效能的話就應該避免改變一個物件的<code>[[Prototype]]</code>。反之，請用 Object.create() 來產生一個擁有<code>[[Prototype]]</code>的物件。 — <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubW96aWxsYS5vcmcvemgtVFcvZG9jcy9XZWIvSmF2YVNjcmlwdC9SZWZlcmVuY2UvR2xvYmFsX09iamVjdHMvT2JqZWN0L3Byb3Rv">MDN<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
 <h2 id="結語"><a href="#結語" class="headerlink" title="結語"></a>結語</h2><p>這篇文章是我找了很多參考資料，包含Stack Overflow的很多問答而寫的集大成。了解原型可以幫助了解JavaScript的運作模式，尤其是在寫ES6的Class語法糖的時候，裡面的constructor是什麼意思，用extends的意思，都可以比較了解了。（雖然目前class componment目前正在被社群逐漸淘汰中，都改用function conponent取代）</p>
 <p>參考資料：</p>
 <ol>
-<li><a href="https://eyesofkids.gitbooks.io/javascript-start-from-es6/content/part4/prototype.html">從ES6開始的JavaScript學習生活 - 原型基礎物件導向</a></li>
-<li><a href="https://ithelp.ithome.com.tw/articles/10205313">你懂 JavaScript 嗎？#19 原型（Prototype）</a></li>
-<li><a href="https://ithelp.ithome.com.tw/articles/10223556">15. [JS] 什麼是原型鏈？</a></li>
-<li><a href="https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/692845/#outline__3">JavaScript原型系列（一）構造函數、原型和原型鏈</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html">Javascript继承机制的设计思想</a></li>
-<li><a href="https://cythilya.github.io/2018/10/26/prototype/">你懂 JavaScript 嗎？#19 原型（Prototype）</a></li>
-<li><a href="https://pjchender.blogspot.com/2016/06/javascriptprototypeprototype.html">[筆記] 了解JavaScript中原型(prototype)、原型鍊（prototype chain）和繼承(inheritance)的概念</a></li>
-<li><a href="https://maxleebk.com/2020/07/25/prototype/">面試官最愛考的 JS 原型鏈</a></li>
-<li><a href="https://medium.com/@mengchiang000/js%E5%9F%BA%E6%9C%AC%E8%A7%80%E5%BF%B5-%E5%8E%9F%E5%9E%8B%E9%8F%88-prototype-chain-96c742893795">JS基本觀念: 原型鏈(prototype chain)</a></li>
-<li><a href="https://www.gushiciku.cn/pl/gV8Y/zh-tw">javascript之作用域與this指向</a></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9leWVzb2ZraWRzLmdpdGJvb2tzLmlvL2phdmFzY3JpcHQtc3RhcnQtZnJvbS1lczYvY29udGVudC9wYXJ0NC9wcm90b3R5cGUuaHRtbA==">從ES6開始的JavaScript學習生活 - 原型基礎物件導向<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9pdGhlbHAuaXRob21lLmNvbS50dy9hcnRpY2xlcy8xMDIwNTMxMw==">你懂 JavaScript 嗎？#19 原型（Prototype）<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9pdGhlbHAuaXRob21lLmNvbS50dy9hcnRpY2xlcy8xMDIyMzU1Ng==">15. [JS] 什麼是原型鏈？<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jb2RlcnR3LmNvbS8lRTclQTglOEIlRTUlQkMlOEYlRTglQUElOUUlRTglQTglODAvNjkyODQ1LyNvdXRsaW5lX18z">JavaScript原型系列（一）構造函數、原型和原型鏈<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cDovL3d3dy5ydWFueWlmZW5nLmNvbS9ibG9nLzIwMTEvMDYvZGVzaWduaW5nX2lkZWFzX29mX2luaGVyaXRhbmNlX21lY2hhbmlzbV9pbl9qYXZhc2NyaXB0Lmh0bWw=">Javascript继承机制的设计思想<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jeXRoaWx5YS5naXRodWIuaW8vMjAxOC8xMC8yNi9wcm90b3R5cGUv">你懂 JavaScript 嗎？#19 原型（Prototype）<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9wamNoZW5kZXIuYmxvZ3Nwb3QuY29tLzIwMTYvMDYvamF2YXNjcmlwdHByb3RvdHlwZXByb3RvdHlwZS5odG1s">[筆記] 了解JavaScript中原型(prototype)、原型鍊（prototype chain）和繼承(inheritance)的概念<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tYXhsZWViay5jb20vMjAyMC8wNy8yNS9wcm90b3R5cGUv">面試官最愛考的 JS 原型鏈<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tZWRpdW0uY29tL0BtZW5nY2hpYW5nMDAwL2pzJUU1JTlGJUJBJUU2JTlDJUFDJUU4JUE3JTgwJUU1JUJGJUI1LSVFNSU4RSU5RiVFNSU5RSU4QiVFOSU4RiU4OC1wcm90b3R5cGUtY2hhaW4tOTZjNzQyODkzNzk1">JS基本觀念: 原型鏈(prototype chain)<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuZ3VzaGljaWt1LmNuL3BsL2dWOFkvemgtdHc=">javascript之作用域與this指向<i class="fa fa-external-link-alt"></i></span></li>
 </ol>
 ]]></content>
       <categories>
