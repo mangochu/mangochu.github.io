@@ -48,7 +48,7 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaScript學習筆記 1 - 什麼是原型基礎物件導向（下）</title>
+    <title>JavaScript學習筆記2 - 什麼是原型基礎物件導向（下）</title>
     <url>/programming/20211119/996470916/</url>
     <content><![CDATA[<h2 id="ES6的Class"><a href="#ES6的Class" class="headerlink" title="ES6的Class"></a>ES6的Class</h2><p>把前面的範例透過Class方法重新編寫：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">first, last, age, gender, interests</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.name = &#123;</span><br><span class="line">    <span class="string">&#x27;first&#x27;</span>: first,</span><br><span class="line">    <span class="string">&#x27;last&#x27;</span> : last</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="built_in">this</span>.age = age;</span><br><span class="line">    <span class="built_in">this</span>.gender = gender;</span><br><span class="line">    <span class="built_in">this</span>.interests = interests;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">hello</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`hello <span class="subst">$&#123;<span class="built_in">this</span>.name.first&#125;</span>!`</span>)</span><br><span class="line">&#125;</span><br><span class="line">  <span class="comment">// 這裡定義方法會自動放到Person.prototype，但是定義prototype屬性不行用這個方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.species = <span class="string">&#x27;human&#x27;</span> <span class="comment">// 屬性只能用原來的方法給到prototype內</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Alan = <span class="keyword">new</span> Person</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Person.prototype) <span class="comment">// &#123;species: &#x27;human&#x27;, constructor, hello&#125;</span></span><br></pre></td></tr></table></figure>
@@ -136,7 +136,7 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaScript學習筆記 1 - 什麼是原型基礎物件導向（上）</title>
+    <title>JavaScript學習筆記1 - 什麼是原型基礎物件導向（上）</title>
     <url>/programming/20211030/2110751047/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>這是自學筆記的第一篇，我在寫這一篇文章的背景是在學習完Freecodecamp還有實作React一段時間之後，所以對JavaScript的語法和使用上都有一定程度的了解。<br>文章最後也會附上參考資料來源，都是我認為非常棒的作者和文章。因為我本身是自學，所以這樣的學習順序不知是否正確，但是我以自己的經驗認為這樣的學習方式是很好的，原因是：</p>
 <blockquote>
