@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://mangochu.github.io/programming/20211122/1923810251/01.png">
 <meta property="article:published_time" content="2021-11-22T13:26:41.000Z">
-<meta property="article:modified_time" content="2021-12-05T18:01:45.353Z">
+<meta property="article:modified_time" content="2021-12-05T18:14:27.986Z">
 <meta property="article:author" content="Mangochu">
 <meta property="article:tag" content="JavaScript學習筆記">
 <meta name="twitter:card" content="summary">
@@ -230,7 +230,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-12-06 02:01:45" itemprop="dateModified" datetime="2021-12-06T02:01:45+08:00">2021-12-06</time>
+                <time title="修改時間：2021-12-06 02:14:27" itemprop="dateModified" datetime="2021-12-06T02:14:27+08:00">2021-12-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -347,7 +347,7 @@
 <p>環境設置的部分就到這裡告一段落，接著就是Coding的部分了！</p>
 <h3 id="Express解析"><a href="#Express解析" class="headerlink" title="Express解析"></a>Express解析</h3><p>因為我們將用到Express，所以最好對這軟體有些初步了解，首先我們來看一下官方文件說Express可以做什麼，<span class="exturl" data-url="aHR0cHM6Ly9leHByZXNzanMuY29tL3poLXR3L2d1aWRlL3JvdXRpbmcuaHRtbA==">官網<i class="fa fa-external-link-alt"></i></span>手冊裡可以明確看到路由、中介軟體、Proxy這幾個關鍵字。</p>
 <ul>
-<li>路由（Routing）是指根據路徑和HTTP請求方法（<strong>CRUD</strong>）設定要執行哪些函數，函數可以一個也可以多個。</li>
+<li>路由（Routing）是指根據路徑和HTTP請求方法（<strong>CRUD</strong>）設定要執行哪些函式，函式可以一個也可以多個。</li>
 </ul>
 <blockquote>
 <p><strong>CRUD</strong>是指資料處理中會用到的動作行為，分別代表Create、Read、Update、Delete，也就是中文的增刪查改。而HTTP請求方法<code>METHOD()</code>最常見的有：<br>Create的<code>post</code><br>Read的<code>get</code><br>Update的<code>put</code>和<code>patch</code><br>Delete的<code>delete</code></p>
@@ -357,12 +357,15 @@
 
 <p>這個路由代表在根目錄（/）的時候如果請求get會得到一個’Hello world!’的回應。</p>
 <ul>
-<li>中介軟體（middleware）是指從請求經由路由到響應的過程中，用來完成特定任務的函數。例如檢查用戶有無權限或者是否已登入等等。</li>
+<li>中介軟體（middleware）是指從請求經由路由到響應的過程中，用來完成特定任務的函式。例如檢查用戶有無權限或者是否已登入等等。</li>
 </ul>
-<p>中介軟體一樣是可以接收request跟response物件的函數，中介軟體可以對req和res物件進行變更，也可以決定req和res是否在此結束或者繼續傳遞至下一個中介軟體，當選擇繼續傳遞時要使用<code>next()</code>，用法主要有兩種：<br>舉例1：使用use()</p>
+<p>中介軟體一樣是可以接收request跟response物件的函式，中介軟體可以對req和res物件進行變更，也可以決定req和res是否在此結束或者繼續傳遞至下一個中介軟體，當選擇繼續傳遞時要使用<code>next()</code>，用法主要有兩種：<br>舉例1：使用use()</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"></span><br><span class="line">app.use(<span class="function">(<span class="params">req,res,next</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;LOGGED&#x27;</span>)</span><br><span class="line">  next()</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">  res.send(<span class="string">&#x27;hello world!&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-<p>首先在剛剛的路由前面加上一個中介軟體，這段程式代表每當應用程式收到要求時，它會在Terminal印出’LOGGED’。</p>
+<p>首先在剛剛的路由前面加上一個中介軟體，這段程式代表每當應用程式收到要求時，它會在Terminal印出’LOGGED’。<br>說一下，中介軟體的函式一樣可以先定義再引入，剛剛的程式碼也可以寫成：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> logger = <span class="function">(<span class="params">req,res,next</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;LOGGED&#x27;</span>)</span><br><span class="line">  next()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">app.use(logger)</span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">  res.send(<span class="string">&#x27;hello world!&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>另外中介軟體的載入順序很重要，一樣是由上到下先載入的中介軟體會先執行。如果今天上述app.use(logger)在根路徑以後才載入，就永遠不會執行，因為根路徑的路由處理程式會終止要求/回應循環。</p>
 <p>舉例2：中介軟體堆疊</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (auth = token)&#123;</span><br><span class="line">    next()</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    res.send(<span class="string">&#x27;You are not authenticated!&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">  res.send(<span class="string">&#x27;hello world!&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
