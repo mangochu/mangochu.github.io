@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://mangochu.github.io/programming/20211122/1923810251/01.png">
 <meta property="article:published_time" content="2021-11-22T13:26:41.000Z">
-<meta property="article:modified_time" content="2021-12-05T17:50:23.212Z">
+<meta property="article:modified_time" content="2021-12-05T17:54:59.988Z">
 <meta property="article:author" content="Mangochu">
 <meta property="article:tag" content="JavaScript學習筆記">
 <meta name="twitter:card" content="summary">
@@ -230,7 +230,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-12-06 01:50:23" itemprop="dateModified" datetime="2021-12-06T01:50:23+08:00">2021-12-06</time>
+                <time title="修改時間：2021-12-06 01:54:59" itemprop="dateModified" datetime="2021-12-06T01:54:59+08:00">2021-12-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -379,12 +379,12 @@
 <blockquote>
 <p>補充這邊舉例的<code>app.METHOD()</code>只有用到GET，但是其實方法就像前面CRUD提到的當然不只一種，例如：<code>app.get()</code>、<code>app.post()</code>、<code>app.put()</code>、<code>app.patch()</code>、<code>app.delete()</code>、……等等。還有<code>app.all()</code>代表該路徑的所有請求方法都可以匹配，會蓋過get、post、delete等方法。</p>
 </blockquote>
-<p><code>app.all()</code>跟<code>app.use()</code>的差異如下（詳見<span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL3EvMTAxMDAwMDAxNzM1NTcwOQ==">本網頁<i class="fa fa-external-link-alt"></i></span>：</p>
+<p><code>app.all()</code>跟<code>app.use()</code>的差異如下（詳見<span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL3EvMTAxMDAwMDAxNzM1NTcwOQ==">本網頁<i class="fa fa-external-link-alt"></i></span>）：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">app.all(<span class="string">&#x27;/product&#x27;</span>, handler)</span><br><span class="line"><span class="comment">// will match /product</span></span><br><span class="line"><span class="comment">// won&#x27;t match /product/cool   &lt;-- important</span></span><br><span class="line"><span class="comment">// won&#x27;t match /product/foo    &lt;-- important</span></span><br><span class="line"></span><br><span class="line">app.use(<span class="string">&#x27;/product&#x27;</span>, middleware)</span><br><span class="line"><span class="comment">// will match /product</span></span><br><span class="line"><span class="comment">// will match /product/cool</span></span><br><span class="line"><span class="comment">// will match /product/foo</span></span><br></pre></td></tr></table></figure>
 
 <p>基本上Express還有許多功能，可以參閱官方文件，不過以我們這篇專案會用到的觀念都介紹得差不多。接下來就繼續實作吧！</p>
 <h3 id="開始Coding：打造API的進入點"><a href="#開始Coding：打造API的進入點" class="headerlink" title="開始Coding：打造API的進入點"></a>開始Coding：打造API的進入點</h3><p>在根目錄的index.js：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">&#x27;express&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"><span class="keyword">const</span> PORT = <span class="number">5000</span> <span class="comment">//註1</span></span><br><span class="line"></span><br><span class="line">app.use(express.json()) <span class="comment">//註2</span></span><br><span class="line"></span><br><span class="line">app.listen(PORT, <span class="function">()=&gt;</span> <span class="built_in">console</span>.log(<span class="string">`Server is running at http://localhost:<span class="subst">$&#123;PORT&#125;</span>`</span>)) <span class="comment">//註3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">&#x27;express&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"><span class="keyword">const</span> PORT = <span class="number">5000</span> <span class="comment">//註1</span></span><br><span class="line"></span><br><span class="line">app.use(express.json()) <span class="comment">//註2</span></span><br><span class="line"></span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req,res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Hello World!&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(PORT, <span class="function">()=&gt;</span> <span class="built_in">console</span>.log(<span class="string">`Server is running at http://localhost:<span class="subst">$&#123;PORT&#125;</span>`</span>)) <span class="comment">//註3</span></span><br></pre></td></tr></table></figure>
 
 <p>備註：</p>
 <ol>
