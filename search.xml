@@ -168,6 +168,146 @@
       </tags>
   </entry>
   <entry>
+    <title>JavaScript學習筆記3 - 用Node.js和Express創建RESTful API（上）</title>
+    <url>/programming/20211122/1923810251/</url>
+    <content><![CDATA[<p>相信在找網路相關工作的人，不管是前端網頁工程師或APP工程師，當然尤其是後端工程師一定聽過「API」。但是我想很多初次接觸的人一定會抱著三大問題：</p>
+<ol>
+<li>什麼是API？什麼又是RESTful API？</li>
+<li>API怎麼做</li>
+<li>API要怎麼串接</li>
+</ol>
+<p>這篇文章就先來說明前2個問題吧，Let’s Go!</p>
+<h2 id="什麼是API？什麼又是RESTful-API"><a href="#什麼是API？什麼又是RESTful-API" class="headerlink" title="什麼是API？什麼又是RESTful API"></a>什麼是API？什麼又是RESTful API</h2><p>查維基百科可以知道，API全名是Application Programming Interface，中文叫應用程式介面。我覺得這裡可以跟UI做一個比較：</p>
+<table>
+<thead>
+<tr>
+<th align="center">中文</th>
+<th align="center">英文</th>
+<th align="center">定義</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">應用程式介面</td>
+<td align="center">Application Programming Interface</td>
+<td align="center">是一種計算介面，它定義多個軟體中介之間的互動</td>
+</tr>
+<tr>
+<td align="center">使用者介面</td>
+<td align="center">User Interface</td>
+<td align="center">是系統和使用者之間進行互動和資訊交換的媒介</td>
+</tr>
+</tbody></table>
+<p>可以發現兩個英文都是Interface，中文可以翻譯介面、接口、端口，總之就是一個互動性的中介，不過可以看到一個對口是應用程式，一個則是對使用者。拿飲料自動販賣機來舉例：</p>
+<p><img data-src="01.png" alt="示意圖"></p>
+<p>藍色箭頭：系統用API告訴機器各個產品的價位跟存貨狀態，機器再用好看的UI告訴消費者這些資訊。<br>綠色箭頭：而當消費者選好飲料時按下UI的按鈕，機器會再用API告訴系統該吐什麼產品出來給消費者，消費者就得到了他想要的產品了。</p>
+<p>所以API是什麼東西大家應該都清楚了，概念就是這麼簡單。那什麼又是RESTful API呢？</p>
+<p>它其實是一個Roy Thomas Fielding博士在2000年提出的一種<strong>全球資訊網軟體架構風格</strong>，全名Representational State Transfer（簡稱REST），其實不用太擔心這個看似複雜的詞，它只是定義你API應該要長怎樣，當然它有一些規則需要遵從，不過這邊我們只要知道現今的API幾乎都是RESTful API就好了。</p>
+<h2 id="進入正題，API怎麼做"><a href="#進入正題，API怎麼做" class="headerlink" title="進入正題，API怎麼做"></a>進入正題，API怎麼做</h2><p>首先，來說說工具吧！</p>
+<ul>
+<li>編輯器：VSCode</li>
+<li>後端：Node.js、Express.js</li>
+<li>資料測試：Postman</li>
+</ul>
+<p>前端工具要等到串接API的時候才會用到，到時候再列出來！</p>
+<p>Node版本：v14.17.3</p>
+<blockquote>
+<p>網路上有很多下載教學了，這邊要說明一下以下的教學要下載至少<code>Node.js &gt;= v13</code>的版本，<br>這個版本中只要在<code>package.json</code>中加入<code>&#123; &quot;type&quot;: &quot;module&quot; &#125;</code>就可以使用<code>import</code>和<code>export</code>語法，例如：<code>import express from &#39;express&#39;;</code>。否則就要用原本的引入方法：<code>const express = require(&#39;express&#39;)</code></p>
+</blockquote>
+<h3 id="建置環境"><a href="#建置環境" class="headerlink" title="建置環境"></a>建置環境</h3><p>以下教學會從零到有建置，當然也有另一個快速的方法，就是使用<code>Express generator</code>來快速建立起應用程式架構，這個就不說了網路查都有很多教學。那就讓我們重頭開始吧。</p>
+<p>先在專案資料夾用Terminal輸入以下程式碼來初始化專案</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yarn init -y</span><br></pre></td></tr></table></figure>
+
+<p>其實輸入<code>npm init</code>就會初始化，但是會有很多選項要選，<code>-y</code>就是自動幫你選yes的意思。之後會產生一個package.json檔，這會記錄這個專案所使用的所有套件（名稱、版本），當有其他人要一起維護或開發專案時，做為套件傳遞使用，他們只要擁有這個檔案直接執行<code>npm install</code>或<code>yarn install</code>就會幫忙把所有套件裝回來以節省傳輸專案的速度和雲端空間。另外在安裝套件後會同時新增一個<code>package-lock.json</code>或<code>yarn-lock.json</code>，這是因為套件會有更新版，而每次下載都會自動下載最新的，有時候新舊版本會有相容性的問題，才會用這個lock檔讓別人下載時也會得到相同版本。</p>
+<blockquote>
+<p>這裡補充一下，使用npm或yarn都可以，<strong>但是不要混用</strong>，會造成設定檔重複，有時候會報錯。至於要用哪個，可以網路搜尋兩個的差異再決定。</p>
+</blockquote>
+<p>來看一下package.json檔（用npm init和用yarn init可能會稍微不一樣但是沒關係）</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;blog-test&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;1.0.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;main&quot;</span>: <span class="string">&quot;index.js&quot;</span>, <span class="comment">// 程式進入點</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;test&quot;</span>: <span class="string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;keywords&quot;</span>: [],</span><br><span class="line">  <span class="attr">&quot;author&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;license&quot;</span>: <span class="string">&quot;ISC&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到index.js就是程式的進入點，所以我們在專案資料夾下直接建立一個index.js</p>
+<p>-Tree</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌── index.js</span><br><span class="line">└── package.json</span><br></pre></td></tr></table></figure>
+
+<p>接著安裝Express套件，Terminal輸入：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install --save express</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yarn add express</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>其實直接輸入<code>npm install express</code>就可以了，<code>--save</code>是將套件保存至Dependencies，但是npm5以後就已經預設會自動加入Dependencies了。</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;blog-test&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;1.0.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;main&quot;</span>: <span class="string">&quot;index.js&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;test&quot;</span>: <span class="string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;keywords&quot;</span>: [],</span><br><span class="line">  <span class="attr">&quot;author&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;license&quot;</span>: <span class="string">&quot;ISC&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;dependencies&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;express&quot;</span>: <span class="string">&quot;^4.17.1&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這邊可以看到express已被加入package.json內的dependencies，後面標註版本是v4.17.1，之後如果有再安裝套件會像這樣被加入package.json檔，就不會再贅述了。</p>
+<p>另外前面提到待會要用的<code>import</code>和<code>export</code>方法要在package.json檔內加入<code>&#123; &quot;type&quot;: &quot;module&quot; &#125;</code>檔，就讓我們加入吧！</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;blog-test&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;1.0.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;main&quot;</span>: <span class="string">&quot;index.js&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;module&quot;</span>, <span class="comment">//加入type，記得json檔只能用雙引號</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;test&quot;</span>: <span class="string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;keywords&quot;</span>: [],</span><br><span class="line">  <span class="attr">&quot;author&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;license&quot;</span>: <span class="string">&quot;ISC&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;dependencies&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;express&quot;</span>: <span class="string">&quot;^4.17.1&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>環境設置的部分就到這裡告一段落，接著就是Coding的部分了！</p>
+<h3 id="Express解析"><a href="#Express解析" class="headerlink" title="Express解析"></a>Express解析</h3><p>因為我們將用到Express，所以最好對這軟體有些初步了解，首先我們來看一下官方文件說Express可以做什麼，<span class="exturl" data-url="aHR0cHM6Ly9leHByZXNzanMuY29tL3poLXR3L2d1aWRlL3JvdXRpbmcuaHRtbA==">官網<i class="fa fa-external-link-alt"></i></span>手冊裡可以明確看到路由、中介軟體、Proxy這幾個關鍵字。</p>
+<ul>
+<li>路由（Routing）是指根據路徑和HTTP請求方法（<strong>CRUD</strong>）設定要執行哪些函數，函數可以一個也可以多個。</li>
+</ul>
+<blockquote>
+<p><strong>CRUD</strong>是指資料處理中會用到的動作行為，分別代表Create、Read、Update、Delete，也就是中文的增刪查改。而HTTP請求方法<code>METHOD()</code>最常見的有：<br>Create的<code>post</code><br>Read的<code>get</code><br>Update的<code>put</code>和<code>patch</code><br>Delete的<code>delete</code></p>
+</blockquote>
+<p>創造一個最簡單的路由：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">  res.send(<span class="string">&#x27;hello world!&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>這個路由代表在根目錄（/）的時候如果請求get會得到一個’Hello world!’的回應。</p>
+<ul>
+<li>中介軟體（middleware）是指從請求經由路由到響應的過程中，用來完成特定任務的函數。例如檢查用戶有無權限或者是否已登入等等。</li>
+</ul>
+<p>中介軟體一樣是可以接收request跟response物件的函數，中介軟體可以對req和res物件進行變更，也可以決定req和res是否在此結束或者繼續傳遞至下一個中介軟體，當選擇繼續傳遞時要使用<code>next()</code>，用法主要有兩種：<br>舉例1：使用use()</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"></span><br><span class="line">app.use(<span class="function">(<span class="params">req,res,next</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;LOGGED&#x27;</span>)</span><br><span class="line">  next()</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">  res.send(<span class="string">&#x27;hello world!&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>首先在剛剛的路由前面加上一個中介軟體，這段程式代表每當應用程式收到要求時，它會在Terminal印出’LOGGED’。</p>
+<p>舉例2：中介軟體堆疊</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (auth = token)&#123;</span><br><span class="line">    next()</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    res.send(<span class="string">&#x27;You are not authenticated!&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">  res.send(<span class="string">&#x27;hello world!&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>這段程式代表在根目錄（/）請求get時會先在中介軟體中判斷是否有授權（auth = token），如果有就執行路由回傳’hello world!’，沒有的話則回傳’You are not authenticated’並結束循環。</p>
+<p>補充一下，中介軟體還有一個用法，首先看下列程式碼：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">  res.send(<span class="string">&#x27;hello world!&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">  res.send(<span class="string">&#x27;goodnight world!&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>這邊當我們針對根目錄的GET要求，定義了兩個路由，只有前者會執行，雖然第二個路由是沒問題的，但是要求/回應循環會在第一個路由結束就停止。這時候可以利用中介軟體呼叫<code>next(&#39;route&#39;)</code>來跳過堆疊中的其餘中介軟體，並將控制權傳給下一個路由。直接看修改：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (now = night)&#123;</span><br><span class="line">    next(<span class="string">&#x27;route&#x27;</span>)</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    next()</span><br><span class="line">  &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">    res.send(<span class="string">&#x27;hello world!&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">  res.send(<span class="string">&#x27;goodnight world!&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>最後是錯誤處理用的中介軟體，基本上跟中介軟體一樣，不過多了一個引數：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">err, req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.error(err.stack);</span><br><span class="line">  res.status(<span class="number">500</span>).send(<span class="string">&#x27;Something broke!&#x27;</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>補充這邊舉例的<code>app.METHOD()</code>只有用到GET，但是其實方法就像前面CRUD提到的當然不只一種，例如：<code>app.get()</code>、<code>app.post()</code>、<code>app.put()</code>、<code>app.patch()</code>、<code>app.delete()</code>、……等等。還有<code>app.all()</code>代表該路徑的所有請求方法都可以匹配，會蓋過get、post、delete等方法。</p>
+</blockquote>
+<p><code>app.all()</code>跟<code>app.use()</code>的差異如下（詳見<span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL3EvMTAxMDAwMDAxNzM1NTcwOQ==">本網頁<i class="fa fa-external-link-alt"></i></span>：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.all(<span class="string">&#x27;/product&#x27;</span>, handler)</span><br><span class="line"><span class="comment">// will match /product</span></span><br><span class="line"><span class="comment">// won&#x27;t match /product/cool   &lt;-- important</span></span><br><span class="line"><span class="comment">// won&#x27;t match /product/foo    &lt;-- important</span></span><br><span class="line"></span><br><span class="line">app.use(<span class="string">&#x27;/product&#x27;</span>, middleware)</span><br><span class="line"><span class="comment">// will match /product</span></span><br><span class="line"><span class="comment">// will match /product/cool</span></span><br><span class="line"><span class="comment">// will match /product/foo</span></span><br></pre></td></tr></table></figure>
+
+<p>基本上Express還有許多功能，可以參閱官方文件，不過以我們這篇專案會用到的觀念都介紹得差不多。接下來就繼續實作吧！</p>
+<h3 id="開始Coding：打造API的進入點"><a href="#開始Coding：打造API的進入點" class="headerlink" title="開始Coding：打造API的進入點"></a>開始Coding：打造API的進入點</h3><p>在根目錄的index.js：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">&#x27;express&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"><span class="keyword">const</span> PORT = <span class="number">5000</span> <span class="comment">//註1</span></span><br><span class="line"></span><br><span class="line">app.use(express.json()) <span class="comment">//註2</span></span><br><span class="line"></span><br><span class="line">app.listen(PORT, <span class="function">()=&gt;</span> <span class="built_in">console</span>.log(<span class="string">`Server is running at http://localhost:<span class="subst">$&#123;PORT&#125;</span>`</span>)) <span class="comment">//註3</span></span><br></pre></td></tr></table></figure>
+
+<p>備註：</p>
+<ol>
+<li>通常在JavaScript會用全大寫的參數來代表這個值是固定不變的，前端常用的PORT是3000，而後端常用的PORT是5000，當然也可以設定為任意數，只要留意有些程式會有預設PORT，例如網頁的80、FTP的21、MySQL的3306等等，不要重複以免佔用。</li>
+<li>這句代表我們引入express的資料會用json的形式表示，這裡以前是須要引入body-parser的，例<code>bodyParser.json()</code>，不過後來Express把bodyParser套件給包進去。</li>
+<li>這句代表在應用程式執行的時候，會在埠5000接聽連線，並且在Terminal印出<code>Server is running at http://localhost:5000</code>。</li>
+</ol>
+<p>接著只要執行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">node index.js</span><br></pre></td></tr></table></figure>
+
+<p>然後在瀏覽器中載入<span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo1MDAwLw==">http://localhost:5000/<i class="fa fa-external-link-alt"></i></span>就可以看到應用程式對指向根URL（/)，以「Hello World!」回應。</p>
+<p>因為文長的關係，下一篇再繼續囉！</p>
+]]></content>
+      <categories>
+        <category>程式</category>
+      </categories>
+      <tags>
+        <tag>JavaScript學習筆記</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaScript學習筆記2 - 什麼是原型基礎物件導向（下）</title>
     <url>/programming/20211119/996470916/</url>
     <content><![CDATA[<h2 id="ES6的Class"><a href="#ES6的Class" class="headerlink" title="ES6的Class"></a>ES6的Class</h2><p>把前面的範例透過Class方法重新編寫：</p>
