@@ -1,0 +1,67 @@
+<script setup lang="ts">
+import { navItems, profile } from '@/data/profile'
+import { Menu, X } from '@lucide/vue'
+import { ref } from 'vue'
+
+const profileName = profile.name.split(' ')[0]
+const isMenuOpen = ref(false)
+
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value
+}
+const closeMenu = () => {
+  isMenuOpen.value = false
+}
+</script>
+
+<template>
+  <header class="fixed inset-x-0 top-4 z-50 px-4">
+    <nav
+      class="glass mx-auto relative flex h-14 max-w-4xl items-center justify-end md:justify-between pr-2 pl-6"
+    >
+      <a href="#top" class="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0"
+        ><span class="text-2xl">{{ profileName }}<span class="text-primary">.</span></span>
+      </a>
+      <ul class="hidden items-center gap-1 md:flex">
+        <li v-for="item in navItems" :key="item.id">
+          <a :href="`#${item.id}`" class="rounded-full px-4 py-2 text-sm transition-colors">
+            {{ item.label }}
+          </a>
+        </li>
+      </ul>
+      <a :href="profile.resumeUrl" class="btn-primary hidden px-5! py-2! text-sm md:inline-flex">
+        履歷
+      </a>
+      <button
+        class="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 md:hidden"
+        :aria-label="isMenuOpen ? '關閉選單' : '開啟選單'"
+        :aria-expanded="isMenuOpen"
+        @click="toggleMenu"
+      >
+        <X v-if="isMenuOpen" :size="20" />
+        <Menu v-else :size="20" />
+      </button>
+    </nav>
+    <Transition
+      enter-active-class="transition duration-200 ease-out"
+      enter-from-class="opacity-0 -translate-y-2"
+      leave-active-class="transition duration-150 ease-in"
+      leave-to-class="opacity-0 -translate-y-2"
+    >
+      <div v-if="isMenuOpen" class="glass mx-auto mt-2 max-w-4xl p-3 md:hidden">
+        <a
+          v-for="item in navItems"
+          :href="`#${item.id}`"
+          :key="item.id"
+          class="block w-full rounded-2xl px-4 py-3 text-left transition-colors hover:bg-white/5"
+          @click="closeMenu"
+        >
+          {{ item.label }}
+        </a>
+        <a :href="profile.resumeUrl" class="btn-primary mt-2 w-full">下載履歷</a>
+      </div>
+    </Transition>
+  </header>
+</template>
+
+<style scoped></style>
