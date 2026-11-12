@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { navItems, profile } from '@/data/profile'
 import { Menu, X } from '@lucide/vue'
-import { ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 const profileName = profile.name.split(' ')[0]
 const isMenuOpen = ref(false)
+const activeId = ref('')
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
@@ -12,6 +13,35 @@ const toggleMenu = () => {
 const closeMenu = () => {
   isMenuOpen.value = false
 }
+
+let observer: IntersectionObserver | undefined
+
+onMounted(() => {
+  const visible = new Set<string>()
+
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) visible.add(entry.target.id)
+        else visible.delete(entry.target.id)
+      })
+      const current = navItems.find((item) => visible.has(item.id))
+      if (current) activeId.value = current.id
+    },
+    { rootMargin: '-40% 0px -50% 0px' },
+  )
+
+  navItems.forEach((item) => {
+    const section = document.getElementById(item.id)
+    if (section) {
+      observer?.observe(section)
+    }
+  })
+})
+
+onUnmounted(() => {
+  observer?.disconnect()
+})
 </script>
 
 <template>
@@ -24,7 +54,11 @@ const closeMenu = () => {
       </a>
       <ul class="hidden items-center gap-1 md:flex">
         <li v-for="item in navItems" :key="item.id">
-          <a :href="`#${item.id}`" class="rounded-full px-4 py-2 text-sm transition-colors">
+          <a
+            :href="`#${item.id}`"
+            class="rounded-full px-4 py-2 text-sm transition-colors"
+            :class="activeId === item.id ? 'bg-white/10' : 'text-white/60 hover:text-white'"
+          >
             {{ item.label }}
           </a>
         </li>
