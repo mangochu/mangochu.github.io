@@ -3,11 +3,11 @@ import type { NavItem } from '@/types'
 
 export const profile = {
   name: 'Mango Chu',
-  title: 'Frontend Engineer',
-  availability: '目前開放新的合作機會',
-  tagline: '打造流暢、優雅且好用的網頁體驗',
+  title: 'Frontend / Full-stack Engineer',
+  availability: '正在尋找前端／全端工程師職缺',
+  tagline: '把複雜的規則，做成正確可靠的系統',
   intro:
-    '我是一名專注於前端開發與介面設計的工程師，熱愛把複雜的需求轉化為簡潔直覺的產品。擅長 Vue、TypeScript 與設計系統的建構。',
+    '物理碩士，近 3 年前端與 App 開發經驗。擅長 Vue、React 與 TypeScript，習慣先釐清規則、找出問題根因，再用可以驗證的方式確保結果正確。',
   location: 'Taichung, Taiwan',
   email: 'mangochu81806@gmail.com',
   resumeUrl: '#',
@@ -19,20 +19,21 @@ export const profile = {
 }
 
 export const stats = [
-  { value: '4+', label: '年開發經驗' },
-  { value: '30+', label: '參與專案' },
-  { value: '100%', label: '熱情投入' },
+  { value: '3', label: '年前端與 App 經驗' },
+  { value: '10+', label: '款遊戲前端維護' },
+  { value: '600+', label: '個自動化測試' },
 ]
 
 export const about = {
   paragraphs: [
-    '從大學時期第一次寫出會動的網頁開始，我就深深著迷於「讓想法在瀏覽器上活起來」這件事。',
-    '目前專注於大型前端架構、元件庫與效能優化，也喜歡和設計師密切合作，把每個細節打磨到位。',
+    '我從面板廠的製程整合工程師轉到軟體開發。在友達的三年，我平均每天追蹤 2～3 件產線異常，養成「先蒐集證據、再提出假設、用實驗驗證」的除錯習慣。',
+    '在聯訊網路擔任前端工程師時，我接手三大平台、十款以上遊戲的前端維護，半年內就能獨立處理九成以上的問題，之後也從零開發 Vue 3 與 React Native 新專案，並自架 CodePush Server 讓 App 不用重新送審就能熱更新。',
+    '現在我把同一套思考方式用在個人作品上：GoPio 台股記帳網站要求計算結果和券商對帳單逐筆一致，我把稅費規則拆成可測試的純函式，累積 600 多個測試。我希望加入軟體團隊，把想法做成真正能用的產品。',
   ],
   highlights: [
-    '重視使用者體驗與可存取性',
-    '習慣撰寫可維護、可測試的程式碼',
-    '熱衷分享，持續撰寫技術文章',
+    '先寫測試再實作，用可驗證的方式確保結果正確',
+    '追到問題根因，修正事件監聽未卸載等長期存在的生命週期 Bug',
+    '習慣和非技術背景的人釐清需求，協調跨部門合作',
   ],
 }
 
@@ -42,50 +43,53 @@ export const skills: { icon: SkillIcon; title: string; description: string; tags
   {
     icon: 'code',
     title: '前端開發',
-    description: '以現代框架建構高效能、可維護的網頁應用。',
-    tags: ['Vue 3', 'TypeScript', 'Vite', 'Pinia'],
+    description: '用 Vue 與 React 開發與維護 Web 前端，處理狀態管理與資料流。',
+    tags: ['Vue 2/3', 'React', 'TypeScript', 'Pinia', 'MobX'],
   },
   {
     icon: 'palette',
-    title: 'UI / UX 設計',
-    description: '從使用者出發，設計直覺且一致的介面。',
-    tags: ['Figma', 'Design System', 'Tailwind CSS'],
+    title: '切版與設計',
+    description: '把設計稿切成可重用的元件，支援 RWD／PWA；也具備平面設計基礎。',
+    tags: ['HTML5', 'CSS3', 'Element Plus', 'Photoshop', 'Illustrator'],
   },
   {
     icon: 'server',
-    title: '後端與 API',
-    description: '串接與設計 RESTful / GraphQL 服務。',
-    tags: ['Node.js', 'GraphQL', 'PostgreSQL'],
+    title: '後端與資料庫',
+    description: '用 Node.js 架設伺服器、設計與串接 RESTful API。',
+    tags: ['Node.js', 'Fastify', 'Egg.js', 'Prisma', 'PostgreSQL', 'MySQL'],
   },
   {
     icon: 'rocket',
-    title: '效能與部署',
-    description: 'CI/CD 自動化、Core Web Vitals 優化。',
-    tags: ['GitHub Actions', 'Docker', 'Vercel'],
+    title: 'App 與部署',
+    description: 'React Native App 開發與上架，Docker 部署到雲端 VPS。',
+    tags: ['React Native', 'CodePush', 'App Store', 'Google Play', 'Docker'],
   },
 ]
 
 export const projects = [
   {
-    title: 'Glass Dashboard',
-    description: '以 Liquid Glass 風格打造的資料分析儀表板，支援即時圖表與暗色主題。',
-    tags: ['Vue 3', 'ECharts', 'Tailwind'],
+    title: 'GoPio 台股記帳網站',
+    description:
+      '可離線、多裝置同步的台股記帳 PWA，計算結果與券商對帳單逐筆一致。手續費、證交稅、當沖、股利、二代健保等規則拆成前後端共用的純函式引擎，金額全面採用 decimal 運算，累積 600+ 個單元／整合測試與 Playwright E2E。以 AI 協作開發，由我負責規格、架構、規則查證與測試設計。',
+    tags: ['React', 'TypeScript', 'Fastify', 'Prisma', 'PostgreSQL', 'Docker'],
     demo: '#',
     repo: '#',
     featured: true,
   },
   {
-    title: 'Design Tokens Kit',
-    description: '跨框架的設計 token 與元件庫，讓設計與開發保持同步。',
-    tags: ['TypeScript', 'Storybook'],
+    title: 'The 5-Floor Tower',
+    description:
+      '用 Unity／C# 獨立完成的 2D 橫向捲軸 RPG，實作有限狀態機、網格背包、收藏解鎖能力、技能樹節點編輯器與肉鴿詛咒選擇等系統。',
+    tags: ['Unity', 'C#', 'FSM', 'Editor Tool'],
     demo: '#',
     repo: '#',
     featured: false,
   },
   {
-    title: 'Realtime Chat',
-    description: '支援多房間、已讀狀態與檔案傳送的即時聊天應用。',
-    tags: ['Nuxt', 'WebSocket', 'Redis'],
+    title: 'AOI 缺陷影像辨識',
+    description:
+      '陽明交大「半導體與 AI 應用」專班的實作，用 Python 處理資料與視覺化，並以機器學習／深度學習模型辨識 AOI 缺陷影像。',
+    tags: ['Python', 'NumPy', 'Matplotlib', 'Machine Learning'],
     demo: '#',
     repo: '#',
     featured: false,
@@ -94,22 +98,32 @@ export const projects = [
 
 export const experiences = [
   {
-    period: '2023 — 現在',
-    role: 'Senior Frontend Engineer',
-    company: 'Awesome Tech Co.',
-    description: '主導前端架構重構，建立共用元件庫，頁面載入速度提升 40%。',
+    period: '2026',
+    role: '半導體與 AI 應用專班學員',
+    company: '國立陽明交通大學',
+    description:
+      '補強 Python、資料分析與機器學習，實作 AOI 缺陷影像辨識，也學習 FPGA 數位電路設計（Verilog），獲選全班僅 8 名的優秀表現學員。',
   },
   {
-    period: '2021 — 2023',
+    period: '2024 — 2026',
+    role: '獨立遊戲開發者',
+    company: 'Personal Project',
+    description:
+      '用 Unity／C# 獨立完成 2D RPG《The 5-Floor Tower》，從系統設計做到上線；用物件池改善效能，並開發技能樹節點編輯器。',
+  },
+  {
+    period: '2021 — 2024',
     role: 'Frontend Engineer',
-    company: 'Creative Studio',
-    description: '負責多個品牌官網與電商專案，與設計團隊合作導入設計系統。',
+    company: '聯訊網路有限公司',
+    description:
+      '維護三大平台、十款以上遊戲的前端（React、Vue 2/3、JSP），從零開發 Vue 3 與 React Native 新專案；自架 CodePush Server 實現免送審熱更新，排除 95% 以上的上架與審核問題。',
   },
   {
-    period: '2019 — 2021',
-    role: 'Junior Web Developer',
-    company: 'Startup Inc.',
-    description: '開發內部管理系統與行銷活動頁，累積全端開發經驗。',
+    period: '2016 — 2020',
+    role: '製程整合工程師',
+    company: '友達光電',
+    description:
+      '監控產線異常並分析根因，最高讓良率提升 30%；擔任部門 EDA 與智慧報表負責人，並協調跨部門、客戶與供應商處理異常。',
   },
 ]
 
