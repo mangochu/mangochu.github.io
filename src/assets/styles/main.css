@@ -120,3 +120,15 @@
     border-color: rgb(255 255 255 / 0.3);
   }
 }
+
+@utility avatar-ring {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 9999px;
+  background: var(--color-background);
+  border: 2px solid color-mix(in oklab, var(--color-primary) 70%, transparent);
+  box-shadow: 0 0 0 6px rgb(255 255 255 / 0.03);
+}
