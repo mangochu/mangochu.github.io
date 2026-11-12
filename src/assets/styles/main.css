@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-sans: -apple-system, 'Noto Sans TC', system-ui, sans-serif;
+  --font-sans: -apple-system, 'Hanken Grotesk Variable', 'Noto Sans TC', system-ui, sans-serif;
   --color-primary: var(--color-amber-400);
   --color-secondary: var(--color-yellow-300);
   --color-background: var(--color-black);

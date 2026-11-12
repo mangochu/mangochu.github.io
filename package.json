@@ -17,6 +17,7 @@
     "format:check": "prettier --check --experimental-cli src/"
   },
   "dependencies": {
+    "@fontsource-variable/hanken-grotesk": "^5.3.0",
     "@lucide/vue": "^1.70.0",
     "vue": "^3.5.42"
   },
