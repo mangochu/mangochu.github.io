@@ -26,7 +26,7 @@ onMounted(() => {
         else visible.delete(entry.target.id)
       })
       const current = navItems.find((item) => visible.has(item.id))
-      if (current) activeId.value = current.id
+      activeId.value = current?.id ?? ''
     },
     { rootMargin: '-40% 0px -50% 0px' },
   )
