@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import NavBar from './components/layout/NavBar.vue'
+import HeroSection from './components/sections/HeroSection.vue'
 import { navItems } from './data/profile.ts'
 
 const blobs = ['bg-amber-500', 'bg-sky-500', 'bg-fuchsia-500', 'bg-emerald-500', 'bg-rose-500']
@@ -8,6 +9,7 @@ const blobs = ['bg-amber-500', 'bg-sky-500', 'bg-fuchsia-500', 'bg-emerald-500',
 <template>
   <div class="min-h-screen text-white">
     <NavBar />
+    <HeroSection />
     <section
       v-for="(item, index) in navItems"
       :id="item.id"

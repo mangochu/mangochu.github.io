@@ -4,6 +4,7 @@ import type { NavItem } from '@/types'
 export const profile = {
   name: 'Mango Chu',
   title: 'Frontend Engineer',
+  availability: '目前開放新的合作機會',
   tagline: '打造流暢、優雅且好用的網頁體驗',
   intro:
     '我是一名專注於前端開發與介面設計的工程師，熱愛把複雜的需求轉化為簡潔直覺的產品。擅長 Vue、TypeScript 與設計系統的建構。',
