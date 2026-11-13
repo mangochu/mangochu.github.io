@@ -125,8 +125,8 @@ export const experiences = [
 
 export const navItems: NavItem[] = [
   { id: 'about', label: '關於我' },
+  { id: 'experience', label: '經歷' },
   { id: 'skills', label: '技能' },
   { id: 'projects', label: '作品' },
-  { id: 'experience', label: '經歷' },
   { id: 'contact', label: '聯絡' },
 ]
