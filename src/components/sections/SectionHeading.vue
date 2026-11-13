@@ -1,10 +1,18 @@
 <script setup lang="ts">
-defineProps<{
-  index: string
+import { navItems } from '@/data/profile'
+import { computed } from 'vue'
+
+const props = defineProps<{
+  sectionId: string
   eyebrow: string
   title: string
   description?: string
 }>()
+
+const index = computed(() => {
+  const i = navItems.findIndex((item) => item.id === props.sectionId)
+  return i === -1 ? '' : String(i + 1).padStart(2, '0')
+})
 </script>
 
 <template>

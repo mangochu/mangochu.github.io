@@ -15,7 +15,7 @@ const icons: Record<SkillIcon, typeof Code> = {
   <section id="skills" class="px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
     <div class="mx-auto max-w-6xl">
       <SectionHeading
-        index="02"
+        sectionId="skills"
         eyebrow="Skills"
         title="專業技能"
         description="我用來把想法變成產品的工具與能力。"
