@@ -7,6 +7,7 @@
   --color-background: var(--color-black);
   --color-foreground: var(--color-white);
   --color-foreground-soft: var(--color-gray-200);
+  --color-surface: var(--color-gray-950);
 }
 
 @layer base {
@@ -131,4 +132,49 @@
   background: var(--color-background);
   border: 2px solid color-mix(in oklab, var(--color-primary) 70%, transparent);
   box-shadow: 0 0 0 6px rgb(255 255 255 / 0.03);
+}
+
+@utility timeline-fill {
+  background: var(--color-primary);
+}
+
+@utility timeline-node {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  justify-self: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background: var(--color-surface);
+  border: 1px solid rgb(255 255 255 / 0.12);
+  transition: all 0.5s;
+
+  > span {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 9999px;
+    background: rgb(255 255 255 / 0.25);
+    transition: all 0.5s;
+  }
+  &.is-active {
+    border-color: color-mix(in oklab, var(--color-primary) 60%, transparent);
+    box-shadow: 0 0 0 6px color-mix(in oklab, var(--color-primary) 10%, transparent);
+  }
+
+  &.is-active > span {
+    background: var(--color-primary);
+  }
+}
+
+@utility tag-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  color: rgb(255 255 255 / 0.7);
+  background: rgb(255 255 255 / 0.05);
+  border: 1px solid rgb(255 255 255 / 0.1);
 }

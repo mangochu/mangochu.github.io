@@ -98,18 +98,12 @@ export const projects = [
 
 export const experiences = [
   {
-    period: '2026',
-    role: '半導體與 AI 應用專班學員',
-    company: '國立陽明交通大學',
-    description:
-      '補強 Python、資料分析與機器學習，實作 AOI 缺陷影像辨識，也學習 FPGA 數位電路設計（Verilog），獲選全班僅 8 名的優秀表現學員。',
-  },
-  {
     period: '2024 — 2026',
     role: '獨立遊戲開發者',
     company: 'Personal Project',
     description:
       '用 Unity／C# 獨立完成 2D RPG《The 5-Floor Tower》，從系統設計做到上線；用物件池改善效能，並開發技能樹節點編輯器。',
+    tags: ['Unity', 'C#', 'FSM', 'Object Pool'],
   },
   {
     period: '2021 — 2024',
@@ -117,6 +111,7 @@ export const experiences = [
     company: '聯訊網路有限公司',
     description:
       '維護三大平台、十款以上遊戲的前端（React、Vue 2/3、JSP），從零開發 Vue 3 與 React Native 新專案；自架 CodePush Server 實現免送審熱更新，排除 95% 以上的上架與審核問題。',
+    tags: ['Vue 2/3', 'React', 'React Native', 'TypeScript', 'CodePush', 'Egg.js'],
   },
   {
     period: '2016 — 2020',
@@ -124,6 +119,7 @@ export const experiences = [
     company: '友達光電',
     description:
       '監控產線異常並分析根因，最高讓良率提升 30%；擔任部門 EDA 與智慧報表負責人，並協調跨部門、客戶與供應商處理異常。',
+    tags: ['根因分析', 'SPC', 'EDA', '資料報表'],
   },
 ]
 
