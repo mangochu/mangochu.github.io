@@ -6,37 +6,57 @@ import SectionHeading from './SectionHeading.vue'
 const track = useTemplateRef<HTMLElement>('track')
 const nodes = useTemplateRef<HTMLElement[]>('nodes')
 
-const progress = ref(0)
+const LINE_RATIO = 0.2
+
+const fillStart = ref(0)
 const passedCount = ref(0)
 
-function update() {
+const passed = new Set<number>()
+
+function updateFill() {
   const el = track.value
-  if (!el) return
-  const rect = el.getBoundingClientRect()
-  const filled = Math.min(Math.max(window.innerHeight * 0.6 - rect.top, 0), rect.height)
-  progress.value = rect.height ? filled / rect.height : 0
-  passedCount.value = (nodes.value ?? []).filter((node) => {
-    const r = node.getBoundingClientRect()
-    return r.top + r.height / 2 - rect.top <= filled
-  }).length
+  if (!el || !el.offsetHeight) return
+
+  const centers = (nodes.value ?? [])
+    .map((node) => node.offsetTop + node.offsetHeight / 2)
+    .sort((a, b) => a - b)
+
+  const count = passed.size
+  const start = count === 0 ? 0 : (centers[count] ?? el.offsetHeight)
+  fillStart.value = start / el.offsetHeight
 }
 
-let frame = 0
-function onScroll() {
-  cancelAnimationFrame(frame)
-  frame = requestAnimationFrame(update)
-}
+let intersectionObserver: IntersectionObserver | undefined
+let resizeObserver: ResizeObserver | undefined
 
 onMounted(() => {
-  update()
-  window.addEventListener('scroll', onScroll, { passive: true })
-  window.addEventListener('resize', onScroll)
+  intersectionObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        const index = Number((entry.target as HTMLElement).dataset.index)
+        const r = entry.boundingClientRect
+        const line = entry.rootBounds?.bottom ?? window.innerHeight * LINE_RATIO
+
+        if (r.top + r.height / 2 <= line) passed.add(index)
+        else passed.delete(index)
+      }
+      passedCount.value = passed.size
+      updateFill()
+    },
+    {
+      rootMargin: `100000px 0px -${(1 - LINE_RATIO) * 100}% 0px`,
+      threshold: 0.5,
+    },
+  )
+  nodes.value?.forEach((node) => intersectionObserver?.observe(node))
+
+  resizeObserver = new ResizeObserver(updateFill)
+  if (track.value) resizeObserver.observe(track.value)
 })
 
 onUnmounted(() => {
-  cancelAnimationFrame(frame)
-  window.removeEventListener('scroll', onScroll)
-  window.removeEventListener('resize', onScroll)
+  intersectionObserver?.disconnect()
+  resizeObserver?.disconnect()
 })
 </script>
 
@@ -56,8 +76,8 @@ onUnmounted(() => {
           aria-hidden="true"
         >
           <div
-            class="timeline-fill absolute inset-x-0 bottom-0"
-            :style="{ height: `${(1 - progress) * 100}%` }"
+            class="timeline-fill absolute inset-x-0 bottom-0 transition-[height] duration-500 ease-out"
+            :style="{ height: `${(1 - fillStart) * 100}%` }"
           />
         </div>
 
@@ -69,6 +89,7 @@ onUnmounted(() => {
           >
             <div
               ref="nodes"
+              :data-index="i"
               class="timeline-node col-start-1 row-start-1 mt-6 md:col-start-2"
               :class="{ 'is-active': i >= passedCount }"
             >
