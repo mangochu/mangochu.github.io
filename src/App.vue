@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppFooter from './components/layout/AppFooter.vue'
 import NavBar from './components/layout/NavBar.vue'
 import AboutSection from './components/sections/AboutSection.vue'
 import ContactSection from './components/sections/ContactSection.vue'
@@ -17,6 +18,7 @@ import SkillsSection from './components/sections/SkillsSection.vue'
     <SkillsSection />
     <ProjectsSection />
     <ContactSection />
+    <AppFooter />
   </div>
 </template>
 
