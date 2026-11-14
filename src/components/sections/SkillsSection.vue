@@ -26,12 +26,14 @@ const icons: Record<SkillIcon, typeof IconCode> = {
           v-for="(skill, i) in skills"
           :key="skill.title"
           v-reveal="i * 100"
-          class="glass skill-card flex gap-5 p-7"
+          class="glass glass-hover group flex gap-5 p-7"
         >
           <span class="absolute top-6 right-7 font-mono text-xs text-white/25" aria-hidden="true">{{
             String(i + 1).padStart(2, '0')
           }}</span>
-          <div class="icon-tile">
+          <div
+            class="icon-tile transition duration-400 group-hover:-rotate-6 group-hover:scale-106"
+          >
             <component :is="icons[skill.icon]" :size="22" />
           </div>
           <div>
