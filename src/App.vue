@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import CyberBackground from './components/effects/CyberBackground.vue'
 import AppFooter from './components/layout/AppFooter.vue'
 import NavBar from './components/layout/NavBar.vue'
 import AboutSection from './components/sections/AboutSection.vue'
@@ -11,6 +12,7 @@ import SkillsSection from './components/sections/SkillsSection.vue'
 
 <template>
   <div class="min-h-screen text-white">
+    <CyberBackground />
     <NavBar />
     <HeroSection />
     <AboutSection />
