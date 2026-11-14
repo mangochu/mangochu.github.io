@@ -16,7 +16,7 @@ const index = computed(() => {
 </script>
 
 <template>
-  <div v-reveal class="mb-14 max-w-2xl">
+  <div class="mb-14 max-w-2xl">
     <div
       class="mb-4 flex items-center gap-3 font-mono text-xs tracking-[0.25em] text-white/50 uppercase"
     >

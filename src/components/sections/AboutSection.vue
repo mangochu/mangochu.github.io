@@ -7,7 +7,7 @@ import SectionHeading from './SectionHeading.vue'
 <template>
   <section id="about" class="px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
     <div class="mx-auto max-w-6xl">
-      <SectionHeading sectionId="about" eyebrow="About" title="關於我" />
+      <SectionHeading v-reveal section-id="about" eyebrow="About" title="關於我" />
 
       <div class="grid gap-6 lg:grid-cols-[minmax(0,21rem)_1fr]">
         <aside v-reveal class="glass flex flex-col items-center p-8 text-center sm:p-10">

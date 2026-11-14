@@ -8,6 +8,7 @@ import SectionHeading from './SectionHeading.vue'
   <section id="projects" class="px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
     <div class="mx-auto max-w-6xl">
       <SectionHeading
+        v-reveal
         section-id="projects"
         eyebrow="Projects"
         title="精選作品"

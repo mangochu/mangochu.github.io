@@ -64,7 +64,8 @@ onUnmounted(() => {
   <section id="experience" class="px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
     <div class="mx-auto max-w-5xl">
       <SectionHeading
-        sectionId="experience"
+        v-reveal
+        section-id="experience"
         eyebrow="Experience"
         title="工作經歷"
         description="由近到遠，一路走來的軌跡。"
