@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { navItems, profile } from '@/data/profile'
-import { Menu, X } from '@lucide/vue'
+import { IconMenu2, IconX } from '@tabler/icons-vue'
 import { onMounted, onUnmounted, ref } from 'vue'
 
 const profileName = profile.name.split(' ')[0]
@@ -72,8 +72,8 @@ onUnmounted(() => {
         :aria-expanded="isMenuOpen"
         @click="toggleMenu"
       >
-        <X v-if="isMenuOpen" :size="20" />
-        <Menu v-else :size="20" />
+        <IconX v-if="isMenuOpen" :size="20" />
+        <IconMenu2 v-else :size="20" />
       </button>
     </nav>
     <Transition

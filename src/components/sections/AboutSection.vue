@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MapPin } from '@lucide/vue'
+import { IconMapPin } from '@tabler/icons-vue'
 import { about, profile, stats } from '@/data/profile'
 import SectionHeading from './SectionHeading.vue'
 </script>
@@ -19,7 +19,7 @@ import SectionHeading from './SectionHeading.vue'
           <div class="text-2xl font-medium">{{ profile.name }}</div>
           <div class="mt-1 text-white/60">{{ profile.title }}</div>
           <div class="mt-2 mb-8 flex items-center gap-1.5 text-sm text-white/45">
-            <MapPin :size="14" />
+            <IconMapPin :size="14" />
             {{ profile.location }}
           </div>
 

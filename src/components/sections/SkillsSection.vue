@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { Code, Palette, Rocket, Server } from '@lucide/vue'
+import { IconCode, IconPalette, IconRocket, IconServer } from '@tabler/icons-vue'
 import { skills, type SkillIcon } from '@/data/profile'
 import SectionHeading from './SectionHeading.vue'
 
-const icons: Record<SkillIcon, typeof Code> = {
-  code: Code,
-  palette: Palette,
-  server: Server,
-  rocket: Rocket,
+const icons: Record<SkillIcon, typeof IconCode> = {
+  code: IconCode,
+  palette: IconPalette,
+  server: IconServer,
+  rocket: IconRocket,
 }
 </script>
 
