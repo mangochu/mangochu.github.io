@@ -1,0 +1,102 @@
+/*
+ * 賽博龐克主題
+ *
+ * 這裡只放「覆寫」main.css 的樣式，main.css 本身維持原本的液態玻璃風格。
+ * 必須在 main.css 之後載入（見 src/main.ts）：
+ * 同一個 cascade layer 內、同樣的權重下，後面的規則會蓋掉前面的。
+ *
+ * 移除主題：刪掉 main.ts 裡 import 這支檔案的那一行即可。
+ */
+
+@layer base {
+  ::selection {
+    color: var(--color-background);
+    background: var(--color-primary);
+  }
+}
+
+@layer utilities {
+  /*
+   * 切角按鈕：用 clip-path 把左上、右下兩個角切掉
+   * --cut 為切角大小
+   */
+  .btn-primary,
+  .btn-secondary {
+    --cut: 12px;
+
+    border-radius: 0;
+    clip-path: polygon(
+      var(--cut) 0,
+      100% 0,
+      100% calc(100% - var(--cut)),
+      calc(100% - var(--cut)) 100%,
+      0 100%,
+      0 var(--cut)
+    );
+  }
+
+  .btn-primary {
+    transition:
+      background-color 0.3s,
+      translate 0.3s;
+  }
+
+  .btn-primary:hover {
+    transform: none;
+    translate: 0 -2px;
+  }
+
+  /*
+   * clip-path 會把 border 的切角處一起切掉，所以外框改用兩層：
+   * 本體的背景當作外框顏色，::before 往內縮 1px、切同樣的角，蓋上深色底
+   */
+  .btn-secondary {
+    position: relative;
+    isolation: isolate;
+    background: rgb(255 255 255 / 0.25);
+    border: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    transition:
+      color 0.3s,
+      background-color 0.3s;
+  }
+
+  .btn-secondary::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    z-index: -1;
+    background: rgb(12 10 9 / 0.92);
+    clip-path: polygon(
+      calc(var(--cut) - 0.5px) 0,
+      100% 0,
+      100% calc(100% - var(--cut) + 0.5px),
+      calc(100% - var(--cut) + 0.5px) 100%,
+      0 100%,
+      0 calc(var(--cut) - 0.5px)
+    );
+  }
+
+  .btn-secondary:hover {
+    color: var(--color-primary);
+    background: var(--color-primary);
+  }
+
+  /* 導覽列的履歷按鈕空間小，維持原本的膠囊形 */
+  header .btn-primary {
+    border-radius: 9999px;
+    clip-path: none;
+  }
+
+  /* 霓虹外框：1px 的琥珀色描邊，外面再一圈淡淡的光暈 */
+  @media (hover: hover) {
+    .glass-hover:hover {
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 0.14),
+        0 0 0 1px rgb(251 191 36 / 0.35),
+        0 0 32px -6px rgb(251 191 36 / 0.35),
+        0 30px 60px -25px rgb(0 0 0 / 0.8);
+    }
+  }
+}

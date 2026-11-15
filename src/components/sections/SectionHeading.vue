@@ -24,7 +24,7 @@ const index = computed(() => {
       <span class="h-px w-10 bg-white/20" />
       {{ eyebrow }}
     </div>
-    <h2 class="mb-4 text-4xl font-semibold tracking-tight sm:text-5xl">{{ title }}</h2>
+    <h2 v-scramble class="mb-4 text-4xl font-semibold tracking-tight sm:text-5xl">{{ title }}</h2>
     <p v-if="description" class="text-lg text-white/55">{{ description }}</p>
   </div>
 </template>
