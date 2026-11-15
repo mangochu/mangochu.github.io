@@ -1,5 +1,6 @@
 // 個人資料集中在這裡，修改這個檔案即可更新整個網站內容
 import type { NavItem } from '@/types'
+import avatarUrl from '@/assets/images/avatar.jpg'
 
 export const profile = {
   name: 'Mango Chu',
@@ -8,6 +9,7 @@ export const profile = {
   tagline: '把複雜的規則，做成正確可靠的系統',
   intro:
     '物理碩士，近 3 年前端與 App 開發經驗。擅長 Vue、React 與 TypeScript，習慣先釐清規則、找出問題根因，再用可以驗證的方式確保結果正確。',
+  avatar: avatarUrl,
   location: 'Taichung, Taiwan',
   email: 'mangochu81806@gmail.com',
   resumeUrl: '#',

@@ -44,11 +44,11 @@ import NeonGrid from '@/components/effects/NeonGrid.vue'
       </p>
 
       <div v-reveal="300" class="flex flex-wrap items-center justify-center gap-4">
+        <a href="#contact" class="btn-secondary">與我聯絡</a>
         <a href="#projects" class="btn-primary group">
           查看作品
           <IconArrowRight :size="18" class="transition-transform group-hover:translate-x-1" />
         </a>
-        <a href="#contact" class="btn-secondary">與我聯絡</a>
       </div>
     </div>
   </section>

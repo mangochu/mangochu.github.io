@@ -11,8 +11,18 @@ import SectionHeading from './SectionHeading.vue'
 
       <div class="grid gap-6 lg:grid-cols-[minmax(0,21rem)_1fr]">
         <aside v-reveal class="glass flex flex-col items-center p-8 text-center sm:p-10">
-          <div class="avatar-ring mb-6 size-28">
-            <span>
+          <div class="avatar-ring mb-6 size-28 overflow-hidden">
+            <img
+              v-if="profile.avatar"
+              :src="profile.avatar"
+              :alt="profile.name"
+              class="size-full object-cover"
+              width="112"
+              height="112"
+              loading="lazy"
+              decoding="async"
+            />
+            <span v-else>
               <span class="text-primary text-4xl font-semibold">{{ profile.name.charAt(0) }}</span>
             </span>
           </div>
