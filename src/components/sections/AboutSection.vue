@@ -34,7 +34,8 @@ import SectionHeading from './SectionHeading.vue'
           </div>
 
           <div
-            class="mt-auto grid w-full grid-cols-3 divide-x divide-white/10 border-t border-white/10 pt-6"
+            class="mt-auto grid w-full divide-x divide-white/10 border-t border-white/10 pt-6"
+            :style="{ gridTemplateColumns: `repeat(${stats.length}, minmax(0, 1fr))` }"
           >
             <div v-for="stat in stats" :key="stat.label">
               <div class="text-primary text-2xl font-semibold">{{ stat.value }}</div>

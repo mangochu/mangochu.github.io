@@ -23,7 +23,6 @@ export const profile = {
 export const stats = [
   { value: '3', label: '年前端與 App 經驗' },
   { value: '10+', label: '款遊戲前端維護' },
-  { value: '600+', label: '個自動化測試' },
 ]
 
 export const about = {
