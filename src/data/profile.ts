@@ -40,31 +40,76 @@ export const about = {
 
 export type SkillIcon = 'code' | 'palette' | 'server' | 'rocket'
 
-export const skills: { icon: SkillIcon; title: string; description: string; tags: string[] }[] = [
+export const skills: { icon: SkillIcon; title: string; description: string }[] = [
   {
     icon: 'code',
     title: '前端開發',
     description: '用 Vue 與 React 開發與維護 Web 前端，處理狀態管理與資料流。',
-    tags: ['Vue 2/3', 'React', 'TypeScript', 'Pinia', 'MobX'],
   },
   {
     icon: 'palette',
     title: '切版與設計',
     description: '把設計稿切成可重用的元件，支援 RWD／PWA；也具備平面設計基礎。',
-    tags: ['HTML5', 'CSS3', 'Element Plus', 'Photoshop', 'Illustrator'],
   },
   {
     icon: 'server',
     title: '後端與資料庫',
     description: '用 Node.js 架設伺服器、設計與串接 RESTful API。',
-    tags: ['Node.js', 'Fastify', 'Egg.js', 'Prisma', 'PostgreSQL', 'MySQL'],
   },
   {
     icon: 'rocket',
     title: 'App 與部署',
     description: 'React Native App 開發與上架，Docker 部署到雲端 VPS。',
-    tags: ['React Native', 'CodePush', 'App Store', 'Google Play', 'Docker'],
   },
+]
+
+// 套件牆的分類，順序即篩選按鈕的順序
+export const techCategories = [
+  { id: 'frontend', label: '前端' },
+  { id: 'design', label: '切版與設計' },
+  { id: 'backend', label: '後端與資料庫' },
+  { id: 'app', label: 'App 與部署' },
+  { id: 'game', label: '遊戲開發' },
+  { id: 'other', label: '其他' },
+] as const
+
+export type TechCategory = (typeof techCategories)[number]['id']
+
+/*
+ * 套件牆：每個套件一張小卡，最多顯示 8 張
+ * 排序：「全部」照這個陣列的順序顯示（想展示的放前面）；個別分類依熟練度由高到低
+ * level：熟練度 0–100，請自行填寫；null 的不顯示進度條，排在最後
+ * logo：對應 SkillWall 裡的品牌 logo，沒有的話顯示名稱縮寫
+ */
+export interface TechItem {
+  name: string
+  category: TechCategory
+  level: number | null
+  logo?: string
+}
+
+export const techStack: TechItem[] = [
+  { name: 'Vue 2/3', category: 'frontend', level: 90, logo: 'vue' },
+  { name: 'React', category: 'frontend', level: 75, logo: 'react' },
+  { name: 'TypeScript', category: 'frontend', level: 90, logo: 'typescript' },
+  { name: 'Tailwind CSS', category: 'design', level: 85, logo: 'tailwindcss' },
+  { name: 'Pinia', category: 'frontend', level: 90, logo: 'pinia' },
+  { name: 'MobX', category: 'frontend', level: 75, logo: 'mobx' },
+  { name: 'Unity', category: 'game', level: 75, logo: 'unity' },
+  { name: 'C#', category: 'game', level: 75, logo: 'csharp' },
+  { name: 'Element Plus', category: 'design', level: 90, logo: 'element' },
+  { name: 'Node.js', category: 'backend', level: 70, logo: 'nodejs' },
+  { name: 'Fastify', category: 'backend', level: 75, logo: 'fastify' },
+  { name: 'Egg.js', category: 'backend', level: 75 },
+  { name: 'Prisma', category: 'backend', level: 75, logo: 'prisma' },
+  { name: 'PostgreSQL', category: 'backend', level: 70, logo: 'postgresql' },
+  { name: 'MySQL', category: 'backend', level: 70, logo: 'mysql' },
+  { name: 'React Native', category: 'app', level: 75, logo: 'react-native' },
+  { name: 'CodePush', category: 'app', level: 75, logo: 'codepush' },
+  { name: 'Docker', category: 'app', level: 75, logo: 'docker' },
+  { name: 'Python', category: 'other', level: 75, logo: 'python' },
+  { name: 'Illustrator', category: 'design', level: 70, logo: 'illustrator' },
+  { name: 'Photoshop', category: 'design', level: 70, logo: 'photoshop' },
 ]
 
 export const projects = [

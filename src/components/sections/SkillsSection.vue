@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import type { Component } from 'vue'
 import { IconCode, IconPalette, IconRocket, IconServer } from '@tabler/icons-vue'
-import { skills, type SkillIcon } from '@/data/profile'
+import { skills, techCategories, techStack, type SkillIcon } from '@/data/profile'
 import SectionHeading from './SectionHeading.vue'
+import SkillWall from './SkillWall.vue'
 
-const icons: Record<SkillIcon, typeof IconCode> = {
+const icons: Record<SkillIcon, Component> = {
   code: IconCode,
   palette: IconPalette,
   server: IconServer,
@@ -39,12 +41,14 @@ const icons: Record<SkillIcon, typeof IconCode> = {
           </div>
           <div>
             <h3 class="mb-2 text-lg font-medium">{{ skill.title }}</h3>
-            <p class="mb-5 text-sm leading-relaxed text-white/55">{{ skill.description }}</p>
-            <div class="flex flex-wrap gap-2">
-              <span v-for="tag in skill.tags" :key="tag" class="tag-chip">{{ tag }}</span>
-            </div>
+            <p class="text-sm leading-relaxed text-white/55">{{ skill.description }}</p>
           </div>
         </div>
+      </div>
+
+      <div v-reveal class="mt-16">
+        <h3 class="mb-5 text-xs tracking-[0.25em] text-white/45 uppercase">工具與套件</h3>
+        <SkillWall :items="techStack" :categories="techCategories" />
       </div>
     </div>
   </section>
