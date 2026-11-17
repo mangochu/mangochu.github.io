@@ -194,15 +194,19 @@ watch(mode, async () => {
           <span class="ml-auto text-white/35">SWIPE →</span>
         </div>
       </div>
+      <!--
+        v-reveal 放在整列上，不放在每張卡片：每張卡片只露出一小截（例如右邊預告的下一張），
+        露出面積達不到 v-reveal 的門檻就會一直是透明的
+      -->
       <ul
         ref="track"
+        v-reveal
         class="flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-2 scrollbar-none sm:scroll-px-6 sm:px-6"
         @scroll.passive="onTrackScroll"
       >
         <li
           v-for="(project, i) in projects"
           :key="project.title"
-          v-reveal
           class="w-[85%] max-w-md shrink-0 snap-start"
         >
           <ProjectCard :project="project" :index="i" />

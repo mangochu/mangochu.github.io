@@ -10,7 +10,7 @@ const props = withDefaults(
     alt: string
     /** 網站以多寬的桌機畫面呈現（px），再等比例縮小塞進卡片 */
     width?: number
-    /** 滑鼠移到卡片上時是否載入即時預覽；網站禁止被嵌入時設成 false，只顯示截圖 */
+    /** 是否提供即時預覽；網站禁止被嵌入時設成 false，只顯示截圖 */
     live?: boolean
   }>(),
   { width: 1440, live: true },
@@ -19,8 +19,10 @@ const props = withDefaults(
 /*
  * 兩層顯示：
  * 1. 平常顯示部署時自動截的圖（不用載入整個網站，最省資源）
- * 2. 滑鼠移到卡片上才載入 iframe 即時預覽，載入完成後淡入蓋在截圖上
- *    移開時先藏起來（display: none，瀏覽器會暫停它的繪製與動畫），再移回來就立刻顯示、不用重新載入；
+ * 2. 開啟即時預覽時才載入 iframe，載入完成後淡入蓋在截圖上
+ *    - 滑鼠裝置：移到卡片上就開啟，移開就關閉
+ *    - 觸控裝置：沒有「移到上面」的動作，改成點左上角的按鈕開關；卡片被滑走時自動關閉
+ *    關閉時先藏起來（display: none，瀏覽器會暫停它的繪製與動畫），再開啟就立刻顯示、不用重新載入；
  *    閒置超過 KEEP_ALIVE_MS 才真正移除，釋放記憶體
  *
  * 作品集預覽自己時，iframe 裡的作品集又會再預覽自己，所以在預覽裡面（isEmbedded）一律只顯示截圖
@@ -28,16 +30,16 @@ const props = withDefaults(
 const screenshot = computed(() => sitePreviewPath(props.src))
 const screenshotFailed = ref(false)
 
-// 觸控裝置沒有「移到上面」的動作，只顯示截圖
-const finePointer = useMediaQuery('(hover: hover) and (pointer: fine)')
-const canGoLive = computed(() => props.live && !isEmbedded && finePointer.value)
+const canGoLive = computed(() => props.live && !isEmbedded)
+/** 能不能用滑鼠移入來開啟；不行的話（觸控裝置）改用按鈕 */
+const hoverMode = useMediaQuery('(hover: hover) and (pointer: fine)')
 
-/** 滑鼠移開後保留即時預覽的時間，期間再移回來不用重新載入 */
+/** 關閉後保留即時預覽的時間，期間再開啟不用重新載入 */
 const KEEP_ALIVE_MS = 600_000
 
-/** 是否正在顯示即時預覽（滑鼠在卡片上） */
+/** 是否正在顯示即時預覽 */
 const active = ref(false)
-/** iframe 是否存在（顯示中，或移開後還在保留期間） */
+/** iframe 是否存在（顯示中，或關閉後還在保留期間） */
 const loaded = ref(false)
 /** iframe 裡的網站是否已經載入完成 */
 const liveReady = ref(false)
@@ -59,8 +61,26 @@ function deactivate() {
   }, KEEP_ALIVE_MS)
 }
 
+function toggle() {
+  if (active.value) deactivate()
+  else activate()
+}
+
+/*
+ * 滑鼠裝置用的事件
+ * 觸控裝置點一下也會觸發 mouseenter、focusin，所以要先確認是滑鼠模式，避免點卡片上的連結就載入預覽
+ */
+function onEnter() {
+  if (hoverMode.value) activate()
+}
+
+function onLeave() {
+  if (hoverMode.value) deactivate()
+}
+
 // 焦點只是在同一張卡片裡移動（例如從 GitHub 按鈕移到另一個連結）時不關閉，避免預覽重新載入
 function onFocusOut(e: FocusEvent) {
+  if (!hoverMode.value) return
   if (card && e.relatedTarget instanceof Node && card.contains(e.relatedTarget)) return
   deactivate()
 }
@@ -73,6 +93,7 @@ const scale = computed(() => box.value.width / props.width)
 const frameHeight = computed(() => (scale.value > 0 ? box.value.height / scale.value : 0))
 
 let resizeObserver: ResizeObserver | undefined
+let visibilityObserver: IntersectionObserver | undefined
 let card: HTMLElement | null = null
 
 onMounted(() => {
@@ -82,19 +103,29 @@ onMounted(() => {
   })
   resizeObserver.observe(root.value)
 
+  // 預覽區塊大半離開畫面（觸控裝置把卡片滑走、或往下捲走）就關閉，不讓它在看不到的地方繼續跑
+  visibilityObserver = new IntersectionObserver(
+    ([entry]) => {
+      if (entry && entry.intersectionRatio < 0.5 && active.value) deactivate()
+    },
+    { threshold: 0.5 },
+  )
+  visibilityObserver.observe(root.value)
+
   // 移到整張卡片上就觸發，不只是預覽區塊；鍵盤聚焦到卡片裡的連結也算
   card = root.value.closest('article') ?? root.value
-  card.addEventListener('mouseenter', activate)
-  card.addEventListener('mouseleave', deactivate)
-  card.addEventListener('focusin', activate)
+  card.addEventListener('mouseenter', onEnter)
+  card.addEventListener('mouseleave', onLeave)
+  card.addEventListener('focusin', onEnter)
   card.addEventListener('focusout', onFocusOut)
 })
 
 onUnmounted(() => {
   resizeObserver?.disconnect()
-  card?.removeEventListener('mouseenter', activate)
-  card?.removeEventListener('mouseleave', deactivate)
-  card?.removeEventListener('focusin', activate)
+  visibilityObserver?.disconnect()
+  card?.removeEventListener('mouseenter', onEnter)
+  card?.removeEventListener('mouseleave', onLeave)
+  card?.removeEventListener('focusin', onEnter)
   card?.removeEventListener('focusout', onFocusOut)
   clearTimeout(releaseTimer)
 })
@@ -123,7 +154,13 @@ onUnmounted(() => {
       v-else
       class="project-preview grid size-full place-items-center font-mono text-xs tracking-[0.2em] text-white/40"
     >
-      {{ canGoLive ? 'HOVER FOR LIVE PREVIEW' : 'LIVE PREVIEW' }}
+      {{
+        !canGoLive
+          ? 'LIVE PREVIEW'
+          : hoverMode
+            ? 'HOVER FOR LIVE PREVIEW'
+            : 'TAP ▶ FOR LIVE PREVIEW'
+      }}
     </div>
 
     <!--
@@ -146,13 +183,31 @@ onUnmounted(() => {
       @load="liveReady = true"
     />
 
+    <!-- 滑鼠裝置：純顯示的 LIVE 標籤 -->
     <span
-      v-if="liveReady && active"
+      v-if="hoverMode && liveReady && active"
       class="absolute top-3 left-3 flex items-center gap-1.5 rounded-full bg-black/70 px-2.5 py-1 font-mono text-[10px] tracking-[0.2em] text-white backdrop-blur"
       aria-hidden="true"
     >
       <span class="size-1.5 animate-pulse rounded-full bg-red-500" />
       LIVE
     </span>
+
+    <!-- 觸控裝置：點這個按鈕開關即時預覽 -->
+    <button
+      v-else-if="!hoverMode && canGoLive"
+      type="button"
+      class="absolute top-2 left-2 flex min-h-9 items-center gap-1.5 rounded-full bg-black/70 px-3 font-mono text-[10px] tracking-[0.2em] text-white backdrop-blur"
+      :aria-pressed="active"
+      :aria-label="active ? '關閉網站即時預覽' : '開啟網站即時預覽'"
+      @click="toggle"
+    >
+      <template v-if="!active">▶ LIVE</template>
+      <template v-else-if="!liveReady">LOADING…</template>
+      <template v-else>
+        <span class="size-1.5 animate-pulse rounded-full bg-red-500" />
+        LIVE ✕
+      </template>
+    </button>
   </div>
 </template>
