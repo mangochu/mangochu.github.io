@@ -1,0 +1,68 @@
+# push 到 main 時自動檢查、建置並部署到 GitHub Pages（https://mangochu.github.io/）
+# 第一次使用前：GitHub repo → Settings → Pages → Source 選「GitHub Actions」
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # 也可以在 Actions 頁面手動觸發
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同時只跑一個部署；新的 push 進來時不中斷正在進行的部署
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: 安裝套件
+        run: pnpm install --frozen-lockfile
+
+      # 檢查沒過就不會部署
+      - name: 型別檢查
+        run: pnpm type-check
+
+      - name: Lint
+        run: |
+          pnpm exec oxlint .
+          pnpm exec eslint .
+
+      - name: 單元測試
+        run: pnpm test:unit --run
+
+      - name: 建置
+        run: pnpm build-only
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
