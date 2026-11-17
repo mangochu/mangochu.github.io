@@ -63,7 +63,12 @@ onUnmounted(() => {
           </a>
         </li>
       </ul>
-      <a :href="profile.resumeUrl" class="btn-primary hidden px-5! py-2! text-sm md:inline-flex">
+      <a
+        :href="profile.resumeUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-primary hidden px-5! py-2! text-sm md:inline-flex"
+      >
         履歷
       </a>
       <button
@@ -92,7 +97,13 @@ onUnmounted(() => {
         >
           {{ item.label }}
         </a>
-        <a :href="profile.resumeUrl" class="btn-primary mt-2 w-full">下載履歷</a>
+        <a
+          :href="profile.resumeUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary mt-2 w-full"
+          >下載履歷</a
+        >
       </div>
     </Transition>
   </header>

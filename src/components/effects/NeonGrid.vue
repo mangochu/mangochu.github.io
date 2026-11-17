@@ -105,11 +105,7 @@
 .neon-scanlines {
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0 2px,
-    rgb(0 0 0 / 0.18) 2px 3px
-  );
+  background: repeating-linear-gradient(to bottom, transparent 0 2px, rgb(0 0 0 / 0.18) 2px 3px);
 }
 
 @media (prefers-reduced-motion: reduce) {

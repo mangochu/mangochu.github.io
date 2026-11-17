@@ -89,6 +89,59 @@
     clip-path: none;
   }
 
+  /*
+   * 作品卡片：和按鈕一樣切掉左上、右下兩角
+   * glass 原本用 ::before 畫漸層外框，這裡改成：本體背景當外框顏色，::before 往內縮 1px 蓋上深色底
+   * clip-path 會把光暈陰影一起切掉，所以 hover 改成外框變琥珀色
+   */
+  .project-card {
+    --cut: 22px;
+
+    isolation: isolate;
+    border-radius: 0;
+    background: rgb(255 255 255 / 0.14);
+    box-shadow: none;
+    clip-path: polygon(
+      var(--cut) 0,
+      100% 0,
+      100% calc(100% - var(--cut)),
+      calc(100% - var(--cut)) 100%,
+      0 100%,
+      0 var(--cut)
+    );
+    transition:
+      background-color 0.3s,
+      transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .project-card::before {
+    inset: 1px;
+    z-index: -1;
+    padding: 0;
+    border-radius: 0;
+    background: linear-gradient(145deg, rgb(28 25 23 / 0.96), rgb(12 10 9 / 0.96));
+    mask: none;
+    clip-path: polygon(
+      calc(var(--cut) - 0.5px) 0,
+      100% 0,
+      100% calc(100% - var(--cut) + 0.5px),
+      calc(100% - var(--cut) + 0.5px) 100%,
+      0 100%,
+      0 calc(var(--cut) - 0.5px)
+    );
+  }
+
+  .project-card:hover,
+  .project-card:focus-within {
+    background: rgb(251 191 36 / 0.6);
+  }
+
+  @media (hover: hover) {
+    .project-card.glass-hover:hover {
+      box-shadow: none;
+    }
+  }
+
   /* 霓虹外框：1px 的琥珀色描邊，外面再一圈淡淡的光暈 */
   @media (hover: hover) {
     .glass-hover:hover {

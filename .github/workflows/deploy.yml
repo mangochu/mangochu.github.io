@@ -1,9 +1,13 @@
-# push 到 main 時自動檢查、建置並部署到 GitHub Pages（https://mangochu.github.io/）
+# 自動檢查、建置並部署到 GitHub Pages（https://mangochu.github.io/）
+# - push 到 main：檢查 → 建置 → 截圖 → 部署
+# - 發 PR 到 main：只做檢查、建置、截圖，不部署；截圖會上傳成 artifact，可以在 Actions 頁面下載確認
 # 第一次使用前：GitHub repo → Settings → Pages → Source 選「GitHub Actions」
 name: Deploy to GitHub Pages
 
 on:
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
   # 也可以在 Actions 頁面手動觸發
   workflow_dispatch:
@@ -13,10 +17,11 @@ permissions:
   pages: write
   id-token: write
 
-# 同時只跑一個部署；新的 push 進來時不中斷正在進行的部署
+# 部署：同時只跑一個，新的 push 進來時不中斷正在進行的部署
+# PR：每個 PR 各自一組，同一個 PR 又 push 新的 commit 時，取消舊的檢查、只跑最新的
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: ${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || 'pages' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
@@ -36,7 +41,7 @@ jobs:
       - name: 安裝套件
         run: pnpm install --frozen-lockfile
 
-      # 檢查沒過就不會部署
+      # 檢查沒過就不會部署（PR 則會顯示 ❌）
       - name: 型別檢查
         run: pnpm type-check
 
@@ -51,14 +56,49 @@ jobs:
       - name: 建置
         run: pnpm build-only
 
-      - uses: actions/configure-pages@v5
+      # 作品卡片的網站預覽截圖（media.type = 'site'），存到 dist/previews/
+      # 瀏覽器約 150MB，用快取避免每次部署都重新下載；版本跟著 lockfile 裡的 playwright 走
+      - name: 快取 Playwright 瀏覽器
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - uses: actions/upload-pages-artifact@v4
+      - name: 安裝 Playwright 瀏覽器
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: 安裝瀏覽器需要的系統套件
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: pnpm exec playwright install-deps chromium
+
+      - name: 網站預覽截圖
+        run: pnpm capture-previews
+
+      # 把截圖上傳，在 Actions 執行頁面的 Summary → Artifacts 可以下載
+      # if-no-files-found: ignore：沒有任何 site 類型的作品時不算失敗
+      - name: 上傳網站預覽截圖
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-previews
+          path: dist/previews/
+          retention-days: 7
+          if-no-files-found: ignore
+
+      # 以下只有要部署時才需要
+      - if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
+
+      - if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
         with:
           path: dist
 
   deploy:
     needs: build
+    # PR 不部署；手動觸發時也只有在 main 分支才部署
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
