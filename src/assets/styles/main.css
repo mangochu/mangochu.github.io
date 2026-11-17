@@ -19,6 +19,15 @@
   html {
     scroll-behavior: smooth;
   }
+
+  /* 作為作品卡片的即時預覽時，預覽只是一張「畫面」，不需要捲軸 */
+  html.is-embedded {
+    scrollbar-width: none;
+  }
+
+  html.is-embedded::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @layer components {

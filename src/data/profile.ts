@@ -120,12 +120,19 @@ export const techStack: TechItem[] = [
  *   poster 是影片載入前的封面圖，使用者開啟「減少動態效果」時也只顯示這張
  * - gallery：多張截圖輪播，每 5 秒自動切換，可點箭頭或圓點切換（不支援手勢滑動）
  *   建議 3–5 張、比例一致（16:9），第一張放最有代表性的畫面
+ * - site：網站預覽，src 填網址，'/' 代表這個作品集本身
+ *   平常顯示部署時自動截的圖（scripts/capture-site-previews.ts，存到 /previews/），不用自己截圖
+ *   滑鼠移到卡片上才載入 iframe 即時預覽，只能看、不能操作；觸控裝置只顯示截圖
+ *   width（選填）：用多寬的桌機畫面呈現，預設 1440
+ *   live（選填）：外部網站若設定了 X-Frame-Options 或 CSP frame-ancestors 禁止被嵌入，
+ *   即時預覽會是空白或錯誤頁，設成 false 就只顯示截圖
  * - alt：描述畫面內容，給螢幕閱讀器使用
  */
 export type ProjectMedia =
   | { type: 'image'; src: string; alt: string }
   | { type: 'video'; src: string; poster: string; alt: string }
   | { type: 'gallery'; images: { src: string; alt: string }[] }
+  | { type: 'site'; src: string; alt: string; width?: number; live?: boolean }
 
 export interface Project {
   title: string
@@ -198,6 +205,11 @@ export const projects: Project[] = [
     demo: '',
     repo: 'https://github.com/mangochu/mangochu.github.io',
     featured: false,
+    media: {
+      type: 'site',
+      src: '/',
+      alt: '作品集網站首頁的即時預覽，賽博龐克風格的開場畫面與個人介紹',
+    },
   },
 ]
 

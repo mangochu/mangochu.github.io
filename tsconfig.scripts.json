@@ -1,0 +1,10 @@
+// TSConfig for scripts/ — Node.js 直接執行（type stripping），但 page.evaluate 裡的程式碼跑在瀏覽器，所以也需要 DOM 型別
+{
+  "extends": "./tsconfig.node.json",
+  "include": ["scripts/**/*"],
+  "compilerOptions": {
+    "lib": ["ES2024", "DOM", "DOM.Iterable"],
+    "erasableSyntaxOnly": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.scripts.tsbuildinfo"
+  }
+}

@@ -3,6 +3,7 @@ import { useTemplateRef, watch } from 'vue'
 import type { ProjectMedia } from '@/data/profile'
 import { usePrefersReducedMotion } from '@/composables/usePrefersReducedMotion'
 import ProjectGallery from './ProjectGallery.vue'
+import ProjectSite from './ProjectSite.vue'
 
 defineProps<{ media: ProjectMedia; title: string }>()
 
@@ -24,6 +25,13 @@ watch(video, (el) => {
 
 <template>
   <ProjectGallery v-if="media.type === 'gallery'" :images="media.images" :label="`${title} 截圖`" />
+  <ProjectSite
+    v-else-if="media.type === 'site'"
+    :src="media.src"
+    :alt="media.alt"
+    :width="media.width"
+    :live="media.live"
+  />
   <img
     v-else-if="media.type === 'image' || reduceMotion"
     :src="media.type === 'image' ? media.src : media.poster"

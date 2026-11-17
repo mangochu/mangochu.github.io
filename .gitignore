@@ -37,3 +37,6 @@ __screenshots__/
 
 # Vite
 *.timestamp-*-*.mjs
+
+# 開發用的網站預覽截圖（pnpm capture-previews:dev 產生，部署時由 CI 另外截圖）
+/public/previews/
