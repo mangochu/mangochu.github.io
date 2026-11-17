@@ -198,6 +198,20 @@ export const projects: Project[] = [
     },
   },
   {
+    title: '補償刀時間軸換算工具',
+    description:
+      '替《公主連結》戰隊戰玩家做的小工具：戰鬥時間被縮短時，把原本 90 秒的操作排程自動扣秒，並刪除來不及執行的步驟。截圖 OCR 用 PaddleOCR + ONNX Runtime Web 在瀏覽器內的 Web Worker 執行，不需要後端，支援繁中、簡中、日文與英文，並自動修正常見誤判。換算規則拆成純函式並寫單元測試，推送後由 GitHub Actions 測試並部署。以 AI 協作開發，由我負責需求定義、規則設計與驗證。',
+    tags: ['Vue 3', 'TypeScript', 'ONNX Runtime Web', 'Web Worker', 'Vitest'],
+    demo: 'https://mangochu.github.io/pcr-cb-timecalc/',
+    repo: 'https://github.com/mangochu/pcr-cb-timecalc',
+    featured: false,
+    media: {
+      type: 'site',
+      src: 'https://mangochu.github.io/pcr-cb-timecalc/',
+      alt: '補償刀時間軸換算工具的即時預覽，貼上時間軸並輸入補償秒數後顯示換算結果',
+    },
+  },
+  {
     title: '個人作品集網站',
     description:
       '就是你正在看的這個網站。用 Vue 3、TypeScript 與 Tailwind CSS v4 打造液態玻璃搭配賽博龐克風格的介面，自製捲動進場與文字解碼指令、可篩選的套件牆和可滑動的作品輪播，並支援系統的「減少動態效果」設定。push 到 main 後由 GitHub Actions 自動執行型別檢查、lint、測試，通過才部署到 GitHub Pages。',
