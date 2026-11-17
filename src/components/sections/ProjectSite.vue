@@ -19,7 +19,9 @@ const props = withDefaults(
 /*
  * 兩層顯示：
  * 1. 平常顯示部署時自動截的圖（不用載入整個網站，最省資源）
- * 2. 滑鼠移到卡片上才載入 iframe 即時預覽，載入完成後淡入蓋在截圖上；移開就移除，不在背景持續運作
+ * 2. 滑鼠移到卡片上才載入 iframe 即時預覽，載入完成後淡入蓋在截圖上
+ *    移開時先藏起來（display: none，瀏覽器會暫停它的繪製與動畫），再移回來就立刻顯示、不用重新載入；
+ *    閒置超過 KEEP_ALIVE_MS 才真正移除，釋放記憶體
  *
  * 作品集預覽自己時，iframe 裡的作品集又會再預覽自己，所以在預覽裡面（isEmbedded）一律只顯示截圖
  */
@@ -30,15 +32,31 @@ const screenshotFailed = ref(false)
 const finePointer = useMediaQuery('(hover: hover) and (pointer: fine)')
 const canGoLive = computed(() => props.live && !isEmbedded && finePointer.value)
 
+/** 滑鼠移開後保留即時預覽的時間，期間再移回來不用重新載入 */
+const KEEP_ALIVE_MS = 600_000
+
+/** 是否正在顯示即時預覽（滑鼠在卡片上） */
 const active = ref(false)
+/** iframe 是否存在（顯示中，或移開後還在保留期間） */
+const loaded = ref(false)
+/** iframe 裡的網站是否已經載入完成 */
 const liveReady = ref(false)
 
+let releaseTimer: ReturnType<typeof setTimeout> | undefined
+
 function activate() {
+  clearTimeout(releaseTimer)
   active.value = true
+  loaded.value = true
 }
+
 function deactivate() {
   active.value = false
-  liveReady.value = false
+  clearTimeout(releaseTimer)
+  releaseTimer = setTimeout(() => {
+    loaded.value = false
+    liveReady.value = false
+  }, KEEP_ALIVE_MS)
 }
 
 // 焦點只是在同一張卡片裡移動（例如從 GitHub 按鈕移到另一個連結）時不關閉，避免預覽重新載入
@@ -78,6 +96,7 @@ onUnmounted(() => {
   card?.removeEventListener('mouseleave', deactivate)
   card?.removeEventListener('focusin', activate)
   card?.removeEventListener('focusout', onFocusOut)
+  clearTimeout(releaseTimer)
 })
 </script>
 
@@ -113,7 +132,8 @@ onUnmounted(() => {
       scrolling="no"：外部網站的捲軸我們改不到 CSS，用這個屬性請瀏覽器不要顯示（自己的網站另外由 .is-embedded 隱藏）
     -->
     <iframe
-      v-if="canGoLive && active"
+      v-if="canGoLive && loaded"
+      v-show="active"
       :src="src"
       :title="alt"
       inert
@@ -127,7 +147,7 @@ onUnmounted(() => {
     />
 
     <span
-      v-if="liveReady"
+      v-if="liveReady && active"
       class="absolute top-3 left-3 flex items-center gap-1.5 rounded-full bg-black/70 px-2.5 py-1 font-mono text-[10px] tracking-[0.2em] text-white backdrop-blur"
       aria-hidden="true"
     >
