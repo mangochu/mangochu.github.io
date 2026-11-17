@@ -2,16 +2,29 @@
 import { navItems, profile } from '@/data/profile'
 import { IconMenu2, IconX } from '@tabler/icons-vue'
 import { onMounted, onUnmounted, ref } from 'vue'
+import { useResumeViewer } from '@/composables/useResumeViewer'
 
 const profileName = profile.name.split(' ')[0]
 const isMenuOpen = ref(false)
 const activeId = ref('')
+const { openResume } = useResumeViewer()
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
 }
 const closeMenu = () => {
   isMenuOpen.value = false
+}
+
+/*
+ * 履歷按鈕：一般點擊改成在站內視窗開啟
+ * 仍然保留 href 指向 PDF，按住 Ctrl／Cmd 點擊或用中鍵時，照瀏覽器原本的行為在新分頁開啟
+ */
+function onResumeClick(e: MouseEvent) {
+  if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return
+  e.preventDefault()
+  closeMenu()
+  openResume()
 }
 
 let observer: IntersectionObserver | undefined
@@ -67,7 +80,9 @@ onUnmounted(() => {
         :href="profile.resumeUrl"
         target="_blank"
         rel="noopener noreferrer"
+        aria-haspopup="dialog"
         class="btn-primary hidden px-5! py-2! text-sm md:inline-flex"
+        @click="onResumeClick"
       >
         履歷
       </a>
@@ -101,8 +116,10 @@ onUnmounted(() => {
           :href="profile.resumeUrl"
           target="_blank"
           rel="noopener noreferrer"
+          aria-haspopup="dialog"
           class="btn-primary mt-2 w-full"
-          >下載履歷</a
+          @click="onResumeClick"
+          >查看履歷</a
         >
       </div>
     </Transition>

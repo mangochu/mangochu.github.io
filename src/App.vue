@@ -2,6 +2,7 @@
 import CyberBackground from './components/effects/CyberBackground.vue'
 import AppFooter from './components/layout/AppFooter.vue'
 import NavBar from './components/layout/NavBar.vue'
+import ResumeViewer from './components/layout/ResumeViewer.vue'
 import AboutSection from './components/sections/AboutSection.vue'
 import ContactSection from './components/sections/ContactSection.vue'
 import ExperienceSection from './components/sections/ExperienceSection.vue'
@@ -23,6 +24,7 @@ import SkillsSection from './components/sections/SkillsSection.vue'
       <ContactSection />
     </main>
     <AppFooter />
+    <ResumeViewer />
   </div>
 </template>
 
