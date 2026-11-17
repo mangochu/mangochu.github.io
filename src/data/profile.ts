@@ -112,7 +112,34 @@ export const techStack: TechItem[] = [
   { name: 'Photoshop', category: 'design', level: 70, logo: 'photoshop' },
 ]
 
-export const projects = [
+/*
+ * 作品卡片的預覽媒體，沒有填的話顯示作品名稱的佔位圖
+ * 檔案放在 public/projects/ 底下，路徑以 / 開頭，例如 '/projects/tower.mp4'
+ * - image：靜態截圖
+ * - video：自動播放、靜音、循環的短片（建議 5–15 秒、MP4、3MB 以內）
+ *   poster 是影片載入前的封面圖，使用者開啟「減少動態效果」時也只顯示這張
+ * - gallery：多張截圖輪播，每 5 秒自動切換，可點箭頭或圓點切換（不支援手勢滑動）
+ *   建議 3–5 張、比例一致（16:9），第一張放最有代表性的畫面
+ * - alt：描述畫面內容，給螢幕閱讀器使用
+ */
+export type ProjectMedia =
+  | { type: 'image'; src: string; alt: string }
+  | { type: 'video'; src: string; poster: string; alt: string }
+  | { type: 'gallery'; images: { src: string; alt: string }[] }
+
+export interface Project {
+  title: string
+  description: string
+  tags: string[]
+  /** 線上展示網址，空字串 '' 則不顯示按鈕 */
+  demo: string
+  /** 原始碼網址，不公開就填空字串 ''，不顯示按鈕 */
+  repo: string
+  featured: boolean
+  media?: ProjectMedia
+}
+
+export const projects: Project[] = [
   {
     title: 'GoPio 台股記帳網站',
     description:
