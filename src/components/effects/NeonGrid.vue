@@ -17,6 +17,11 @@
 import { onMounted, onUnmounted, useTemplateRef, watch } from 'vue'
 import { usePrefersReducedMotion } from '@/composables/usePrefersReducedMotion'
 
+defineProps<{
+  /** 地平線離區塊頂端多遠（px）；沒給的話放在區塊高度的 62% */
+  horizon?: number
+}>()
+
 /** 每一格的大小（px，地板上的尺寸） */
 const CELL = 56
 /** 鏡頭到地平線的距離（px），越小透視越誇張 */
@@ -103,7 +108,11 @@ onUnmounted(stop)
 </script>
 
 <template>
-  <div class="neon" aria-hidden="true">
+  <div
+    class="neon"
+    aria-hidden="true"
+    :style="horizon !== undefined ? { '--horizon': `${horizon}px` } : undefined"
+  >
     <div class="neon-haze" />
     <div ref="floor" class="neon-floor">
       <svg class="neon-verticals" width="1" height="1">
@@ -124,7 +133,7 @@ onUnmounted(stop)
 <style scoped>
 .neon {
   /* 地平線的位置（從上往下），網格就從這裡開始 */
-  --horizon: 62%;
+  --horizon: 62%; /* 父層透過 horizon prop 傳入時會被覆蓋 */
   /* 網格線的顏色（amber-400） */
   --line: rgb(251 191 36 / 0.5);
 
