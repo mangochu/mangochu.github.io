@@ -1,7 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- 切角外框：與 .btn-primary 相同，切掉左上、右下兩角 -->
-  <path d="M8 0H32V24L24 32H0V8Z" fill="#fbbf24" />
-  <path d="M8.8 2H30V23.2L23.2 30H2V8.8Z" fill="#0c0a09" />
-  <!-- 字母 M（Mango） -->
-  <path d="M7 24V8H10L16 14.5L22 8H25V24H21.6V13.6L16 19.6L10.4 13.6V24Z" fill="#fbbf24" />
+  <!-- 與導覽列的 Logo「Mango.」同一套語言：深色圓角底、白色圓潤的 M、琥珀色的點 -->
+  <rect width="32" height="32" rx="7" fill="#0c0a09" />
+  <path d="M6.5 23V9.5l7 8.5 7-8.5V23" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="26" cy="21.6" r="2.6" fill="#fbbf24" />
 </svg>
