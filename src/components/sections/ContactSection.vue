@@ -32,7 +32,7 @@ const inputClass =
               <a :href="`mailto:${profile.email}`" class="group flex items-center gap-4">
                 <span class="icon-tile"><IconMail :size="20" /></span>
                 <span>
-                  <span class="block text-xs tracking-wider text-white/40 uppercase">Email</span>
+                  <span class="block text-xs tracking-wider text-white/55 uppercase">Email</span>
                   <span class="text-white/80 transition-colors group-hover:text-white">{{
                     profile.email
                   }}</span>
@@ -41,7 +41,7 @@ const inputClass =
               <div class="flex items-center gap-4">
                 <span class="icon-tile"><IconMapPin :size="20" /></span>
                 <span>
-                  <span class="block text-xs tracking-wider text-white/40 uppercase">Location</span>
+                  <span class="block text-xs tracking-wider text-white/55 uppercase">Location</span>
                   <span class="text-white/80">{{ profile.location }}</span>
                 </span>
               </div>

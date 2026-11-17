@@ -152,7 +152,7 @@ const visibleTech = computed(() => matchedTech.value.slice(0, props.maxVisible))
               />
             </span>
             <span
-              class="block truncate text-xs text-white/45"
+              class="block truncate text-xs text-white/55"
               :class="tech.level !== null ? 'mt-1.5' : 'mt-0.5'"
               >{{ categoryLabels.get(tech.category) }}</span
             >
@@ -161,7 +161,7 @@ const visibleTech = computed(() => matchedTech.value.slice(0, props.maxVisible))
       </ul>
     </Transition>
 
-    <p class="mt-4 text-sm text-white/40">
+    <p class="mt-4 text-sm text-white/55">
       顯示 {{ visibleTech.length }} / {{ matchedTech.length }} 項<template
         v-if="matchedTech.length > visibleTech.length"
         >，選擇分類查看全部</template

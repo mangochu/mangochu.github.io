@@ -10,10 +10,10 @@ const year = new Date().getFullYear()
     <div
       class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 border-t border-white/10 pt-8 sm:flex-row"
     >
-      <p class="text-sm text-white/40">© {{ year }} {{ profile.name }} · Crafted with Vue</p>
+      <p class="text-sm text-white/55">© {{ year }} {{ profile.name }} · Crafted with Vue</p>
       <a
         href="#top"
-        class="flex items-center gap-2 text-sm text-white/40 transition-colors hover:text-white"
+        class="flex items-center gap-2 text-sm text-white/55 transition-colors hover:text-white"
       >
         回到頂端
         <IconArrowNarrowUpDashed :size="16" />

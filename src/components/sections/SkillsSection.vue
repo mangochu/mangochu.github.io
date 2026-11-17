@@ -47,7 +47,7 @@ const icons: Record<SkillIcon, Component> = {
       </div>
 
       <div v-reveal class="mt-16">
-        <h3 class="mb-5 text-xs tracking-[0.25em] text-white/45 uppercase">工具與套件</h3>
+        <h3 class="mb-5 text-xs tracking-[0.25em] text-white/55 uppercase">工具與套件</h3>
         <SkillWall :items="techStack" :categories="techCategories" />
       </div>
     </div>

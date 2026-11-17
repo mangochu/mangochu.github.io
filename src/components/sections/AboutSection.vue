@@ -28,7 +28,7 @@ import SectionHeading from './SectionHeading.vue'
           </div>
           <div class="text-2xl font-medium">{{ profile.name }}</div>
           <div class="mt-1 text-white/60">{{ profile.title }}</div>
-          <div class="mt-2 mb-8 flex items-center gap-1.5 text-sm text-white/45">
+          <div class="mt-2 mb-8 flex items-center gap-1.5 text-sm text-white/55">
             <IconMapPin :size="14" />
             {{ profile.location }}
           </div>
@@ -55,7 +55,7 @@ import SectionHeading from './SectionHeading.vue'
 
           <div class="my-8 h-px bg-white/10" />
 
-          <h3 class="mb-5 text-xs tracking-[0.25em] text-white/45 uppercase">我在乎的事</h3>
+          <h3 class="mb-5 text-xs tracking-[0.25em] text-white/55 uppercase">我在乎的事</h3>
           <ul class="space-y-4">
             <li
               v-for="item in about.highlights"

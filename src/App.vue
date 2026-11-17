@@ -14,12 +14,14 @@ import SkillsSection from './components/sections/SkillsSection.vue'
   <div class="min-h-screen text-white">
     <CyberBackground />
     <NavBar />
-    <HeroSection />
-    <AboutSection />
-    <ExperienceSection />
-    <SkillsSection />
-    <ProjectsSection />
-    <ContactSection />
+    <main>
+      <HeroSection />
+      <AboutSection />
+      <ExperienceSection />
+      <SkillsSection />
+      <ProjectsSection />
+      <ContactSection />
+    </main>
     <AppFooter />
   </div>
 </template>

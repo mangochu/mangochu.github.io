@@ -158,7 +158,7 @@ watch(mode, async () => {
                 :class="i <= active ? 'bg-primary' : 'bg-white/15'"
               />
             </span>
-            <span class="ml-auto text-white/35">SCROLL →</span>
+            <span class="ml-auto text-white/55">SCROLL →</span>
           </div>
         </div>
 
@@ -191,7 +191,7 @@ watch(mode, async () => {
               :class="i <= active ? 'bg-primary' : 'bg-white/15'"
             />
           </span>
-          <span class="ml-auto text-white/35">SWIPE →</span>
+          <span class="ml-auto text-white/55">SWIPE →</span>
         </div>
       </div>
       <!--

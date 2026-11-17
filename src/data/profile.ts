@@ -4,8 +4,8 @@ import avatarUrl from '@/assets/images/avatar.jpg'
 
 export const profile = {
   name: 'Mango Chu',
-  title: 'Frontend / Full-stack Engineer',
-  availability: '正在尋找前端／全端工程師職缺',
+  title: 'Frontend Engineer',
+  availability: '正在尋找前端工程師職缺',
   tagline: '把複雜的規則，做成正確可靠的系統',
   intro:
     '物理碩士，近 3 年前端與 App 開發經驗。擅長 Vue、React 與 TypeScript，習慣先釐清規則、找出問題根因，再用可以驗證的方式確保結果正確。',
