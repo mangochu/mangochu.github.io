@@ -145,26 +145,58 @@ export const projects: Project[] = [
     description:
       '可離線、多裝置同步的台股記帳 PWA，計算結果與券商對帳單逐筆一致。手續費、證交稅、當沖、股利、二代健保等規則拆成前後端共用的純函式引擎，金額全面採用 decimal 運算，累積 600+ 個單元／整合測試與 Playwright E2E。以 AI 協作開發，由我負責規格、架構、規則查證與測試設計。',
     tags: ['React', 'TypeScript', 'Fastify', 'Prisma', 'PostgreSQL', 'Docker'],
-    demo: '#',
-    repo: '#',
+    demo: 'https://gopio.win/',
+    repo: '',
     featured: true,
+    media: {
+      type: 'gallery',
+      images: [
+        {
+          src: '/projects/gopio/gopio-overview.webp',
+          alt: 'GoPio 總覽頁，顯示總市值、未實現損益、股利收入與資產配置圓餅圖',
+        },
+        {
+          src: '/projects/gopio/gopio-holdings.webp',
+          alt: '持股頁，列出各檔股票的股數、平均成本、現價與報酬率',
+        },
+        {
+          src: '/projects/gopio/gopio-transactions.webp',
+          alt: '交易紀錄頁，每筆交易自動計算手續費、證交稅與淨收付',
+        },
+        {
+          src: '/projects/gopio/gopio-dividends.webp',
+          alt: '股利頁，顯示各公司股利佔比與每次發放的現金股利明細',
+        },
+        {
+          src: '/projects/gopio/gopio-pnl.webp',
+          alt: '損益頁，依年度與個股列出已實現損益',
+        },
+      ],
+    },
   },
   {
     title: 'The 5-Floor Tower',
     description:
       '用 Unity／C# 獨立完成的 2D 橫向捲軸 RPG，實作有限狀態機、網格背包、收藏解鎖能力、技能樹節點編輯器與肉鴿詛咒選擇等系統。',
     tags: ['Unity', 'C#', 'FSM', 'Editor Tool'],
-    demo: '#',
-    repo: '#',
+    demo: 'https://mangochu.itch.io/the5floortower',
+    repo: '',
     featured: false,
+    media: {
+      type: 'video',
+      src: '/projects/5-floor-tower/5-floor-tower.mp4',
+      poster: '/projects/5-floor-tower/5-floor-tower-poster.jpg',
+      alt: '主角在塔內與敵人戰鬥並施放技能',
+    },
   },
   {
-    title: 'AOI 缺陷影像辨識',
+    title: '個人作品集網站',
     description:
-      '陽明交大「半導體與 AI 應用」專班的實作，用 Python 處理資料與視覺化，並以機器學習／深度學習模型辨識 AOI 缺陷影像。',
-    tags: ['Python', 'NumPy', 'Matplotlib', 'Machine Learning'],
-    demo: '#',
-    repo: '#',
+      '就是你正在看的這個網站。用 Vue 3、TypeScript 與 Tailwind CSS v4 打造液態玻璃搭配賽博龐克風格的介面，自製捲動進場與文字解碼指令、可篩選的套件牆和可滑動的作品輪播，並支援系統的「減少動態效果」設定。push 到 main 後由 GitHub Actions 自動執行型別檢查、lint、測試，通過才部署到 GitHub Pages。',
+    tags: ['Vue 3', 'TypeScript', 'Tailwind CSS', 'Vite', 'GitHub Actions'],
+    // 訪客已經在網站上了，不放線上展示按鈕，只放原始碼
+    demo: '',
+    repo: 'https://github.com/mangochu/mangochu.github.io',
     featured: false,
   },
 ]
