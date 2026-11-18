@@ -14,6 +14,7 @@ export const profile = {
   email: 'mangochu81806@gmail.com',
   /** 履歷 PDF，放在 public/ 底下；導覽列的「履歷」會在站內視窗開啟 */
   resumeUrl: 'resume/resume.pdf',
+  sourceUrl: 'https://github.com/mangochu/mangochu.github.io',
   socials: {
     github: 'https://github.com/',
     linkedin: 'https://www.linkedin.com/',
