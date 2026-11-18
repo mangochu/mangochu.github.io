@@ -24,7 +24,13 @@ const index = computed(() => {
       <span class="h-px w-10 bg-white/20" />
       {{ eyebrow }}
     </div>
-    <h2 v-scramble class="mb-4 text-4xl font-semibold tracking-tight sm:text-5xl">{{ title }}</h2>
+    <!--
+      v-scramble 會直接改寫 textContent，Vue 之後就更新不到這段文字
+      所以用 title 當 key：切換語言時整個 h2 重建，順便重播一次解碼效果
+    -->
+    <h2 :key="title" v-scramble class="mb-4 text-4xl font-semibold tracking-tight sm:text-5xl">
+      {{ title }}
+    </h2>
     <p v-if="description" class="text-lg text-white/55">{{ description }}</p>
   </div>
 </template>

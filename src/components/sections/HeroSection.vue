@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { profile } from '@/data/profile'
+import { localize } from '@/i18n'
 import { IconArrowRight } from '@tabler/icons-vue'
 import GlitchText from '@/components/effects/GlitchText.vue'
 import NeonGrid from '@/components/effects/NeonGrid.vue'
@@ -65,7 +66,7 @@ onUnmounted(() => resizeObserver?.disconnect())
           />
           <span class="relative size-2.5 rounded-full bg-emerald-400" />
         </span>
-        {{ profile.availability }}
+        {{ localize(profile.availability) }}
       </div>
 
       <h1
@@ -76,15 +77,17 @@ onUnmounted(() => resizeObserver?.disconnect())
         <GlitchText :text="profile.name" class="text-primary" />
       </h1>
 
-      <p v-reveal="200" class="mb-4 text-xl text-white/85 sm:text-2xl">{{ profile.tagline }}</p>
+      <p v-reveal="200" class="mb-4 text-xl text-white/85 sm:text-2xl">
+        {{ localize(profile.tagline) }}
+      </p>
       <p ref="intro" v-reveal="250" class="mx-auto mb-10 max-w-xl leading-relaxed text-white/55">
-        {{ profile.intro }}
+        {{ localize(profile.intro) }}
       </p>
 
       <div ref="actions" v-reveal="300" class="flex flex-wrap items-center justify-center gap-4">
-        <a href="#contact" class="btn-secondary">與我聯絡</a>
+        <a href="#contact" class="btn-secondary">{{ $t('hero.contact') }}</a>
         <a href="#projects" class="btn-primary group">
-          查看作品
+          {{ $t('hero.viewProjects') }}
           <IconArrowRight :size="18" class="transition-transform group-hover:translate-x-1" />
         </a>
       </div>

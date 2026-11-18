@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { IconArrowUpRight, IconBrandGithub } from '@tabler/icons-vue'
 import type { Project } from '@/data/profile'
+import { localize } from '@/i18n'
 import ProjectMedia from './ProjectMedia.vue'
 
 const props = defineProps<{
@@ -12,16 +13,17 @@ const props = defineProps<{
 }>()
 
 const number = computed(() => String(props.index + 1).padStart(2, '0'))
+const title = computed(() => localize(props.project.title))
 </script>
 
 <template>
   <article class="project-card glass glass-hover group flex h-full flex-col p-6">
     <div class="relative mb-6 aspect-video overflow-hidden rounded-2xl border border-white/10">
-      <ProjectMedia v-if="project.media" :media="project.media" :title="project.title" />
+      <ProjectMedia v-if="project.media" :media="project.media" :title="title" />
       <template v-else>
         <div class="project-preview absolute inset-0" />
         <span class="font-display absolute inset-0 grid place-items-center text-2xl text-white/40">
-          {{ project.title }}
+          {{ title }}
         </span>
       </template>
     </div>
@@ -30,9 +32,11 @@ const number = computed(() => String(props.index + 1).padStart(2, '0'))
       <div>
         <div class="mb-2 flex items-center gap-3 font-mono text-xs tracking-[0.2em]">
           <span class="font-semibold text-primary">{{ number }}</span>
-          <span v-if="project.featured" class="text-primary/80 uppercase">精選專案</span>
+          <span v-if="project.featured" class="text-primary/80 uppercase">{{
+            $t('projects.featured')
+          }}</span>
         </div>
-        <h3 class="font-display text-xl font-medium sm:text-2xl">{{ project.title }}</h3>
+        <h3 class="font-display text-xl font-medium sm:text-2xl">{{ title }}</h3>
       </div>
       <div class="flex shrink-0 gap-2">
         <a
@@ -40,7 +44,7 @@ const number = computed(() => String(props.index + 1).padStart(2, '0'))
           :href="project.repo"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="原始碼（另開新視窗）"
+          :aria-label="$t('projects.source')"
           class="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:text-white"
         >
           <IconBrandGithub :size="18" />
@@ -50,7 +54,7 @@ const number = computed(() => String(props.index + 1).padStart(2, '0'))
           :href="project.demo"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="線上展示（另開新視窗）"
+          :aria-label="$t('projects.demo')"
           class="grid h-10 w-10 place-items-center rounded-full bg-primary text-background transition group-hover:rotate-45 hover:bg-secondary"
         >
           <IconArrowUpRight :size="18" />
@@ -62,7 +66,7 @@ const number = computed(() => String(props.index + 1).padStart(2, '0'))
       class="mb-5 leading-relaxed text-white/55"
       :class="{ '[@media(max-height:860px)]:line-clamp-3': compact }"
     >
-      {{ project.description }}
+      {{ localize(project.description) }}
     </p>
     <div class="mt-auto flex flex-wrap gap-2">
       <span v-for="tag in project.tags" :key="tag" class="tag-chip">{{ tag }}</span>

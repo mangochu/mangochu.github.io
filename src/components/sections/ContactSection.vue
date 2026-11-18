@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 import { IconMail, IconMapPin, IconSend } from '@tabler/icons-vue'
+import { useI18n } from 'vue-i18n'
 import { profile } from '@/data/profile'
 import SectionHeading from './SectionHeading.vue'
 
+const { t } = useI18n()
 const form = reactive({ name: '', email: '', message: '' })
 
 function submit() {
-  const subject = encodeURIComponent(`來自 ${form.name} 的訊息`)
+  const subject = encodeURIComponent(t('contact.mailSubject', { name: form.name }))
   const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`)
   window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`
 }
@@ -25,8 +27,8 @@ const inputClass =
             <SectionHeading
               section-id="contact"
               eyebrow="Contact"
-              title="有個想法？一起聊聊。"
-              description="有任何專案想法或合作機會，歡迎與我聯絡。"
+              :title="t('contact.title')"
+              :description="t('contact.description')"
             />
             <div class="space-y-5">
               <a :href="`mailto:${profile.email}`" class="group flex items-center gap-4">
@@ -50,8 +52,13 @@ const inputClass =
 
           <form class="space-y-5" @submit.prevent="submit">
             <label class="block">
-              <span class="mb-2 block text-sm text-white/60">姓名</span>
-              <input v-model="form.name" :class="inputClass" placeholder="你的名字" required />
+              <span class="mb-2 block text-sm text-white/60">{{ t('contact.name') }}</span>
+              <input
+                v-model="form.name"
+                :class="inputClass"
+                :placeholder="t('contact.namePlaceholder')"
+                required
+              />
             </label>
             <label class="block">
               <span class="mb-2 block text-sm text-white/60">Email</span>
@@ -64,17 +71,17 @@ const inputClass =
               />
             </label>
             <label class="block">
-              <span class="mb-2 block text-sm text-white/60">訊息</span>
+              <span class="mb-2 block text-sm text-white/60">{{ t('contact.message') }}</span>
               <textarea
                 v-model="form.message"
                 rows="5"
                 :class="inputClass"
-                placeholder="想聊些什麼？"
+                :placeholder="t('contact.messagePlaceholder')"
                 required
               />
             </label>
             <button type="submit" class="btn-primary group w-full">
-              送出訊息
+              {{ t('contact.submit') }}
               <IconSend :size="18" class="transition-transform group-hover:translate-x-1" />
             </button>
           </form>

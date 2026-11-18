@@ -12,10 +12,12 @@
  */
 import { nextTick, ref, useTemplateRef, watch } from 'vue'
 import { IconDownload, IconExternalLink, IconX } from '@tabler/icons-vue'
+import { useI18n } from 'vue-i18n'
 import { profile } from '@/data/profile'
 import { useResumeViewer } from '@/composables/useResumeViewer'
 
 const { isOpen, closeResume } = useResumeViewer()
+const { t } = useI18n()
 
 const dialog = useTemplateRef('dialog')
 const pagesEl = useTemplateRef('pages')
@@ -100,28 +102,28 @@ function onClick(e: MouseEvent) {
     @click="onClick"
   >
     <header class="flex items-center gap-2 border-b border-white/10 px-4 py-3 sm:px-6">
-      <h2 id="resume-title" class="mr-auto font-medium">履歷</h2>
+      <h2 id="resume-title" class="mr-auto font-medium">{{ t('resume.title') }}</h2>
       <a
         :href="profile.resumeUrl"
         :download="fileName"
         class="flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-medium text-background transition hover:bg-secondary"
       >
         <IconDownload :size="16" />
-        下載
+        {{ t('resume.download') }}
       </a>
       <a
         :href="profile.resumeUrl"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="在新分頁開啟 PDF"
-        title="在新分頁開啟 PDF"
+        :aria-label="t('resume.openInNewTab')"
+        :title="t('resume.openInNewTab')"
         class="grid size-9 place-items-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:text-white"
       >
         <IconExternalLink :size="18" />
       </a>
       <button
         type="button"
-        aria-label="關閉履歷"
+        :aria-label="t('resume.close')"
         class="grid size-9 place-items-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:text-white"
         @click="closeResume"
       >
@@ -140,14 +142,14 @@ function onClick(e: MouseEvent) {
         v-else-if="status === 'error'"
         class="grid h-full place-content-center gap-4 text-center text-sm text-white/70"
       >
-        <p>履歷載入失敗</p>
+        <p>{{ t('resume.loadFailed') }}</p>
         <a
           :href="profile.resumeUrl"
           target="_blank"
           rel="noopener noreferrer"
           class="text-primary underline"
         >
-          直接開啟 PDF
+          {{ t('resume.openDirectly') }}
         </a>
       </div>
 
@@ -156,7 +158,7 @@ function onClick(e: MouseEvent) {
           v-for="n in pageCount"
           :key="n"
           role="img"
-          :aria-label="`履歷第 ${n} 頁，共 ${pageCount} 頁`"
+          :aria-label="t('resume.page', { n, total: pageCount })"
           class="h-auto w-full rounded-lg bg-white shadow-lg"
         />
       </div>

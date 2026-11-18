@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { Component } from 'vue'
+import { computed, type Component } from 'vue'
 import { IconCode, IconPalette, IconRocket, IconServer } from '@tabler/icons-vue'
 import { skills, techCategories, techStack, type SkillIcon } from '@/data/profile'
+import { localize } from '@/i18n'
 import SectionHeading from './SectionHeading.vue'
 import SkillWall from './SkillWall.vue'
 
@@ -11,6 +12,10 @@ const icons: Record<SkillIcon, Component> = {
   server: IconServer,
   rocket: IconRocket,
 }
+
+const categories = computed(() =>
+  techCategories.map((c) => ({ id: c.id, label: localize(c.label) })),
+)
 </script>
 
 <template>
@@ -20,14 +25,14 @@ const icons: Record<SkillIcon, Component> = {
         v-reveal
         section-id="skills"
         eyebrow="Skills"
-        title="專業技能"
-        description="我用來把想法變成產品的工具與能力。"
+        :title="$t('skills.title')"
+        :description="$t('skills.description')"
       />
 
       <div class="grid gap-6 sm:grid-cols-2">
         <div
           v-for="(skill, i) in skills"
-          :key="skill.title"
+          :key="skill.icon"
           v-reveal="i * 100"
           class="glass glass-hover group flex gap-5 p-7"
         >
@@ -40,15 +45,17 @@ const icons: Record<SkillIcon, Component> = {
             <component :is="icons[skill.icon]" :size="22" />
           </div>
           <div>
-            <h3 class="mb-2 text-lg font-medium">{{ skill.title }}</h3>
-            <p class="text-sm leading-relaxed text-white/55">{{ skill.description }}</p>
+            <h3 class="mb-2 text-lg font-medium">{{ localize(skill.title) }}</h3>
+            <p class="text-sm leading-relaxed text-white/55">{{ localize(skill.description) }}</p>
           </div>
         </div>
       </div>
 
       <div v-reveal class="mt-16">
-        <h3 class="mb-5 text-xs tracking-[0.25em] text-white/55 uppercase">工具與套件</h3>
-        <SkillWall :items="techStack" :categories="techCategories" />
+        <h3 class="mb-5 text-xs tracking-[0.25em] text-white/55 uppercase">
+          {{ $t('skills.tools') }}
+        </h3>
+        <SkillWall :items="techStack" :categories="categories" />
       </div>
     </div>
   </section>

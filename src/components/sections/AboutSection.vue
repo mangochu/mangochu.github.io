@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { IconMapPin } from '@tabler/icons-vue'
 import { about, profile, stats } from '@/data/profile'
+import { localize } from '@/i18n'
 import SectionHeading from './SectionHeading.vue'
 </script>
 
 <template>
   <section id="about" class="px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
     <div class="mx-auto max-w-6xl">
-      <SectionHeading v-reveal section-id="about" eyebrow="About" title="關於我" />
+      <SectionHeading v-reveal section-id="about" eyebrow="About" :title="$t('about.title')" />
 
       <div class="grid gap-6 lg:grid-cols-[minmax(0,21rem)_1fr]">
         <aside v-reveal class="glass flex flex-col items-center p-8 text-center sm:p-10">
@@ -37,16 +38,17 @@ import SectionHeading from './SectionHeading.vue'
             class="mt-auto grid w-full divide-x divide-white/10 border-t border-white/10 pt-6"
             :style="{ gridTemplateColumns: `repeat(${stats.length}, minmax(0, 1fr))` }"
           >
-            <div v-for="stat in stats" :key="stat.label">
+            <!-- px-3：文字不要貼到中間的分隔線；text-balance：英文折行時兩行長度平均，不會只剩一個字 -->
+            <div v-for="stat in stats" :key="stat.value" class="px-3">
               <div class="text-primary text-2xl font-semibold">{{ stat.value }}</div>
-              <div class="mt-1 text-xs text-white/50">{{ stat.label }}</div>
+              <div class="mt-1 text-xs text-balance text-white/50">{{ localize(stat.label) }}</div>
             </div>
           </div>
         </aside>
 
         <div v-reveal="120" class="glass p-8 sm:p-10">
           <p
-            v-for="p in about.paragraphs"
+            v-for="p in localize(about.paragraphs)"
             :key="p"
             class="mb-5 text-lg leading-relaxed text-white/75 last:mb-0"
           >
@@ -55,10 +57,12 @@ import SectionHeading from './SectionHeading.vue'
 
           <div class="my-8 h-px bg-white/10" />
 
-          <h3 class="mb-5 text-xs tracking-[0.25em] text-white/55 uppercase">我在乎的事</h3>
+          <h3 class="mb-5 text-xs tracking-[0.25em] text-white/55 uppercase">
+            {{ $t('about.highlights') }}
+          </h3>
           <ul class="space-y-4">
             <li
-              v-for="item in about.highlights"
+              v-for="item in localize(about.highlights)"
               :key="item"
               class="flex items-start gap-3 text-white/70"
             >

@@ -19,13 +19,13 @@ const year = new Date().getFullYear()
           class="flex items-center gap-2 text-sm text-white/55 transition-colors hover:text-white"
         >
           <IconBrandGithub :size="16" />
-          網站原始碼
+          {{ $t('footer.source') }}
         </a>
         <a
           href="#top"
           class="flex items-center gap-2 text-sm text-white/55 transition-colors hover:text-white"
         >
-          回到頂端
+          {{ $t('footer.backToTop') }}
           <IconArrowNarrowUpDashed :size="16" />
         </a>
       </div>
