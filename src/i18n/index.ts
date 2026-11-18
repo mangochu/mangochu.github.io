@@ -12,6 +12,9 @@ import zhTW from './locales/zh-TW'
 export const locales = ['zh-TW', 'en'] as const
 export type Locale = (typeof locales)[number]
 
+/** 語言選單裡顯示的名稱，用該語言自己的寫法，不隨目前語言翻譯 */
+export const localeNames: Record<Locale, string> = { 'zh-TW': '繁體中文', en: 'English' }
+
 /** 需要翻譯的內容：每種語言各一份 */
 export type Localized<T = string> = Record<Locale, T>
 /** 可以是各語言共用的值（例如套件名稱），也可以是各語言各一份 */

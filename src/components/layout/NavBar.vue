@@ -1,17 +1,10 @@
 <script setup lang="ts">
 import { navItems, profile } from '@/data/profile'
-import { IconMenu2, IconX } from '@tabler/icons-vue'
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { IconLanguage, IconMenu2, IconX } from '@tabler/icons-vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import { useResumeViewer } from '@/composables/useResumeViewer'
-import { currentLocale, localize, setLocale } from '@/i18n'
-
-/** 切換按鈕顯示「要切換過去」的語言，用該語言自己的寫法 */
-const nextLocale = computed(() => (currentLocale() === 'en' ? 'zh-TW' : 'en'))
-const nextLocaleLabel = computed(() => (nextLocale.value === 'en' ? 'EN' : '中'))
-
-function toggleLocale() {
-  setLocale(nextLocale.value)
-}
+import { currentLocale, localeNames, locales, localize, setLocale } from '@/i18n'
+import LanguageMenu from './LanguageMenu.vue'
 
 const profileName = profile.name.split(' ')[0]
 const isMenuOpen = ref(false)
@@ -86,16 +79,8 @@ onUnmounted(() => {
         </li>
       </ul>
       <div class="flex items-center gap-2">
-        <button
-          type="button"
-          class="grid h-10 min-w-10 place-items-center rounded-full border border-white/10 bg-white/5 px-3 font-mono text-xs tracking-wider text-white/70 transition-colors hover:text-white"
-          :lang="nextLocale"
-          :aria-label="$t('nav.switchLanguage')"
-          :title="$t('nav.switchLanguage')"
-          @click="toggleLocale"
-        >
-          {{ nextLocaleLabel }}
-        </button>
+        <!-- 電腦版：下拉選單；手機版的語言選項收在漢堡選單裡 -->
+        <LanguageMenu class="hidden md:block" />
         <a
           :href="profile.resumeUrl"
           target="_blank"
@@ -142,6 +127,36 @@ onUnmounted(() => {
           @click="onResumeClick"
           >{{ $t('nav.viewResume') }}</a
         >
+        <!-- 語言切換：選了之後選單不關閉，讓使用者直接看到選單文字換成新語言 -->
+        <div
+          class="mt-3 flex items-center justify-between gap-3 border-t border-white/10 px-4 pt-3"
+          role="group"
+          :aria-label="$t('nav.language')"
+        >
+          <!-- 文A 圖示：看不懂目前語言的人也認得出這是語言設定 -->
+          <span class="flex items-center gap-2 text-sm text-white/55">
+            <IconLanguage :size="18" aria-hidden="true" />
+            {{ $t('nav.language') }}
+          </span>
+          <div class="flex rounded-full border border-white/10 bg-white/5 p-1">
+            <button
+              v-for="locale in locales"
+              :key="locale"
+              type="button"
+              :lang="locale"
+              :aria-pressed="locale === currentLocale()"
+              class="rounded-full px-3.5 py-1.5 text-sm transition-colors"
+              :class="
+                locale === currentLocale()
+                  ? 'bg-primary text-background'
+                  : 'text-white/60 hover:text-white'
+              "
+              @click="setLocale(locale)"
+            >
+              {{ localeNames[locale] }}
+            </button>
+          </div>
+        </div>
       </div>
     </Transition>
   </header>

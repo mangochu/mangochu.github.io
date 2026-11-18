@@ -11,7 +11,7 @@ export default {
     viewResume: '查看履歷',
     openMenu: '開啟選單',
     closeMenu: '關閉選單',
-    switchLanguage: '切換為英文',
+    language: '語言',
   },
   footer: {
     source: '網站原始碼',

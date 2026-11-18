@@ -48,15 +48,28 @@ describe('App', () => {
     }
   })
 
-  it('點導覽列的語言按鈕會切換語言，並同步 <html lang>', async () => {
+  it('電腦版：從語言下拉選單切換語言，並同步 <html lang>', async () => {
     setLocale('zh-TW')
     const wrapper = mountApp()
 
-    await wrapper.get('nav button[lang="en"]').trigger('click')
+    expect(wrapper.find('#language-menu').exists()).toBe(false)
+    await wrapper.get('[aria-controls="language-menu"]').trigger('click')
+    await wrapper.get('#language-menu button[lang="en"]').trigger('click')
 
     expect(wrapper.text()).toContain(profile.tagline.en)
     expect(wrapper.text()).not.toContain(profile.tagline['zh-TW'])
     expect(document.documentElement.lang).toBe('en')
     expect(localStorage.getItem('locale')).toBe('en')
+  })
+
+  it('手機版：語言選項收在漢堡選單裡', async () => {
+    setLocale('en')
+    const wrapper = mountApp()
+
+    await wrapper.get('button[aria-expanded="false"].md\\:hidden').trigger('click')
+    await wrapper.get('[role="group"] button[lang="zh-TW"]').trigger('click')
+
+    expect(wrapper.text()).toContain(profile.tagline['zh-TW'])
+    expect(document.documentElement.lang).toBe('zh-Hant-TW')
   })
 })

@@ -13,7 +13,7 @@ const en: typeof zhTW = {
     viewResume: 'View Resume',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
-    switchLanguage: 'Switch to Chinese',
+    language: 'Language',
   },
   footer: {
     source: 'Site source',
