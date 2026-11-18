@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, useTemplateRef } from 'vue'
 import { experiences } from '@/data/profile'
+import { localize } from '@/i18n'
 import SectionHeading from './SectionHeading.vue'
 
 const track = useTemplateRef<HTMLElement>('track')
@@ -67,8 +68,8 @@ onUnmounted(() => {
         v-reveal
         section-id="experience"
         eyebrow="Experience"
-        title="工作經歷"
-        description="由近到遠，一路走來的軌跡。"
+        :title="$t('experience.title')"
+        :description="$t('experience.description')"
       />
 
       <div ref="track" class="relative">
@@ -105,11 +106,11 @@ onUnmounted(() => {
               <div class="mb-2 font-mono text-xs tracking-wider text-primary md:hidden">
                 {{ exp.period }}
               </div>
-              <h3 class="font-display text-xl font-medium">{{ exp.role }}</h3>
-              <div class="mb-4 text-sm text-white/50">{{ exp.company }}</div>
-              <p class="leading-relaxed text-white/70">{{ exp.description }}</p>
+              <h3 class="font-display text-xl font-medium">{{ localize(exp.role) }}</h3>
+              <div class="mb-4 text-sm text-white/50">{{ localize(exp.company) }}</div>
+              <p class="leading-relaxed text-white/70">{{ localize(exp.description) }}</p>
               <div class="mt-5 flex flex-wrap gap-2">
-                <span v-for="tag in exp.tags" :key="tag" class="tag-chip">{{ tag }}</span>
+                <span v-for="tag in localize(exp.tags)" :key="tag" class="tag-chip">{{ tag }}</span>
               </div>
             </div>
             <div

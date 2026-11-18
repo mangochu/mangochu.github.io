@@ -131,8 +131,8 @@ watch(mode, async () => {
         v-reveal
         section-id="projects"
         eyebrow="Projects"
-        title="精選作品"
-        description="近期參與與獨立完成的代表性專案。"
+        :title="$t('projects.title')"
+        :description="$t('projects.description')"
       />
     </div>
 
@@ -153,7 +153,7 @@ watch(mode, async () => {
             <span class="flex gap-1.5" aria-hidden="true">
               <span
                 v-for="(p, i) in projects"
-                :key="p.title"
+                :key="p.id"
                 class="h-1 w-8 transition-colors"
                 :class="i <= active ? 'bg-primary' : 'bg-white/15'"
               />
@@ -168,7 +168,7 @@ watch(mode, async () => {
         >
           <li
             v-for="(project, i) in projects"
-            :key="project.title"
+            :key="project.id"
             v-reveal
             class="w-[min(42vw,clamp(18rem,calc((100svh-29rem)*1.7+3rem),34rem))] shrink-0"
           >
@@ -186,7 +186,7 @@ watch(mode, async () => {
           <span class="flex gap-1.5" aria-hidden="true">
             <span
               v-for="(p, i) in projects"
-              :key="p.title"
+              :key="p.id"
               class="h-1 w-6 transition-colors"
               :class="i <= active ? 'bg-primary' : 'bg-white/15'"
             />
@@ -206,7 +206,7 @@ watch(mode, async () => {
       >
         <li
           v-for="(project, i) in projects"
-          :key="project.title"
+          :key="project.id"
           class="w-[85%] max-w-md shrink-0 snap-start"
         >
           <ProjectCard :project="project" :index="i" />
@@ -216,7 +216,7 @@ watch(mode, async () => {
 
     <!-- stack：一般的兩欄排列 -->
     <ul v-else class="mx-auto grid max-w-6xl gap-6 px-4 sm:px-6 md:grid-cols-2 lg:px-8">
-      <li v-for="(project, i) in projects" :key="project.title" v-reveal="(i % 2) * 120">
+      <li v-for="(project, i) in projects" :key="project.id" v-reveal="(i % 2) * 120">
         <ProjectCard :project="project" :index="i" />
       </li>
     </ul>

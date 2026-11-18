@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import App from '../App.vue'
 import { profile, projects } from '@/data/profile'
+import { i18n, localize, locales, setLocale } from '@/i18n'
 import { vReveal } from '@/directives/reveal'
 import { vScramble } from '@/directives/scramble'
 
@@ -31,14 +32,31 @@ describe('App', () => {
     vi.unstubAllGlobals()
   })
 
-  it('可以正常掛載，並顯示個人資料與所有作品', () => {
-    const wrapper = mount(App, {
-      global: { directives: { reveal: vReveal, scramble: vScramble } },
+  function mountApp() {
+    return mount(App, {
+      global: { plugins: [i18n], directives: { reveal: vReveal, scramble: vScramble } },
     })
+  }
 
-    expect(wrapper.text()).toContain(profile.tagline)
+  it.each(locales)('%s：可以正常掛載，並顯示個人資料與所有作品', (locale) => {
+    setLocale(locale)
+    const wrapper = mountApp()
+
+    expect(wrapper.text()).toContain(profile.tagline[locale])
     for (const project of projects) {
-      expect(wrapper.text()).toContain(project.title)
+      expect(wrapper.text()).toContain(localize(project.title))
     }
+  })
+
+  it('點導覽列的語言按鈕會切換語言，並同步 <html lang>', async () => {
+    setLocale('zh-TW')
+    const wrapper = mountApp()
+
+    await wrapper.get('nav button[lang="en"]').trigger('click')
+
+    expect(wrapper.text()).toContain(profile.tagline.en)
+    expect(wrapper.text()).not.toContain(profile.tagline['zh-TW'])
+    expect(document.documentElement.lang).toBe('en')
+    expect(localStorage.getItem('locale')).toBe('en')
   })
 })

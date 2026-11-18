@@ -199,7 +199,7 @@ onUnmounted(() => {
       type="button"
       class="absolute top-2 left-2 flex min-h-9 items-center gap-1.5 rounded-full bg-black/70 px-3 font-mono text-[10px] tracking-[0.2em] text-white backdrop-blur"
       :aria-pressed="active"
-      :aria-label="active ? '關閉網站即時預覽' : '開啟網站即時預覽'"
+      :aria-label="active ? $t('projects.closeLive') : $t('projects.openLive')"
       @click="toggle"
     >
       <template v-if="!active">▶ LIVE</template>

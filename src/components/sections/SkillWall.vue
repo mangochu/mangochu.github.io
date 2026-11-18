@@ -19,6 +19,7 @@ import LogoTailwindcss from '~icons/logos/tailwindcss-icon'
 import LogoTypescript from '~icons/logos/typescript-icon'
 import LogoUnity from '~icons/logos/unity'
 import LogoVue from '~icons/logos/vue'
+import { useI18n } from 'vue-i18n'
 import type { TechCategory, TechItem } from '@/data/profile'
 
 const props = withDefaults(
@@ -29,6 +30,8 @@ const props = withDefaults(
   }>(),
   { maxVisible: 8 },
 )
+
+const { t } = useI18n()
 
 const logos: Record<string, Component> = {
   vue: LogoVue,
@@ -63,7 +66,7 @@ function monogram(name: string) {
 const active = ref<TechCategory | 'all'>('all')
 
 const filters = computed(() => [
-  { id: 'all' as const, label: '全部', count: props.items.length },
+  { id: 'all' as const, label: t('skills.all'), count: props.items.length },
   ...props.categories.map((c) => ({
     ...c,
     count: props.items.filter((t) => t.category === c.id).length,
@@ -86,7 +89,7 @@ const visibleTech = computed(() => matchedTech.value.slice(0, props.maxVisible))
 
 <template>
   <div>
-    <div class="mb-6 flex flex-wrap gap-2" role="group" aria-label="依分類篩選">
+    <div class="mb-6 flex flex-wrap gap-2" role="group" :aria-label="t('skills.filter')">
       <button
         v-for="f in filters"
         :key="f.id"
@@ -141,7 +144,7 @@ const visibleTech = computed(() => matchedTech.value.slice(0, props.maxVisible))
               v-if="tech.level !== null"
               class="mt-2 block h-1 overflow-hidden rounded-full bg-white/10"
               role="meter"
-              :aria-label="`${tech.name} 熟練度`"
+              :aria-label="t('skills.proficiency', { name: tech.name })"
               aria-valuemin="0"
               aria-valuemax="100"
               :aria-valuenow="tech.level"
@@ -162,10 +165,10 @@ const visibleTech = computed(() => matchedTech.value.slice(0, props.maxVisible))
     </Transition>
 
     <p class="mt-4 text-sm text-white/55">
-      顯示 {{ visibleTech.length }} / {{ matchedTech.length }} 項<template
-        v-if="matchedTech.length > visibleTech.length"
-        >，選擇分類查看全部</template
-      >
+      {{ t('skills.showing', { shown: visibleTech.length, total: matchedTech.length })
+      }}<template v-if="matchedTech.length > visibleTech.length">{{
+        t('skills.showAll')
+      }}</template>
     </p>
   </div>
 </template>

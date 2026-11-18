@@ -1,8 +1,17 @@
 <script setup lang="ts">
 import { navItems, profile } from '@/data/profile'
 import { IconMenu2, IconX } from '@tabler/icons-vue'
-import { onMounted, onUnmounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useResumeViewer } from '@/composables/useResumeViewer'
+import { currentLocale, localize, setLocale } from '@/i18n'
+
+/** 切換按鈕顯示「要切換過去」的語言，用該語言自己的寫法 */
+const nextLocale = computed(() => (currentLocale() === 'en' ? 'zh-TW' : 'en'))
+const nextLocaleLabel = computed(() => (nextLocale.value === 'en' ? 'EN' : '中'))
+
+function toggleLocale() {
+  setLocale(nextLocale.value)
+}
 
 const profileName = profile.name.split(' ')[0]
 const isMenuOpen = ref(false)
@@ -72,29 +81,41 @@ onUnmounted(() => {
             class="rounded-full px-4 py-2 text-sm transition-colors"
             :class="activeId === item.id ? 'bg-white/10' : 'text-white/60 hover:text-white'"
           >
-            {{ item.label }}
+            {{ localize(item.label) }}
           </a>
         </li>
       </ul>
-      <a
-        :href="profile.resumeUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-haspopup="dialog"
-        class="btn-primary hidden px-5! py-2! text-sm md:inline-flex"
-        @click="onResumeClick"
-      >
-        履歷
-      </a>
-      <button
-        class="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 md:hidden"
-        :aria-label="isMenuOpen ? '關閉選單' : '開啟選單'"
-        :aria-expanded="isMenuOpen"
-        @click="toggleMenu"
-      >
-        <IconX v-if="isMenuOpen" :size="20" />
-        <IconMenu2 v-else :size="20" />
-      </button>
+      <div class="flex items-center gap-2">
+        <button
+          type="button"
+          class="grid h-10 min-w-10 place-items-center rounded-full border border-white/10 bg-white/5 px-3 font-mono text-xs tracking-wider text-white/70 transition-colors hover:text-white"
+          :lang="nextLocale"
+          :aria-label="$t('nav.switchLanguage')"
+          :title="$t('nav.switchLanguage')"
+          @click="toggleLocale"
+        >
+          {{ nextLocaleLabel }}
+        </button>
+        <a
+          :href="profile.resumeUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-haspopup="dialog"
+          class="btn-primary hidden px-5! py-2! text-sm md:inline-flex"
+          @click="onResumeClick"
+        >
+          {{ $t('nav.resume') }}
+        </a>
+        <button
+          class="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 md:hidden"
+          :aria-label="isMenuOpen ? $t('nav.closeMenu') : $t('nav.openMenu')"
+          :aria-expanded="isMenuOpen"
+          @click="toggleMenu"
+        >
+          <IconX v-if="isMenuOpen" :size="20" />
+          <IconMenu2 v-else :size="20" />
+        </button>
+      </div>
     </nav>
     <Transition
       enter-active-class="transition duration-200 ease-out"
@@ -110,7 +131,7 @@ onUnmounted(() => {
           class="block w-full rounded-2xl px-4 py-3 text-left transition-colors hover:bg-white/5"
           @click="closeMenu"
         >
-          {{ item.label }}
+          {{ localize(item.label) }}
         </a>
         <a
           :href="profile.resumeUrl"
@@ -119,7 +140,7 @@ onUnmounted(() => {
           aria-haspopup="dialog"
           class="btn-primary mt-2 w-full"
           @click="onResumeClick"
-          >查看履歷</a
+          >{{ $t('nav.viewResume') }}</a
         >
       </div>
     </Transition>

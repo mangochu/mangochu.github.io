@@ -68,7 +68,8 @@ let failed = 0
 
 try {
   // 「減少動態效果」讓進場動畫、文字解碼特效直接顯示最終畫面，截圖不會截到動畫中途
-  const context = await browser.newContext({ reducedMotion: 'reduce' })
+  // 固定用繁中截圖：作品集會依瀏覽器語言切換，無頭瀏覽器預設是英文；分享預覽圖（og:image）也要和 index.html 的繁中說明一致
+  const context = await browser.newContext({ reducedMotion: 'reduce', locale: 'zh-TW' })
 
   const home = await context.newPage()
   await home.goto(base, { waitUntil: 'networkidle' })
