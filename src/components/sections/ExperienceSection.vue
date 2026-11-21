@@ -78,8 +78,8 @@ onUnmounted(() => {
           aria-hidden="true"
         >
           <div
-            class="timeline-fill absolute inset-x-0 bottom-0 transition-[height] duration-500 ease-out"
-            :style="{ height: `${(1 - fillStart) * 100}%` }"
+            class="timeline-fill absolute inset-0 origin-bottom transition-transform duration-500 ease-out"
+            :style="{ transform: `scaleY(${1 - fillStart})` }"
           />
         </div>
 
