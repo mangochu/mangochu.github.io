@@ -95,11 +95,11 @@ const visibleTech = computed(() => matchedTech.value.slice(0, props.maxVisible))
         :key="f.id"
         type="button"
         :aria-pressed="active === f.id"
-        class="glass px-4 py-1.5 text-sm transition-colors"
+        class="glass backdrop-filter-none px-4 py-1.5 text-sm transition-colors"
         :class="
           active === f.id
             ? 'border-primary bg-primary text-background'
-            : 'border-white/10 bg-white/5 text-white/65 hover:border-white/30 hover:text-white'
+            : 'border-white/10 bg-stone-950/85 text-white/65 hover:border-white/30 hover:text-white'
         "
         @click="active = f.id"
       >
@@ -119,7 +119,7 @@ const visibleTech = computed(() => matchedTech.value.slice(0, props.maxVisible))
         <li
           v-for="tech in visibleTech"
           :key="tech.name"
-          class="glass group flex items-center gap-3 rounded-2xl px-4 py-3.5 transition-colors hover:bg-white/5"
+          class="glass backdrop-filter-none group flex items-center gap-3 rounded-2xl bg-stone-950/85 px-4 py-3.5 transition-colors hover:bg-stone-900/85"
         >
           <span
             class="grid size-9 shrink-0 place-items-center rounded-xl bg-white/5 text-white/70 transition-colors group-hover:text-primary"

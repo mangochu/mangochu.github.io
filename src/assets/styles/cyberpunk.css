@@ -55,7 +55,6 @@
     isolation: isolate;
     background: rgb(255 255 255 / 0.25);
     border: none;
-    -webkit-backdrop-filter: none;
     backdrop-filter: none;
     transition:
       color 0.3s,
@@ -101,6 +100,11 @@
     border-radius: 0;
     background: rgb(255 255 255 / 0.14);
     box-shadow: none;
+    /*
+     * ::before 幾乎不透明地蓋住整張卡，glass 的背景模糊看不到，卻很耗效能：
+     * 橫向捲動時卡片每一幀都在移動，瀏覽器每一幀都要重新模糊背後的畫面
+     */
+    backdrop-filter: none;
     clip-path: polygon(
       var(--cut) 0,
       100% 0,
